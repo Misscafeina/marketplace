@@ -1,8 +1,10 @@
+import "./style.css";
+
 function Footer() {
   return (
     <footer>
       <nav>
-        <ul>
+        <ul className="firstList">
           <li>
             <h4>shop online</h4>
             <ul>
@@ -10,7 +12,8 @@ function Footer() {
               <li>Upload Item</li>
               <li>Best Sellers</li>
               <li>Map Search</li>
-              <li>Categories / All products</li>
+              <li>Categories</li>
+              <li>All products</li>
             </ul>
           </li>
           <li>
@@ -42,7 +45,7 @@ function Footer() {
           </li>
         </ul>
       </nav>
-      <p>@RetroTech - 2023</p>
+      <p>RetroTech® - 2023</p>
     </footer>
   );
 }
