@@ -6,11 +6,16 @@ function useHeader() {
   const navigate = useNavigate();
   const { showPopUp, setShowPopUp } = useContext(PopUpContext);
 
+  window.addEventListener("click", ({ target }) => {
+    if (target.className === "popup") setShowPopUp(false);
+  });
+
   const returnHome = () => {
     navigate("/");
   };
   const userLog = () => {
-    setShowPopUp(true);
+    const user = localStorage.getItem("userInfo");
+    user ? navigate("/profile") : setShowPopUp(true);
   };
   const wishList = () => {
     navigate("/wishlist");
