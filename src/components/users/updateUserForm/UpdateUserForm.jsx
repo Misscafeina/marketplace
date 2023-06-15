@@ -1,3 +1,4 @@
+/*
 import useUpdateUserForm from "./useUpdateUserForm";
 import "./style.css";
 
@@ -120,6 +121,35 @@ function UpdateUserForm() {
         <button>cambiar Contraseña</button>
       </form>
     </section>
+  );
+}
+
+export default UpdateUserForm;
+*/
+import { useForm } from "react-hook-form";
+import classnames from "classnames";
+
+function UpdateUserForm() {
+  const {
+    register,
+    handleSubmit,
+
+    formState: { errors },
+  } = useForm();
+
+  const submitInfo = (info) => {
+    console.log(info);
+  };
+  return (
+    <>
+      <form onSubmit={handleSubmit(submitInfo)}>
+        <label> Nombre:</label>
+        <input type="text" {...register("name")} />
+        avatarUrl, name, lastname, password, repeatPassword, country, region,
+        address, city, bio,
+      </form>
+      ;
+    </>
   );
 }
 
