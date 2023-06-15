@@ -10,11 +10,13 @@ import useHeader from "../../hooks/useHeader";
 import { useContext } from "react";
 import { PopUpContext } from "../../context/popUpContext";
 import LoginForm from "../users/loginForm/LoginForm";
+import RegisterForm from "../users/registerForm/RegisterForm";
 
 function Header() {
   const { returnHome, userLog, wishList, messages, search, addNewProduct } =
     useHeader();
-  const { showPopUp, setShowPopUp } = useContext(PopUpContext);
+  const { showPopUp, setShowPopUp, loginActive, registerActive } =
+    useContext(PopUpContext);
 
   return (
     <header>
@@ -28,7 +30,10 @@ function Header() {
               }}
             >
               <img src={userLogo} alt="user" />
-              {showPopUp ? <LoginForm /> : null}
+              {loginActive && <div>{showPopUp ? <LoginForm /> : null}</div>}
+              {registerActive && (
+                <div>{showPopUp ? <RegisterForm /> : null}</div>
+              )}
             </button>
           </li>
           {/* <li>

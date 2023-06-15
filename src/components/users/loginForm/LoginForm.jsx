@@ -1,11 +1,20 @@
 import { useContext, useState } from "react";
 import { loginUser } from "../../../services/userService";
 import { PopUpContext } from "../../../context/popUpContext";
+import "./style.css";
+import RegisterForm from "../registerForm/RegisterForm";
 
 function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { showPopUp, setShowPopUp } = useContext(PopUpContext);
+  const {
+    showPopUp,
+    setShowPopUp,
+    setLoginActive,
+    loginActive,
+    registerActive,
+    setRegisterActive,
+  } = useContext(PopUpContext);
 
   const handleUsernameChange = (e) => {
     const value = e.target.value;
@@ -25,6 +34,10 @@ function LoginForm() {
     } catch (error) {
       console.log(error);
     }
+  };
+  const handleRegister = () => {
+    setRegisterActive(true);
+    setLoginActive(false);
   };
 
   return (
@@ -50,6 +63,12 @@ function LoginForm() {
           />
           <button>Login</button>
         </form>
+        <p>
+          ¿Eres nuev@?
+          <span className="register" onClick={handleRegister}>
+            ¡Registrate!
+          </span>
+        </p>
       </div>
     </div>
   );

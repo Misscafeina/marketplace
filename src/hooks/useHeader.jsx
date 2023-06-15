@@ -5,7 +5,14 @@ import LoginPopUp from "../pages/loginPopUp/LoginPopUp";
 
 function useHeader() {
   const navigate = useNavigate();
-  const { showPopUp, setShowPopUp } = useContext(PopUpContext);
+  const {
+    showPopUp,
+    setShowPopUp,
+    loginActive,
+    setLoginActive,
+    registerActive,
+    setRegisterActive,
+  } = useContext(PopUpContext);
 
   window.addEventListener("click", ({ target }) => {
     if (target.className === "popup") setShowPopUp(false);
@@ -15,6 +22,7 @@ function useHeader() {
     navigate("/");
   };
   const userLog = () => {
+    setLoginActive(true);
     const user = localStorage.getItem("userInfo");
     user ? navigate("/profile") : setShowPopUp(true);
     showPopUp ? LoginPopUp : null;
