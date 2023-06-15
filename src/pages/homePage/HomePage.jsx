@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { getProducts } from "../../services/productsService";
+import { getProducts } from "../../services/";
 import "./style.css";
 
 function HomePage() {
   const [products, setProducts] = useState([]);
+  const [filter, setFilter] = useState("");
 
   useEffect(() => {
     const requestProducts = async () => {
@@ -12,7 +13,7 @@ function HomePage() {
       console.log(response);
     };
     requestProducts();
-  }, []);
+  }, [filter]);
   return (
     <ul>
       {products.map((product) => {
