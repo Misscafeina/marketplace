@@ -7,6 +7,7 @@ header {
   position: sticky;
   padding-left: 6px;
   padding-right: 6px;
+  background-color: white;
 }
 
 .headerNav ul {
