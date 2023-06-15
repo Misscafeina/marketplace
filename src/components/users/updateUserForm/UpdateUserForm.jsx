@@ -1,87 +1,39 @@
-import { useEffect, useState } from "react";
-import { USER_INFO } from "../../../utils/constants";
-import { editOwnProfile } from "../../../services/userService";
+import useUpdateUserForm from "./useUpdateUserForm";
+import "./style.css";
 
 function UpdateUserForm() {
-  const [avatarUrl, setAvatarUrl] = useState();
-  const [name, setName] = useState(null);
-  const [lastname, setLastname] = useState(null);
-  const [password, setPassword] = useState();
-  const [repeatPassword, setRepeatPassword] = useState(null);
-  const [country, setCountry] = useState(null);
-  const [region, setRegion] = useState(null);
-  const [address, setAddress] = useState(null);
-
-  const [city, setCity] = useState(null);
-
-  useEffect(() => {
-    setAvatarUrl(USER_INFO?.avatar);
-  }, []);
-
-  const handleImageChange = (e) => {
-    const target = e.target.files[0];
-    const url = URL.createObjectURL(target);
-    setAvatarUrl(url);
-  };
-  const handleNameChange = (e) => {
-    const value = e.target.value;
-    setName(value);
-  };
-  const handleLastnameChange = (e) => {
-    const value = e.target.value;
-    setLastname(value);
-  };
-  const handlePasswordChange = (e) => {
-    const value = e.target.value;
-    setPassword(value);
-  };
-  const handleRepeatPasswordChange = (e) => {
-    const value = e.target.value;
-    setRepeatPassword(value);
-  };
-  const handleCountryChange = (e) => {
-    const value = e.target.value;
-    setCountry(value);
-  };
-  const handleRegionChange = (e) => {
-    const value = e.target.value;
-    setRegion(value);
-  };
-
-  const handleAddressChange = (e) => {
-    const value = e.target.value;
-    setAddress(value);
-  };
-
-  const handleCityChange = (e) => {
-    const value = e.target.value;
-    setCity(value);
-  };
-
-  // Función para llamar a backend y guardar la imagen localmente
-  const handleOnSubmit = async (e) => {
-    e.preventDefault();
-    console.log(e.target);
-    const formData = new FormData(e.target);
-    for (const value of formData.keys()) {
-      console.log(value);
-    }
-    const config = {
-      header: {
-        "Content-Type": "multipart/form-data",
-      },
-    };
-
-    try {
-      await editOwnProfile(formData, config);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const {
+    state: {
+      avatarUrl,
+      name,
+      lastname,
+      password,
+      repeatPassword,
+      country,
+      region,
+      address,
+      city,
+      bio,
+    },
+    actions: {
+      handleAddressChange,
+      handleCityChange,
+      handleCountryChange,
+      handleImageChange,
+      handleLastnameChange,
+      handleNameChange,
+      handlePasswordChange,
+      handleRepeatPasswordChange,
+      handleRegionChange,
+      handleOnSubmit,
+      handleBioChange,
+    },
+  } = useUpdateUserForm();
 
   return (
-    <>
-      <form method="post" onSubmit={handleOnSubmit}>
+    <section>
+      <h2>cambiar info</h2>
+      <form method="post" onSubmit={handleOnSubmit} className="formContainer">
         <label htmlFor="name">Nombre</label>
         <input
           type="text"
@@ -95,24 +47,17 @@ function UpdateUserForm() {
           type="text"
           name="lastname"
           value={lastname}
-          id="name"
+          id="lastname"
           onChange={handleLastnameChange}
         />
-        <label htmlFor="password">Contraseña</label>
+
+        <label htmlFor="bio">Bio</label>
         <input
           type="text"
-          name="password"
-          value={password}
-          id="password"
-          onChange={handlePasswordChange}
-        />
-        <label htmlFor="repeatPassword">Repetir Contraseña</label>
-        <input
-          type="text"
-          name="repeatPassword"
-          value={repeatPassword}
-          id="repeatPassword"
-          onChange={handleRepeatPasswordChange}
+          name="bio"
+          value={bio}
+          id="bio"
+          onChange={handleBioChange}
         />
         <label htmlFor="address">Dirección</label>
         <input
@@ -154,7 +99,27 @@ function UpdateUserForm() {
           </div>
         )}
       </form>
-    </>
+      <h2>cambiar Contraseña</h2>
+      <form action="post" onSubmit={handleOnSubmit} className="formContainer">
+        <label htmlFor="password">Contraseña</label>
+        <input
+          type="password"
+          name="password"
+          value={password}
+          id="password"
+          onChange={handlePasswordChange}
+        />
+        <label htmlFor="repeatPassword">Repetir Contraseña</label>
+        <input
+          type="password"
+          name="repeatPassword"
+          value={repeatPassword}
+          id="repeatPassword"
+          onChange={handleRepeatPasswordChange}
+        />
+        <button>cambiar Contraseña</button>
+      </form>
+    </section>
   );
 }
 
