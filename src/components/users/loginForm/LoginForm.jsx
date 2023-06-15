@@ -16,6 +16,8 @@ function LoginForm() {
     e.preventDefault();
     try {
       await loginUser(username, password);
+      setUsername("");
+      setPassword("");
     } catch (error) {
       console.log(error);
     }
