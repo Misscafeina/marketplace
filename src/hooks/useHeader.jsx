@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { PopUpContext } from "../context/popUpContext";
+import LoginPopUp from "../pages/loginPopUp/LoginPopUp";
 
 function useHeader() {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ function useHeader() {
   const userLog = () => {
     const user = localStorage.getItem("userInfo");
     user ? navigate("/profile") : setShowPopUp(true);
+    showPopUp ? LoginPopUp : null;
   };
   const wishList = () => {
     navigate("/wishlist");
