@@ -3,9 +3,10 @@ header {
   align-items: center;
   justify-content: space-between;
   top: 0;
+  border-bottom: 1px black solid;
   position: sticky;
-  margin-left: 6px;
-  margin-right: 6px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
 .headerNav ul {

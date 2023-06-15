@@ -12,7 +12,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/editprofile" element={<UpdateUserForm />} />
+        <Route path="/edit-profile" element={<UpdateUserForm />} />
         {/* <Route path="/register" element={RegisterPage} /> */}
         <Route path="/login" element={<LoginPage />} />
         {/* <Route path="/profile" element={ProfilePage} /> */}
