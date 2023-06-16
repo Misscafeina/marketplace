@@ -1,68 +1,40 @@
-import { useContext, useState } from "react";
-import { loginUser } from "../../../services/userService";
-import { PopUpContext } from "../../../context/popUpContext";
 import "./style.css";
-import RegisterForm from "../registerForm/RegisterForm";
+import { useForm } from "react-hook-form";
+import useLoginForm from "../../../hooks/useLoginForm";
+import TextInput from "../../inputs/TextInput";
+import PasswordInput from "../../inputs/PasswordInput";
 
 function LoginForm() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const {
-    showPopUp,
-    setShowPopUp,
-    setLoginActive,
-    loginActive,
-    registerActive,
-    setRegisterActive,
-  } = useContext(PopUpContext);
-
-  const handleUsernameChange = (e) => {
-    const value = e.target.value;
-    setUsername(value);
-  };
-  const handlePasswordChange = (e) => {
-    const value = e.target.value;
-    setPassword(value);
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await loginUser(username, password);
-      if (response.status === "ok") setShowPopUp(false);
-      console.log(showPopUp);
-      setUsername("");
-      setPassword("");
-    } catch (error) {
-      console.log(error);
-    }
-  };
   const handleRegister = () => {
     setRegisterActive(true);
     setLoginActive(false);
   };
 
+  const { setLoginActive, setRegisterActive, submitInfo } = useLoginForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   return (
     <div className="popup">
       <div className="popup-inner">
-        <form method="POST" onSubmit={handleSubmit}>
-          <label htmlFor="username">Nombre de usuario</label>
-          <input
-            type="text"
-            value={username}
-            id="username"
-            name="username"
-            onChange={handleUsernameChange}
+        <form onSubmit={handleSubmit(submitInfo)} className="formContainer">
+          <TextInput
+            label={"Usuario:"}
+            register={register("username")}
+            errors={errors}
+            registerName={"username"}
+          />
+          <PasswordInput
+            label={"Contraseña:"}
+            register={register("password")}
+            errors={errors}
+            registerName={"password"}
           />
 
-          <label htmlFor="password">Contraseña</label>
-          <input
-            type="password"
-            value={password}
-            id="password"
-            name="password"
-            onChange={handlePasswordChange}
-          />
-          <button>Login</button>
+          <button type="submit">Login</button>
         </form>
         <p>
           ¿Eres nuev@?
