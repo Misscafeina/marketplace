@@ -1,5 +1,11 @@
 const required = "campo obligatorio";
-const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+const EMAIL_REGEX =
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+export const USERNAME_VALIDATIONS_REQUIRED = {
+  minLength: { value: 4, message: "Mínimo 4 caracteres" },
+  maxLength: { value: 20, message: "Máximo 20 caracteres" },
+  required,
+};
 export const NAME_VALIDATIONS = {
   minLength: { value: 4, message: "Mínimo 4 caracteres" },
   maxLength: { value: 45, message: "Máximo 45 caracteres" },

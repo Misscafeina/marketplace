@@ -3,6 +3,10 @@ import { useForm } from "react-hook-form";
 import useLoginForm from "../../../hooks/useLoginForm";
 import TextInput from "../../inputs/TextInput";
 import PasswordInput from "../../inputs/PasswordInput";
+import {
+  PASSWORD_VALIDATIONS_REQUIRED,
+  USERNAME_VALIDATIONS_REQUIRED,
+} from "../../../utils/formValidationConstants";
 
 function LoginForm() {
   const handleRegister = () => {
@@ -23,13 +27,13 @@ function LoginForm() {
         <form onSubmit={handleSubmit(submitInfo)} className="formContainer">
           <TextInput
             label={"Usuario:"}
-            register={register("username")}
+            register={register("username", USERNAME_VALIDATIONS_REQUIRED)}
             errors={errors}
             registerName={"username"}
           />
           <PasswordInput
             label={"Contraseña:"}
-            register={register("password")}
+            register={register("password", PASSWORD_VALIDATIONS_REQUIRED)}
             errors={errors}
             registerName={"password"}
           />

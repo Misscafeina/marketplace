@@ -2,17 +2,16 @@ import { useContext } from "react";
 import { PopUpContext } from "../../../context/popUpContext";
 import { useForm } from "react-hook-form";
 import {
-  NAME_VALIDATIONS_REQUIRED,
   PASSWORD_VALIDATIONS_REQUIRED,
   EMAIL_VALIDATIONS_REQUIRED,
+  USERNAME_VALIDATIONS_REQUIRED,
 } from "../../../utils/formValidationConstants";
 import TextInput from "../../inputs/TextInput";
 import PasswordInput from "../../inputs/PasswordInput";
 import useRegisterForm from "../../../hooks/useRegisterForm";
 
 const RegisterForm = () => {
-  const { setLoginActive, loginActive, registerActive, setRegisterActive } =
-    useContext(PopUpContext);
+  const { setLoginActive, setRegisterActive } = useContext(PopUpContext);
   const {
     register,
     handleSubmit,
@@ -30,7 +29,7 @@ const RegisterForm = () => {
         <form onSubmit={handleSubmit(submitInfo)}>
           <TextInput
             label="Introduce tu nombre de usuario"
-            register={register("username", NAME_VALIDATIONS_REQUIRED)}
+            register={register("username", USERNAME_VALIDATIONS_REQUIRED)}
             errors={errors}
             registerName={"username"}
           />
