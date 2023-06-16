@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Header from "./components/header/Header";
+import Header from "./components/Header/Header";
 import Footer from "./components/footer/Footer";
 import HomePage from "./pages/homePage/HomePage";
 import UpdateUserForm from "./components/users/updateUserForm/UpdateUserForm";
@@ -14,7 +14,6 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/editprofile" element={<UpdateUserForm />} />
-        {/* <Route path="/register" element={RegisterPage} /> */}
 
         {/* <Route path="/wishlist" element={<WishList />} /> */}
         <Route path="/profile" element={<ProfilePage />} />

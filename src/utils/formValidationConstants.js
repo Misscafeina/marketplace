@@ -1,4 +1,5 @@
 const required = "campo obligatorio";
+const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 export const NAME_VALIDATIONS = {
   minLength: { value: 4, message: "Mínimo 4 caracteres" },
   maxLength: { value: 45, message: "Máximo 45 caracteres" },
@@ -15,6 +16,15 @@ export const LASTNAME_VALIDATIONS = {
 export const LASTNAME_VALIDATIONS_REQUIRED = {
   minLength: { value: 4, message: "Mínimo 4 caracteres" },
   maxLength: { value: 45, message: "Máximo 45 caracteres" },
+  required,
+};
+export const EMAIL_VALIDATIONS = {
+  maxLength: { value: 100, message: "Máximo 100 caracteres" },
+  patterns: EMAIL_REGEX,
+};
+export const EMAIL_VALIDATIONS_REQUIRED = {
+  maxLength: { value: 100, message: "Máximo 100 caracteres" },
+  patterns: EMAIL_REGEX,
   required,
 };
 export const LONG_TEXT_VALIDATIONS = {
