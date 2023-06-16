@@ -28,7 +28,8 @@ function LoginForm() {
     e.preventDefault();
     try {
       const response = await loginUser(username, password);
-      if (response.statusText === "OK") setShowPopUp(false);
+      if (response.status === "ok") setShowPopUp(false);
+      console.log(showPopUp);
       setUsername("");
       setPassword("");
     } catch (error) {

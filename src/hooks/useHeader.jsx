@@ -30,7 +30,9 @@ function useHeader() {
   const wishList = () => {
     navigate("/wishlist");
   };
-  const messages = () => {};
+  const messages = () => {
+    navigate("/messages");
+  };
   const search = () => {};
   const addNewProduct = () => {
     navigate("/newproduct");

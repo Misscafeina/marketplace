@@ -7,7 +7,7 @@ import messageLogo from "../../assets/message-circle.svg";
 import registerUserLogo from "../../assets/user-plus.svg";
 import searchLogo from "../../assets/search.svg";
 import useHeader from "../../hooks/useHeader";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { PopUpContext } from "../../context/popUpContext";
 import LoginForm from "../users/loginForm/LoginForm";
 import RegisterForm from "../users/registerForm/RegisterForm";
@@ -17,6 +17,10 @@ function Header() {
     useHeader();
   const { showPopUp, setShowPopUp, loginActive, registerActive } =
     useContext(PopUpContext);
+
+  useEffect(() => {
+    console.log(showPopUp);
+  }, [showPopUp]);
 
   return (
     <header>
