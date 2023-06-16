@@ -9,9 +9,13 @@ export const loginUser = async (username, password) => {
   if (data.status !== "ok") throw new Error(data.message);
   return data;
 };
-export const registerUser = async (userinfo) => {
+export const registerUser = async (userInfo) => {
+  const { username, email, password, repeatPassword } = userInfo;
   const { data } = await axios.post(`${BACKEND_URL}/users/register`, {
-    userinfo,
+    username,
+    email,
+    password,
+    repeatPassword,
   });
   if (data.status !== "ok") throw new Error(data.message);
 
