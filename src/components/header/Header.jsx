@@ -11,11 +11,12 @@ import { useContext, useEffect } from "react";
 import { PopUpContext } from "../../context/popUpContext";
 import LoginForm from "../users/loginForm/LoginForm";
 import RegisterForm from "../users/registerForm/RegisterForm";
+import NewProductForm from "../products/newProductForm/NewProductForm";
 
 function Header() {
   const { returnHome, userLog, wishList, messages, search, addNewProduct } =
     useHeader();
-  const { showPopUp, setShowPopUp, loginActive, registerActive } =
+  const { showPopUp, setShowPopUp, loginActive, registerActive,newproductActive} =
     useContext(PopUpContext);
 
   useEffect(() => {
@@ -89,6 +90,9 @@ function Header() {
             >
               <img src={addProductLogo} alt="Add new product button" />
             </button>
+            {loginActive && <div>{showPopUp ? <LoginForm /> : null}</div>}
+            {registerActive && <div>{showPopUp ? <RegisterForm /> : null}</div>}
+            {newproductActive && <div>{showPopUp ? <NewProductForm/> : null}</div>}
           </li>
         </ul>
       </nav>
