@@ -13,24 +13,35 @@ const NewProductForm = () => {
     watch,
     formState: { errors },
   } = useForm();
+
+    console.log(watch("Name"));
+
+  console.log(errors);
+
+
+  
   const { submitInfo } = useNewProductForm();
-  const handleSpan = () => {
-    setRegisterActive(true);
-    setLoginActive(true);
-    setNewProductActive(false);
-  };
+ 
   return (
     <div className="popup">
       <div className="popup-inner">
         <h2>¿Qué producto vas a subir?</h2>
         <form onSubmit={handleSubmit(submitInfo)}>
-          <label>Nombre del artículo:</label>
+          <label>Marca:</label>
           <input
             type="text"
             className={classnames({ error: errors.Name })}
             {...register("Name", { required: true, maxLength: 20 })}
           />
           {errors.Name && <span>Este campo es requerido</span>}
+
+          <label>Modelo:</label>
+          <input
+            type="text"
+            className={classnames({ error: errors.Keywords })}
+            {...register("Keywords", { required: true, maxLength: 20 })}
+          />
+          {errors.Keywords && <span>Este campo es requerido</span>}
 
           <label>Descripción del artículo</label>
           <input
@@ -135,9 +146,7 @@ const NewProductForm = () => {
             <option value="AE">Emiratos Árabes Unidos</option>
             <option value="ER">Eritrea</option>
             <option value="SI">Eslovenia</option>
-            <option value="ES" selected>
-              España
-            </option>
+            <option value="ES" selected></option>
             <option value="US">Estados Unidos</option>
             <option value="EE">Estonia</option>
             <option value="ET">Etiopía</option>
@@ -309,9 +318,45 @@ const NewProductForm = () => {
             <option value="ZW">Zimbabue</option>
           </select>
 
+          <label>Región:</label>
+          <input
+            type="text"
+            className={classnames({ error: errors.Region })}
+            {...register("Region", { required: true, maxLength: 255 })}
+          />
+          {errors.Name && <span>Este campo es requerido</span>}
+
+          <label>Ciudad:</label>
+          <input
+            type="text"
+            className={classnames({ error: errors.City})}
+            {...register("City", { required: true, maxLength: 255 })}
+          />
+          {errors.City && <span>Este campo es requerido</span>}
+
+
+          <label>Dirección del Domicilio:</label>
+          <input
+            type="text"
+            className={classnames({ error: errors.address })}
+            {...register("address", { required: true, maxLength: 255 })}
+          />
+          {errors.address && <span>Este campo es requerido</span>}
+          
+           
+          <label>Estado del artículo:</label>
+          <select {...register("Status", { required: true })}>
+            <option value="Coleccionista">Collector</option>
+            <option value="Como Nuevo">New</option>
+            <option value="En Buen estado">Good</option>
+            <option value="Usado">/Used</option>
+
+          </select>
+
+        
           <button type="submit">Continuar</button>
         </form>
-        ); }
+     
       </div>
     </div>
   );
