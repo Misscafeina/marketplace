@@ -1,81 +1,100 @@
 import "./style.css";
 
 import { useForm } from "react-hook-form";
-import classnames from "classnames";
-import { editOwnProfile } from "../../../services/userService";
+import useUpdateUserForm from "../../../hooks/useUpdateUserForm";
+import {
+  LASTNAME_VALIDATIONS,
+  LONG_TEXT_VALIDATIONS,
+  NAME_VALIDATIONS,
+  PASSWORD_VALIDATIONS,
+} from "../../../utils/formValidationConstants";
+import TextInput from "../../inputs/TextInput";
+import PasswordInput from "../../inputs/PasswordInput";
+import SingleFileInput from "../../inputs/SingleFileInput";
 
 function UpdateUserForm() {
   const {
+    state: {
+      userInfo: { name, lastName, address, city, region, country },
+    },
+    actions: { submitInfo },
+  } = useUpdateUserForm();
+
+  const {
     register,
     handleSubmit,
-
+    watch,
     formState: { errors },
   } = useForm();
 
-  const submitInfo = async (data) => {
-    console.log(data);
-    const removeEmptyFields = (data) => {
-      for (const field in data) {
-        if (data[field] === "") {
-          delete data[field];
-        }
-      }
-    };
-    removeEmptyFields(data);
-    console.log(data);
-
-    const formData = new FormData();
-    if (data.images[0]) {
-      formData.append("images", data.images[0]);
-    }
-    for (const [key, value] of Object.entries(data)) {
-      if (key !== "image") formData.append(`${key}`, JSON.stringify(value));
-    }
-    const config = {
-      header: {
-        "Content-Type": "multipart/form-data",
-      },
-    };
-    try {
-      await editOwnProfile(formData, config);
-    } catch (err) {
-      console.log(err);
-    }
-
-    console.log(data);
-  };
-  const submitPassword = (info) => {
-    console.log(info);
-  };
   return (
     <>
       <form onSubmit={handleSubmit(submitInfo)} className="formContainer">
-        <label> Nombre:</label>
-        <input type="text" {...register("name")} />
-        <label> Apellidos:</label>
-        <input type="text" {...register("lastname")} />
-        <label> Bio:</label>
-        <input type="text" {...register("bio")} />
-        <label> Dirección:</label>
-        <input type="text" {...register("address")} />
-        <label> Ciudad:</label>
-        <input type="text" {...register("city")} />
-        <label> Provincia:</label>
-        <input type="text" {...register("region")} />
-        <label> País:</label>
-        <input type="text" {...register("country")} />
-        <label>Avatar: </label>
-        <input {...register("images")} type="file" id="images" />
+        <TextInput
+          label={name ? `Nombre: (${name})` : "Nombre:"}
+          register={register("name", NAME_VALIDATIONS)}
+          errors={errors}
+          registerName={"name"}
+        />
+        <TextInput
+          label={lastName ? `Apellidos: (${lastName})` : "Apellidos:"}
+          register={register("lastname", LASTNAME_VALIDATIONS)}
+          errors={errors}
+          registerName={"lastname"}
+        />
+
+        <TextInput
+          label={"Bio:"}
+          register={register("bio", LONG_TEXT_VALIDATIONS)}
+          errors={errors}
+          registerName={"bio"}
+        />
+        <TextInput
+          label={address ? `Dirección: ${address}` : "Dirección:"}
+          register={register("address", LONG_TEXT_VALIDATIONS)}
+          errors={errors}
+          registerName={"address"}
+        />
+        <TextInput
+          label={city ? `Ciudad: ${city}` : "Ciudad:"}
+          register={register("city", LONG_TEXT_VALIDATIONS)}
+          errors={errors}
+          registerName={"city"}
+        />
+        <TextInput
+          label={region ? `Provincia: ${region}` : "Provincia:"}
+          register={register("region", NAME_VALIDATIONS)}
+          errors={errors}
+          registerName={"region"}
+        />
+        <TextInput
+          label={country ? `País: ${country}` : "País:"}
+          register={register("country", NAME_VALIDATIONS)}
+          errors={errors}
+          registerName={"country"}
+        />
+        <SingleFileInput label={"Avatar:"} register={register("images")} />
+        <PasswordInput
+          label={"Contraseña:"}
+          register={register("password", PASSWORD_VALIDATIONS)}
+          errors={errors}
+          registerName={"password"}
+        />
+        <PasswordInput
+          label={"Repetir contraseña:"}
+          register={register("repeatPassword", {
+            validate: (value) => {
+              if (watch("password") !== value) {
+                return "Las contraseñas no coinciden";
+              }
+            },
+          })}
+          errors={errors}
+          registerName={"repeatPassword"}
+        />
+
         <button type="submit">enviar</button>
       </form>
-      <form onSubmit={handleSubmit(submitPassword)} className="formContainer">
-        <label> Contraseña:</label>
-        <input type="password" {...register("password")} />
-        <label> Repetir contraseña:</label>
-        <input type="password" {...register("repeatPassword")} />
-        <button type="submit">enviar</button>
-      </form>
-      ;
     </>
   );
 }
