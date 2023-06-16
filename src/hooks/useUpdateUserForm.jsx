@@ -8,9 +8,7 @@ function useUpdateUserForm() {
   useEffect(() => {
     const getUserInfo = async () => {
       const {
-        data: {
-          data: { userData },
-        },
+        data: { userData },
       } = await getOwnProfile();
       setUserInfo(userData);
     };

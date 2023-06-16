@@ -48,8 +48,11 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   function (response) {
-    if (response?.data?.data?.accessToken) {
-      localStorage.setItem("userInfo", JSON.stringify(response.data.data));
+    const {
+      data: { data },
+    } = response;
+    if (data?.accessToken) {
+      localStorage.setItem("userInfo", JSON.stringify(data));
     }
     return response;
   },

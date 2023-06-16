@@ -1,82 +1,74 @@
 import axios from "axios";
 import { BACKEND_URL } from "../utils/constants";
 
-export const getProducts = () => {
-  return axios.get(`${BACKEND_URL}/products`);
+export const getProducts = async () => {
+  const { data } = await axios.get(`${BACKEND_URL}/products`);
+  if (data.status !== "ok") throw new Error(data.message);
+
+  return data;
 };
 
-export const postNewProduct = (product) => {
-  const {
-    name,
-    description,
-    price,
-    category,
-    keywords,
-    address,
-    region,
-    country,
-    city,
-    status,
-  } = product;
-
-  return axios.post(`${BACKEND_URL}/products/create`, {
-    name,
-    description,
-    price,
-    category,
-    keywords,
-    address,
-    region,
-    country,
-    city,
-    status,
-  });
+export const postNewProduct = async (product) => {
+  const { data } = await axios.post(`${BACKEND_URL}/products/create`, product);
+  if (data.status !== "ok") throw new Error(data.message);
+  return data;
 };
 
-export const editProduct = (product) => {
-  const {
-    idProduct,
-    name,
-    description,
-    price,
-    category,
-    keywords,
-    country,
-    region,
-    address,
-    city,
-    status,
-  } = product;
-  return axios.patch(`${BACKEND_URL}/products/:${idProduct}`, {
-    name,
-    description,
-    price,
-    category,
-    keywords,
-    country,
-    region,
-    address,
-    city,
-    status,
-  });
+export const editProduct = async (product) => {
+  const { idProduct } = product;
+  const { data } = await axios.patch(
+    `${BACKEND_URL}/products/:${idProduct}`,
+    product
+  );
+  if (data.status !== "ok") throw new Error(data.message);
+
+  return data;
 };
 
 //!recordar que hay que agregar la config "Content-Type": "multipart/form-data" en el componente,
-export const uploadProductPictures = (files, config, idProduct) => {
-  return axios.put(`${BACKEND_URL}/products/:${idProduct}`, files, config);
+export const uploadProductPictures = async (files, config, idProduct) => {
+  const { data } = await axios.put(
+    `${BACKEND_URL}/products/:${idProduct}`,
+    files,
+    config
+  );
+  if (data.status !== "ok") throw new Error(data.message);
+
+  return data;
 };
-export const getProductsByName = (name) => {
-  return axios.get(`${BACKEND_URL}/products/search/?name=${name}`);
+export const getProductsByName = async (name) => {
+  const { data } = await axios.get(
+    `${BACKEND_URL}/products/search/?name=${name}`
+  );
+  if (data.status !== "ok") throw new Error(data.message);
+
+  return data;
 };
-export const getProductsByCategotry = (category) => {
-  return axios.get(`${BACKEND_URL}/products/search/?category=${category}`);
+export const getProductsByCategotry = async (category) => {
+  const { data } = await axios.get(
+    `${BACKEND_URL}/products/search/?category=${category}`
+  );
+  if (data.status !== "ok") throw new Error(data.message);
+  return data;
 };
-export const getProductsByLocation = (location) => {
-  return axios.get(`${BACKEND_URL}/products/search/?location=${location}`);
+export const getProductsByLocation = async (location) => {
+  const { data } = await axios.get(
+    `${BACKEND_URL}/products/search/?location=${location}`
+  );
+  if (data.status !== "ok") throw new Error(data.message);
+  return data;
 };
-export const getProductsByPrice = (price) => {
-  return axios.get(`${BACKEND_URL}/products/search/?price=${price}`);
+export const getProductsByPrice = async (price) => {
+  const { data } = await axios.get(
+    `${BACKEND_URL}/products/search/?price=${price}`
+  );
+  if (data.status !== "ok") throw new Error(data.message);
+
+  return data;
 };
-export const getProductDetails = (idProduct) => {
-  return axios.get(`${BACKEND_URL}/products/:${idProduct}`);
+export const getProductDetails = async (idProduct) => {
+  const { data } = await axios.get(`${BACKEND_URL}/products/:${idProduct}`);
+  if (data.status !== "ok") throw new Error(data.message);
+
+  return data;
 };

@@ -9,8 +9,7 @@ function HomePage() {
   useEffect(() => {
     const requestProducts = async () => {
       const response = await getProducts();
-      setProducts(response.data.products);
-      console.log(response);
+      setProducts(response.products);
     };
     requestProducts();
   }, [filter]);
