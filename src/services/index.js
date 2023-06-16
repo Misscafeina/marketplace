@@ -35,7 +35,6 @@ const isBearerTokenRequired = (url) => {
 
 axios.interceptors.request.use(
   function (config) {
-    console.log(token);
     if (token && isBearerTokenRequired(config.url)) {
       config.headers["Authorization"] = `Bearer ${token}`;
     }
@@ -61,9 +60,7 @@ axios.interceptors.response.use(
       (error.config.url.indexOf("/login") !== -1 ||
         error.config.url.indexOf("/account") !== -1)
     ) {
-      // Eliminamos los datos del localStorage
       localStorage.removeItem("userInfo");
-      // Y redirigimos al login
       window.location.href = "/login";
     }
     return Promise.reject(error);
