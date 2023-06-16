@@ -66,7 +66,7 @@ function LoginForm() {
         <p>
           ¿Eres nuev@?
           <span className="register" onClick={handleRegister}>
-            ¡Registrate!
+            ¡Regístrate!
           </span>
         </p>
       </div>

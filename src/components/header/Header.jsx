@@ -25,16 +25,15 @@ function Header() {
         <ul>
           <li>
             <button
+              className="btn"
               onClick={() => {
                 userLog();
               }}
             >
               <img src={userLogo} alt="user" />
-              {loginActive && <div>{showPopUp ? <LoginForm /> : null}</div>}
-              {registerActive && (
-                <div>{showPopUp ? <RegisterForm /> : null}</div>
-              )}
             </button>
+            {loginActive && <div>{showPopUp ? <LoginForm /> : null}</div>}
+            {registerActive && <div>{showPopUp ? <RegisterForm /> : null}</div>}
           </li>
           {/* <li>
             <button>
@@ -49,6 +48,7 @@ function Header() {
           </li>  */}
           <li>
             <button
+              className="btn"
               onClick={(e) => {
                 wishList();
               }}
@@ -58,6 +58,7 @@ function Header() {
           </li>
           <li>
             <button
+              className="btn"
               onClick={(e) => {
                 messages();
               }}
@@ -67,6 +68,7 @@ function Header() {
           </li>
           <li>
             <button
+              className="btn"
               onClick={(e) => {
                 search();
               }}
@@ -76,6 +78,7 @@ function Header() {
           </li>
           <li>
             <button
+              className="btn"
               onClick={(e) => {
                 addNewProduct();
               }}
