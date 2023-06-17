@@ -65,6 +65,10 @@ export const PRODUCT_NAME_REQUIRED = {
   minLength: { value: 4, message: "Mínimo 4 caracteres" },
   maxLength: { value: 100, message: "Máximo 100 caracteres" },
 };
+export const PRODUCT_NAME = {
+  minLength: { value: 4, message: "Mínimo 4 caracteres" },
+  maxLength: { value: 100, message: "Máximo 100 caracteres" },
+};
 export const HASHTAG_VALIDATIONS = {
   maxLength: { value: 100, message: "Máximo 100 caracteres" },
 };

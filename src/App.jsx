@@ -8,7 +8,7 @@ import { PopUpProvider } from "./context/popUpContext";
 import ProfilePage from "./pages/profilePage/ProfilePage";
 import Wishlist from "./pages/wislist/Wishlist";
 import NewProductPage from "./pages/newProductPage/NewProductPage";
-//import NewProductPage from "./pages/newProductPage/NewProductPage";
+import UpdateProductForm from "./components/products/updateProductForm/UpdateProductForm";
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
 
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/profile" element={<ProfilePage />} />
-
+        <Route path="/editproduct" element={<UpdateProductForm />} />
         <Route path="/newproduct" element={<NewProductPage />} />
       </Routes>
 
