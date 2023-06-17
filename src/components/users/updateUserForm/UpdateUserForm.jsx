@@ -7,10 +7,12 @@ import {
   LONG_TEXT_VALIDATIONS,
   NAME_VALIDATIONS,
   PASSWORD_VALIDATIONS,
+  REQUIRED,
 } from "../../../utils/formValidationConstants";
 import TextInput from "../../inputs/TextInput";
 import PasswordInput from "../../inputs/PasswordInput";
 import SingleFileInput from "../../inputs/SingleFileInput";
+import CountryInpunt from "../../inputs/CountryInput";
 
 function UpdateUserForm() {
   const {
@@ -67,12 +69,13 @@ function UpdateUserForm() {
           errors={errors}
           registerName={"region"}
         />
-        <TextInput
-          label={country ? `País: ${country}` : "País:"}
-          register={register("country", NAME_VALIDATIONS)}
-          errors={errors}
+        <CountryInpunt
+          label={"País"}
+          register={register("country", REQUIRED)}
           registerName={"country"}
+          errors={errors}
         />
+
         <SingleFileInput label={"Avatar:"} register={register("images")} />
         <PasswordInput
           label={"Contraseña:"}

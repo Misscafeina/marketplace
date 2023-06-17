@@ -6,19 +6,10 @@ import { PopUpContext } from "../context/popUpContext";
 function useNewProductForm() {
   const { setNewProductActive } = useContext(PopUpContext);
   const navigate = useNavigate();
+
   const submitInfo = async (data) => {
-    const {name,
-        description,
-        price,
-        category,
-        region,
-        country,
-        address,
-        city,
-        keywords,
-        status,}= data
     try {
-      const response = await postNewProduct(name,description,price,category,region,country,address,city,keywords,status);
+      const response = await postNewProduct(data);
       if (response.status === "ok") setNewProductActive(false);
       navigate("/newproduct");
     } catch (error) {

@@ -9,7 +9,30 @@ export const getProducts = async () => {
 };
 
 export const postNewProduct = async (product) => {
-  const { data } = await axios.post(`${BACKEND_URL}/products/create`, product);
+  const {
+    name,
+    description,
+    price,
+    category,
+    region,
+    country,
+    address,
+    city,
+    keywords,
+    status,
+  } = product;
+  const { data } = await axios.post(`${BACKEND_URL}/products/create`, {
+    name,
+    description,
+    price,
+    category,
+    region,
+    country,
+    address,
+    city,
+    keywords,
+    status,
+  });
   if (data.status !== "ok") throw new Error(data.message);
   return data;
 };

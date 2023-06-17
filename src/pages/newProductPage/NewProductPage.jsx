@@ -22,6 +22,11 @@ function NewProductPage() {
   } else if (newProductActive) {
     return <div> {showPopUp ? <NewProductForm /> : null}</div>;
   }
+  return (
+    <>
+      <NewProductForm />
+    </>
+  );
 }
 
 export default NewProductPage;
