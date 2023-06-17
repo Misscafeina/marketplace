@@ -44,3 +44,15 @@ export const editOwnProfile = async (formData, config) => {
   console.log(data);
   return data;
 };
+export const getWishlist = async () => {
+  const { data } = await axios.get(`${BACKEND_URL}/wishlist`);
+  if (data.status !== "ok") throw new Error(data.message);
+
+  return data;
+};
+export const addRevomveFromWishlist = async (idProduct) => {
+  const { data } = await axios.post(`${BACKEND_URL}/wishlist/:${idProduct}`);
+  if (data.status !== "ok") throw new Error(data.message);
+
+  return data;
+};

@@ -1,4 +1,5 @@
 import { USER_INFO } from "../utils/constants";
+import { postChatMessage, postDealReview, postNewDeal } from "./dealsService";
 import {
   getProducts,
   postNewProduct,
@@ -12,6 +13,15 @@ import {
 } from "./productsService";
 
 import axios from "axios";
+import {
+  addRevomveFromWishlist,
+  editOwnProfile,
+  getAnyUserProfile,
+  getOwnProfile,
+  getWishlist,
+  loginUser,
+  registerUser,
+} from "./userService";
 
 const savedUserData = USER_INFO;
 const token = savedUserData?.accessToken;
@@ -69,6 +79,7 @@ axios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
 export {
   getProducts,
   postNewProduct,
@@ -79,4 +90,14 @@ export {
   getProductsByLocation,
   getProductsByPrice,
   getProductDetails,
+  postNewDeal,
+  postChatMessage,
+  postDealReview,
+  loginUser,
+  registerUser,
+  getOwnProfile,
+  getAnyUserProfile,
+  editOwnProfile,
+  addRevomveFromWishlist,
+  getWishlist,
 };
