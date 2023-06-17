@@ -1,12 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Header from "./components/Header/Header";
+import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import HomePage from "./pages/homePage/HomePage";
 import UpdateUserForm from "./components/users/updateUserForm/UpdateUserForm";
 import { PopUpProvider } from "./context/popUpContext";
 import ProfilePage from "./pages/profilePage/ProfilePage";
 import Wishlist from "./pages/wislist/Wishlist";
+//import NewProductPage from "./pages/newProductPage/NewProductPage";
+
 
 function App() {
   return (
@@ -18,7 +20,8 @@ function App() {
 
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/profile" element={<ProfilePage />} />
-        {/* <Route path="/newproduct" element={NewProductPage} />  */}
+
+        {/* Route path="/newproduct" element={NewProductPage}  />} /> */}
       </Routes>
 
       <Footer />

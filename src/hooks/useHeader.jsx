@@ -12,6 +12,8 @@ function useHeader() {
     setLoginActive,
     registerActive,
     setRegisterActive,
+    newProductActive,
+    setNewProductActive,
   } = useContext(PopUpContext);
 
   window.addEventListener("click", ({ target }) => {
