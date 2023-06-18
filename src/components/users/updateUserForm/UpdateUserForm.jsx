@@ -1,7 +1,8 @@
 import "./style.css";
 
 import { useForm } from "react-hook-form";
-import useUpdateUserForm from "../../../hooks/useUpdateUserForm";
+import PropTypes from "prop-types";
+
 import {
   LASTNAME_VALIDATIONS,
   LONG_TEXT_VALIDATIONS,
@@ -13,15 +14,24 @@ import TextInput from "../../inputs/TextInput";
 import PasswordInput from "../../inputs/PasswordInput";
 import SingleFileInput from "../../inputs/SingleFileInput";
 import CountryInpunt from "../../inputs/CountryInput";
+import TextAreaInput from "../../inputs/TextAreaInput";
+import { useNavigate } from "react-router";
+import useUpdateUserForm from "../../../hooks/useUpdateUserForm";
+import { getOwnProfile } from "../../../services";
 
-function UpdateUserForm() {
-  const {
-    state: {
-      userInfo: { name, lastName, address, city, region, country },
-    },
-    actions: { submitInfo },
-  } = useUpdateUserForm();
-
+function UpdateUserForm({ selectedField, setUserInfo }) {
+  const navigate = useNavigate();
+  const { submitInfo } = useUpdateUserForm();
+  const onSubmit = async (data) => {
+    try {
+      await submitInfo(data);
+      const updatedProfile = await getOwnProfile();
+      updatedProfile?.status === "ok" && setUserInfo(updatedProfile.data);
+      navigate("/profile");
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const {
     register,
     handleSubmit,
@@ -30,76 +40,96 @@ function UpdateUserForm() {
   } = useForm();
 
   return (
-    <>
-      <form onSubmit={handleSubmit(submitInfo)} className="formContainer">
-        <TextInput
-          label={name ? `Nombre: (${name})` : "Nombre:"}
-          register={register("name", NAME_VALIDATIONS)}
-          errors={errors}
-          registerName={"name"}
-        />
-        <TextInput
-          label={lastName ? `Apellidos: (${lastName})` : "Apellidos:"}
-          register={register("lastname", LASTNAME_VALIDATIONS)}
-          errors={errors}
-          registerName={"lastname"}
-        />
+    <div className="popup">
+      <div className="popup-inner">
+        <form onSubmit={handleSubmit(onSubmit)} className="formContainer">
+          {selectedField === "name" && (
+            <TextInput
+              label={"Nombre:"}
+              register={register("name", NAME_VALIDATIONS)}
+              errors={errors}
+              registerName={"name"}
+            />
+          )}
+          {selectedField === "lastName" && (
+            <TextInput
+              label={"Apellidos:"}
+              register={register("lastname", LASTNAME_VALIDATIONS)}
+              errors={errors}
+              registerName={"lastname"}
+            />
+          )}
+          {selectedField === "bio" && (
+            <TextAreaInput
+              label={"Bio:"}
+              register={register("bio", LONG_TEXT_VALIDATIONS)}
+              errors={errors}
+              registerName={"bio"}
+            />
+          )}
+          {selectedField === "address" && (
+            <>
+              <TextInput
+                label={"Dirección:"}
+                register={register("address", LONG_TEXT_VALIDATIONS)}
+                errors={errors}
+                registerName={"address"}
+              />
+              <TextInput
+                label={"Ciudad:"}
+                register={register("city", LONG_TEXT_VALIDATIONS)}
+                errors={errors}
+                registerName={"city"}
+              />
+              <TextInput
+                label={"Provincia:"}
+                register={register("region", NAME_VALIDATIONS)}
+                errors={errors}
+                registerName={"region"}
+              />
+              <CountryInpunt
+                label={"País"}
+                register={register("country", REQUIRED)}
+                registerName={"country"}
+                errors={errors}
+              />
+            </>
+          )}
+          {selectedField === "avatar" && (
+            <SingleFileInput label={"Avatar:"} register={register("images")} />
+          )}
+          {selectedField === "password" && (
+            <>
+              <PasswordInput
+                label={"Contraseña:"}
+                register={register("password", PASSWORD_VALIDATIONS)}
+                errors={errors}
+                registerName={"password"}
+              />
+              <PasswordInput
+                label={"Repetir contraseña:"}
+                register={register("repeatPassword", {
+                  validate: (value) => {
+                    if (watch("password") !== value) {
+                      return "Las contraseñas no coinciden";
+                    }
+                  },
+                })}
+                errors={errors}
+                registerName={"repeatPassword"}
+              />
+            </>
+          )}
 
-        <TextInput
-          label={"Bio:"}
-          register={register("bio", LONG_TEXT_VALIDATIONS)}
-          errors={errors}
-          registerName={"bio"}
-        />
-        <TextInput
-          label={address ? `Dirección: ${address}` : "Dirección:"}
-          register={register("address", LONG_TEXT_VALIDATIONS)}
-          errors={errors}
-          registerName={"address"}
-        />
-        <TextInput
-          label={city ? `Ciudad: ${city}` : "Ciudad:"}
-          register={register("city", LONG_TEXT_VALIDATIONS)}
-          errors={errors}
-          registerName={"city"}
-        />
-        <TextInput
-          label={region ? `Provincia: ${region}` : "Provincia:"}
-          register={register("region", NAME_VALIDATIONS)}
-          errors={errors}
-          registerName={"region"}
-        />
-        <CountryInpunt
-          label={"País"}
-          register={register("country", REQUIRED)}
-          registerName={"country"}
-          errors={errors}
-        />
-
-        <SingleFileInput label={"Avatar:"} register={register("images")} />
-        <PasswordInput
-          label={"Contraseña:"}
-          register={register("password", PASSWORD_VALIDATIONS)}
-          errors={errors}
-          registerName={"password"}
-        />
-        <PasswordInput
-          label={"Repetir contraseña:"}
-          register={register("repeatPassword", {
-            validate: (value) => {
-              if (watch("password") !== value) {
-                return "Las contraseñas no coinciden";
-              }
-            },
-          })}
-          errors={errors}
-          registerName={"repeatPassword"}
-        />
-
-        <button type="submit">enviar</button>
-      </form>
-    </>
+          <button type="submit">enviar</button>
+        </form>
+      </div>
+    </div>
   );
 }
+UpdateUserForm.propTypes = {
+  selectedField: PropTypes.string,
+  setUserInfo: PropTypes.func,
+};
 
 export default UpdateUserForm;

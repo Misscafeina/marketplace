@@ -41,7 +41,7 @@ export const editOwnProfile = async (formData, config) => {
   );
   if (data.status !== "ok") throw new Error(data.message);
 
-  console.log(data);
+  // console.log(data);
   return data;
 };
 export const getWishlist = async () => {
