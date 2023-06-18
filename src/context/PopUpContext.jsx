@@ -9,6 +9,13 @@ const PopUpProvider = ({ children }) => {
   const [newProductActive, setNewProductActive] = useState(false);
   const [editProfileActive, setEditProfileActive] = useState(false);
 
+  const setAllFalse = () => {
+    setShowPopUp(false);
+    setLoginActive(false);
+    setRegisterActive(false);
+    setNewProductActive(false);
+    setEditProfileActive(false);
+  };
   return (
     <PopUpContext.Provider
       value={{
@@ -22,6 +29,7 @@ const PopUpProvider = ({ children }) => {
         setNewProductActive,
         editProfileActive,
         setEditProfileActive,
+        setAllFalse,
       }}
     >
       {children}
