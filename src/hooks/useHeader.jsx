@@ -16,10 +16,13 @@ function useHeader() {
     setRegisterActive,
     newProductActive,
     setNewProductActive,
+    setAllFalse,
   } = useContext(PopUpContext);
 
   window.addEventListener("click", ({ target }) => {
-    if (target.className === "popup") setShowPopUp(false);
+    if (target.className === "popup") {
+      setAllFalse();
+    }
   });
 
   const returnHome = () => {
@@ -43,10 +46,15 @@ function useHeader() {
   };
   const search = () => {};
   const addNewProduct = () => {
-    console.log("hook");
-    setShowPopUp(true);
-    setNewProductActive(true);
-    showPopUp && NewProductPage;
+    const user = localStorage.getItem("userInfo");
+    if (!user) {
+      setShowPopUp(true);
+      setLoginActive(true);
+    } else {
+      setShowPopUp(true);
+      setNewProductActive(true);
+      showPopUp && NewProductPage;
+    }
   };
   return { returnHome, userLog, wishList, messages, search, addNewProduct };
 }
