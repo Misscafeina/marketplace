@@ -1,8 +1,8 @@
 footer {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  flex-direction: column;
+  justify-content: space-between;
+
   flex-wrap: nowrap;
   width: 100vw;
   height: 270px;
@@ -14,16 +14,15 @@ footer {
   background-color: white;
 }
 
-.navFooterVarios {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
+nav {
+  width: max-content;
 }
 .firstList {
   display: flex;
   list-style: none;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-between;
+
   gap: 2rem;
 }
 .firstList > li {
@@ -33,23 +32,4 @@ footer {
   display: flex;
   list-style: none;
   flex-direction: column;
-}
-
-.navFooterRRSS ul {
-  display: flex;
-  list-style: none;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-}
-
-.navFooterTerms ul {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  list-style: none;
-  list-style-type: none;
-  gap: 60px;
-  flex-direction: row;
 }
