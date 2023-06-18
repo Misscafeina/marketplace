@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import HomePage from "./pages/homePage/HomePage";
 import { PopUpProvider } from "./context/popUpContext";
@@ -12,7 +11,7 @@ import { getOwnProfile } from "./services";
 import UpdateUserPopUp from "./pages/UpdateUserPopUp/UpdateUserPopUp";
 //import NewProductPage from "./pages/newProductPage/NewProductPage";
 import UpdateProductForm from "./components/products/updateProductForm/UpdateProductForm";
-
+import Header from "./components/Header/Header";
 
 function App() {
   const [userInfo, setUserInfo] = useState({});
@@ -35,15 +34,6 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route
-          path="/editprofile"
-          element={
-            <UpdateUserPopUp
-              selectedField={selectedField}
-              setUserInfo={setUserInfo}
-            />
-          }
-        />
 
         <Route path="/wishlist" element={<Wishlist />} />
 
@@ -53,13 +43,12 @@ function App() {
             <ProfilePage
               userInfo={userInfo}
               setSelectedField={setSelectedField}
+              selectedField={selectedField}
+              setUserInfo={setUserInfo}
             />
           }
         />
-        <Route path="/profile" element={<ProfilePage />} />
         <Route path="/editproduct" element={<UpdateProductForm />} />
-
-        <Route path="/newproduct" element={<NewProductPage />} />
       </Routes>
 
       <Footer />

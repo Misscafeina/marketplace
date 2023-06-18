@@ -18,7 +18,10 @@ function useLoginForm() {
     try {
       //   console.log(username, password);
       const response = await loginUser(username, password);
-      if (response.status === "ok") setShowPopUp(false);
+      if (response.status === "ok") {
+        setShowPopUp(false);
+        setLoginActive(false);
+      }
       navigate("/profile");
     } catch (err) {
       console.log(err);

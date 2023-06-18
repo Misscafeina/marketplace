@@ -12,7 +12,7 @@ function EditPasswordButton({
   setSelectedField,
   field,
   setEditProfileActive,
-  targetPath,
+  setShowPopUp,
 }) {
   const navigate = useNavigate();
   return (
@@ -21,7 +21,7 @@ function EditPasswordButton({
       onClick={() => {
         setSelectedField(field);
         setEditProfileActive(true);
-        navigate(targetPath);
+        setShowPopUp(true);
       }}
     >
       Cambiar contraseña

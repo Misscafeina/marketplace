@@ -16,11 +16,19 @@ import NewProductForm from "../products/newProductForm/NewProductForm";
 function Header() {
   const { returnHome, userLog, wishList, messages, search, addNewProduct } =
     useHeader();
-  const { showPopUp, setShowPopUp, loginActive, registerActive,newproductActive} =
-    useContext(PopUpContext);
+  const {
+    showPopUp,
+    setShowPopUp,
+    loginActive,
+    registerActive,
+    newproductActive,
+  } = useContext(PopUpContext);
 
   return (
     <header>
+      {loginActive && <div>{showPopUp ? <LoginForm /> : null}</div>}
+      {registerActive && <div>{showPopUp ? <RegisterForm /> : null}</div>}
+      {newproductActive && <div>{showPopUp ? <NewProductForm /> : null}</div>}
       <h1 onClick={returnHome}>RetroTech</h1>
       <nav className="headerNav">
         <ul>
@@ -33,24 +41,11 @@ function Header() {
             >
               <img src={userLogo} alt="user" />
             </button>
-            {loginActive && <div>{showPopUp ? <LoginForm /> : null}</div>}
-            {registerActive && <div>{showPopUp ? <RegisterForm /> : null}</div>}
           </li>
-          {/* <li>
-            <button>
-              <img src={logInLogo} alt="login button" />
-            </button>
-          </li> */}
-          {/* <li>
-            <button>
-              <img src="" alt="User photo" />{" "}
-              Aquí debería ir la foto del usuario
-            </button>
-          </li>  */}
           <li>
             <button
               className="btn"
-              onClick={(e) => {
+              onClick={() => {
                 wishList();
               }}
             >
@@ -60,7 +55,7 @@ function Header() {
           <li>
             <button
               className="btn"
-              onClick={(e) => {
+              onClick={() => {
                 messages();
               }}
             >
@@ -70,7 +65,7 @@ function Header() {
           <li>
             <button
               className="btn"
-              onClick={(e) => {
+              onClick={() => {
                 search();
               }}
             >
@@ -80,15 +75,15 @@ function Header() {
           <li>
             <button
               className="btn"
-              onClick={(e) => {
+              onClick={() => {
                 addNewProduct();
               }}
             >
               <img src={addProductLogo} alt="Add new product button" />
             </button>
-            {loginActive && <div>{showPopUp ? <LoginForm /> : null}</div>}
-            {registerActive && <div>{showPopUp ? <RegisterForm /> : null}</div>}
-            {newproductActive && <div>{showPopUp ? <NewProductForm/> : null}</div>}
+            {newproductActive && (
+              <div>{showPopUp ? <NewProductForm /> : null}</div>
+            )}
           </li>
         </ul>
       </nav>
