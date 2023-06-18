@@ -8,10 +8,20 @@ ProfilePage.propTypes = {
   setSelectedField: PropTypes.func,
 };
 
-function ProfilePage({ userInfo, setSelectedField }) {
+function ProfilePage({
+  userInfo,
+  setUserInfo,
+  selectedField,
+  setSelectedField,
+}) {
   return (
     <>
-      <UserProfile userInfo={userInfo} setSelectedField={setSelectedField} />
+      <UserProfile
+        userInfo={userInfo}
+        setSelectedField={setSelectedField}
+        selectedField={selectedField}
+        setUserInfo={setUserInfo}
+      />
     </>
   );
 }

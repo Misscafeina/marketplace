@@ -12,16 +12,15 @@ function EditFieldButton({
   setSelectedField,
   field,
   setEditProfileActive,
-  targetPath,
+  setShowPopUp,
 }) {
-  const navigate = useNavigate();
   return (
     <button
       className="editBtn"
       onClick={() => {
         setSelectedField(field);
         setEditProfileActive(true);
-        navigate(targetPath);
+        setShowPopUp(true);
       }}
     >
       Editar

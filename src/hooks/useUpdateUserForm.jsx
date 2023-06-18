@@ -4,8 +4,14 @@ import { useNavigate } from "react-router";
 import { PopUpContext } from "../context/popUpContext";
 
 function useUpdateUserForm() {
-  const { showPopUp, setShowPopUp } = useContext(PopUpContext);
-  const navigate = useNavigate();
+  const { showPopUp, setShowPopUp, setEditProfileActive } =
+    useContext(PopUpContext);
+  window.addEventListener("click", ({ target }) => {
+    if (target.className === "popup") {
+      setShowPopUp(false);
+      setEditProfileActive(false);
+    }
+  });
 
   const submitInfo = async (data) => {
     try {
@@ -34,8 +40,9 @@ function useUpdateUserForm() {
       };
 
       const response = await editOwnProfile(formData, config);
-      response.status === "ok" && setShowPopUp(false);
-      navigate("/");
+      response.status === "ok" &&
+        setShowPopUp(false) &&
+        setEditProfileActive(false);
     } catch (err) {
       console.log(err);
     }

@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { PopUpContext } from "../context/popUpContext";
 import LoginPopUp from "../pages/loginPopUp/LoginPopUp";
+import NewProductPage from "../pages/newProductPage/NewProductPage";
+import NewProductForm from "../components/products/newProductForm/NewProductForm";
 
 function useHeader() {
   const navigate = useNavigate();
@@ -24,9 +26,13 @@ function useHeader() {
     navigate("/");
   };
   const userLog = () => {
-    setLoginActive(true);
     const user = localStorage.getItem("userInfo");
-    user ? navigate("/profile") : setShowPopUp(true);
+    if (user) {
+      navigate("/profile");
+    } else {
+      setShowPopUp(true);
+      setLoginActive(true);
+    }
     showPopUp ? LoginPopUp : null;
   };
   const wishList = () => {
@@ -37,7 +43,9 @@ function useHeader() {
   };
   const search = () => {};
   const addNewProduct = () => {
-    navigate("/newproduct");
+    setShowPopUp(true);
+    setNewProductActive(true);
+    showPopUp && <NewProductPage />;
   };
   return { returnHome, userLog, wishList, messages, search, addNewProduct };
 }

@@ -1,17 +1,24 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import "./style.css";
 import PropTypes from "prop-types";
 import { PopUpContext } from "../../../context/popUpContext";
 import EditPasswordButton from "../../inputs/EditPasswordButton";
 import EditFieldButton from "../../inputs/EditFieldButton";
+import UpdateUserPopUp from "../../../pages/UpdateUserPopUp/UpdateUserPopUp";
 
 UserProfile.propTypes = {
   userInfo: PropTypes.object,
   setSelectedField: PropTypes.func,
 };
 
-function UserProfile({ userInfo, setSelectedField }) {
-  const { setEditProfileActive } = useContext(PopUpContext);
+function UserProfile({
+  userInfo,
+  setSelectedField,
+  selectedField,
+  setUserInfo,
+}) {
+  const { setEditProfileActive, editProfileActive, showPopUp, setShowPopUp } =
+    useContext(PopUpContext);
 
   const {
     userData: {
@@ -27,8 +34,19 @@ function UserProfile({ userInfo, setSelectedField }) {
       avgScore,
     },
   } = userInfo;
+
   return (
     <article className="userProfile">
+      {editProfileActive && (
+        <div>
+          {showPopUp ? (
+            <UpdateUserPopUp
+              selectedField={selectedField}
+              setUserInfo={setUserInfo}
+            />
+          ) : null}
+        </div>
+      )}
       <h2>
         {username}
         <span>
@@ -36,7 +54,7 @@ function UserProfile({ userInfo, setSelectedField }) {
             setSelectedField={setSelectedField}
             field={"password"}
             setEditProfileActive={setEditProfileActive}
-            targetPath={"/editprofile"}
+            setShowPopUp={setShowPopUp}
           />
         </span>
       </h2>
@@ -48,7 +66,7 @@ function UserProfile({ userInfo, setSelectedField }) {
               setSelectedField={setSelectedField}
               field={"avatar"}
               setEditProfileActive={setEditProfileActive}
-              targetPath={"/editprofile"}
+              setShowPopUp={setShowPopUp}
             />
           </span>
         </h3>
@@ -62,7 +80,7 @@ function UserProfile({ userInfo, setSelectedField }) {
               setSelectedField={setSelectedField}
               field={"bio"}
               setEditProfileActive={setEditProfileActive}
-              targetPath={"/editprofile"}
+              setShowPopUp={setShowPopUp}
             />
           </span>
         </h3>
@@ -75,7 +93,7 @@ function UserProfile({ userInfo, setSelectedField }) {
             setSelectedField={setSelectedField}
             field={"name"}
             setEditProfileActive={setEditProfileActive}
-            targetPath={"/editprofile"}
+            setShowPopUp={setShowPopUp}
           />
         </span>
       </h3>
@@ -87,7 +105,7 @@ function UserProfile({ userInfo, setSelectedField }) {
             setSelectedField={setSelectedField}
             field={"lastName"}
             setEditProfileActive={setEditProfileActive}
-            targetPath={"/editprofile"}
+            setShowPopUp={setShowPopUp}
           />
         </span>
       </h3>
@@ -100,7 +118,7 @@ function UserProfile({ userInfo, setSelectedField }) {
               setSelectedField={setSelectedField}
               field={"address"}
               setEditProfileActive={setEditProfileActive}
-              targetPath={"/editprofile"}
+              setShowPopUp={setShowPopUp}
             />
           </span>
         </h3>
