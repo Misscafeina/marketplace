@@ -18,10 +18,6 @@ function Header() {
   const { showPopUp, setShowPopUp, loginActive, registerActive } =
     useContext(PopUpContext);
 
-  useEffect(() => {
-    console.log(showPopUp);
-  }, [showPopUp]);
-
   return (
     <header>
       <h1 onClick={returnHome}>RetroTech</h1>
