@@ -43,9 +43,10 @@ function useHeader() {
   };
   const search = () => {};
   const addNewProduct = () => {
+    console.log("hook");
     setShowPopUp(true);
     setNewProductActive(true);
-    showPopUp && <NewProductPage />;
+    showPopUp && NewProductPage;
   };
   return { returnHome, userLog, wishList, messages, search, addNewProduct };
 }
