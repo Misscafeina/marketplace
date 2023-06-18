@@ -24,9 +24,7 @@ function Header() {
       {loginActive && <div>{showPopUp ? <LoginForm /> : null}</div>}
       {registerActive && <div>{showPopUp ? <RegisterForm /> : null}</div>}
       {newProductActive && <div>{showPopUp ? <NewProductForm /> : null}</div>}
-      <h1 onClick={returnHome}>
-        <img src="public/logo7.png" alt="logoweb" />
-      </h1>
+      <h1 onClick={returnHome}>RetroTech</h1>
       <nav className="headerNav">
         <ul>
           <li>

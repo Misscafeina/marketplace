@@ -1,14 +1,12 @@
 import "./style.css";
-import useFooter from "../../hooks/useFooter";
 
 function Footer() {
-  const { instagram, facebook, twitter, whatsapp } = useFooter();
   return (
     <footer>
-      <nav className="navFooterVarios">
+      <nav>
         <ul className="firstList">
           <li>
-            <h4>SHOP AND BUY</h4>
+            <h4>shop online</h4>
             <ul>
               <li>Register</li>
               <li>Upload Item</li>
@@ -19,84 +17,35 @@ function Footer() {
             </ul>
           </li>
           <li>
-            <h4>RETROTECH</h4>
+            <h4>Retro Tech</h4>
             <ul>
               <li>About us</li>
               <li>Shipping & returns</li>
               <li>FaQs</li>
               <li>Contact Us</li>
+              <li>Privacy policy</li>
+              <li>Pay Methods</li>
+              <li>Join The Team</li>
             </ul>
           </li>
-        </ul>
-      </nav>
-      <nav className="navFooterRRSS">
-        <ul className="rrssList">
           <li>
-            <button
-              className="btn"
-              onClick={() => {
-                instagram();
-                console.log("click");
-              }}
-            >
-              <img src="\public\instagram.png" alt="instagram"></img>
-            </button>
+            <h4>shop online</h4>
+            <ul>
+              <li>Instagram</li>
+              <li>Linkedin</li>
+              <li>Twitter</li>
+              <li>TikTok</li>
+            </ul>
           </li>
           <li>
-            <button
-              className="btn"
-              onClick={() => {
-                facebook();
-                console.log("click");
-              }}
-            >
-              <img src="\public\facebook.png" alt="facebook"></img>
-            </button>
+            <h4>newsletter</h4>
           </li>
           <li>
-            <button
-              className="btn"
-              onClick={() => {
-                twitter();
-                console.log("click");
-              }}
-            >
-              <img src="\public\gorjeo.png" alt="twitter"></img>
-            </button>
-          </li>
-          <li>
-            <button
-              className="btn"
-              onClick={() => {
-                whatsapp();
-                console.log("click");
-              }}
-            >
-              <img src="\public\whatsapp.png" alt="whatsapp"></img>
-            </button>
+            <h4>copyright</h4>
           </li>
         </ul>
       </nav>
-
-      <nav className="navFooterTerms">
-        <ul>
-          <li>
-            <a href="../pages/useConditions/UseCondition.jsx">
-              Condiciones de uso
-            </a>
-          </li>
-          <li>
-            <a href="/pages/privacy/Privacy.jsx">Aviso de privacidad</a>
-          </li>
-          <li>
-            <a href="/pages/legal/Legal.jsx">Área legal</a>
-          </li>
-          <li>
-            <a href="/pages/cookies/Cookies.jsx">Cookies</a>
-          </li>
-        </ul>
-      </nav>
-      <p> (c)RetroTech- 2023</p>
+      <p>RetroTech® - 2023</p>
     </footer>
   );
 }
