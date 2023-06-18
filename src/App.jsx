@@ -11,6 +11,8 @@ import { useEffect, useState } from "react";
 import { getOwnProfile } from "./services";
 import UpdateUserPopUp from "./pages/UpdateUserPopUp/UpdateUserPopUp";
 //import NewProductPage from "./pages/newProductPage/NewProductPage";
+import UpdateProductForm from "./components/products/updateProductForm/UpdateProductForm";
+
 
 function App() {
   const [userInfo, setUserInfo] = useState({});
@@ -44,6 +46,7 @@ function App() {
         />
 
         <Route path="/wishlist" element={<Wishlist />} />
+
         <Route
           path="/profile"
           element={
@@ -53,6 +56,8 @@ function App() {
             />
           }
         />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/editproduct" element={<UpdateProductForm />} />
 
         <Route path="/newproduct" element={<NewProductPage />} />
       </Routes>

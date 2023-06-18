@@ -7,13 +7,8 @@ import RegisterForm from "../../components/users/registerForm/RegisterForm";
 import NewProductForm from "../../components/products/newProductForm/NewProductForm";
 
 function NewProductPage() {
-  const {
-    showPopUp,
-    setShowPopUp,
-    loginActive,
-    registerActive,
-    newProductActive,
-  } = useContext(PopUpContext);
+  const { showPopUp, loginActive, registerActive, newProductActive } =
+    useContext(PopUpContext);
 
   if (loginActive) {
     return <div>{showPopUp ? <LoginForm /> : null}</div>;
