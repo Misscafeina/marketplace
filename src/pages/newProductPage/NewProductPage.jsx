@@ -1,12 +1,10 @@
 import "./style.css";
 import { useContext, useEffect } from "react";
-import "./style.css";
 import { PopUpContext } from "../../context/popUpContext";
 import NewProductForm from "../../components/products/newProductForm/NewProductForm";
 
 function NewProductPage() {
-  const { showPopUp, loginActive, registerActive, newProductActive } =
-    useContext(PopUpContext);
+  const { showPopUp, newProductActive } = useContext(PopUpContext);
   console.log(showPopUp, "popup", newProductActive);
   useEffect(() => {
     console.log(showPopUp, "popup", newProductActive);

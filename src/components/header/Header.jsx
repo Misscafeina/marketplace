@@ -7,7 +7,7 @@ import messageLogo from "../../assets/message-circle.svg";
 import registerUserLogo from "../../assets/user-plus.svg";
 import searchLogo from "../../assets/search.svg";
 import useHeader from "../../hooks/useHeader";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { PopUpContext } from "../../context/popUpContext";
 import LoginForm from "../users/loginForm/LoginForm";
 import RegisterForm from "../users/registerForm/RegisterForm";
@@ -16,19 +16,14 @@ import NewProductForm from "../products/newProductForm/NewProductForm";
 function Header() {
   const { returnHome, userLog, wishList, messages, search, addNewProduct } =
     useHeader();
-  const {
-    showPopUp,
-    setShowPopUp,
-    loginActive,
-    registerActive,
-    newproductActive,
-  } = useContext(PopUpContext);
+  const { showPopUp, loginActive, registerActive, newProductActive } =
+    useContext(PopUpContext);
 
   return (
     <header>
       {loginActive && <div>{showPopUp ? <LoginForm /> : null}</div>}
       {registerActive && <div>{showPopUp ? <RegisterForm /> : null}</div>}
-      {newproductActive && <div>{showPopUp ? <NewProductForm /> : null}</div>}
+      {newProductActive && <div>{showPopUp ? <NewProductForm /> : null}</div>}
       <h1 onClick={returnHome}>RetroTech</h1>
       <nav className="headerNav">
         <ul>
@@ -77,13 +72,11 @@ function Header() {
               className="btn"
               onClick={() => {
                 addNewProduct();
+                console.log("click");
               }}
             >
               <img src={addProductLogo} alt="Add new product button" />
             </button>
-            {newproductActive && (
-              <div>{showPopUp ? <NewProductForm /> : null}</div>
-            )}
           </li>
         </ul>
       </nav>
