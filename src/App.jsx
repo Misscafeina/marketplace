@@ -12,6 +12,7 @@ import UpdateUserPopUp from "./pages/UpdateUserPopUp/UpdateUserPopUp";
 //import NewProductPage from "./pages/newProductPage/NewProductPage";
 import UpdateProductForm from "./components/products/updateProductForm/UpdateProductForm";
 import Header from "./components/Header/Header";
+import AuthProvider from "./context/AuthContext";
 
 function App() {
   const [userInfo, setUserInfo] = useState({});
@@ -30,29 +31,31 @@ function App() {
   }, []);
 
   return (
-    <PopUpProvider>
-      <Header />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
+    <AuthProvider>
+      <PopUpProvider>
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
 
-        <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/wishlist" element={<Wishlist />} />
 
-        <Route
-          path="/profile"
-          element={
-            <ProfilePage
-              userInfo={userInfo}
-              setSelectedField={setSelectedField}
-              selectedField={selectedField}
-              setUserInfo={setUserInfo}
-            />
-          }
-        />
-        <Route path="/editproduct" element={<UpdateProductForm />} />
-      </Routes>
+          <Route
+            path="/profile"
+            element={
+              <ProfilePage
+                userInfo={userInfo}
+                setSelectedField={setSelectedField}
+                selectedField={selectedField}
+                setUserInfo={setUserInfo}
+              />
+            }
+          />
+          <Route path="/editproduct" element={<UpdateProductForm />} />
+        </Routes>
 
-      <Footer />
-    </PopUpProvider>
+        <Footer />
+      </PopUpProvider>
+    </AuthProvider>
   );
 }
 
