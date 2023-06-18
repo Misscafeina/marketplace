@@ -1,0 +1,11 @@
+.userProfile {
+  background-color: red;
+  width: 350px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.userProfile img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}

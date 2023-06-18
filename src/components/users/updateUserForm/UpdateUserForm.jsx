@@ -5,9 +5,13 @@ import PropTypes from "prop-types";
 
 import {
   LASTNAME_VALIDATIONS,
+  LASTNAME_VALIDATIONS_REQUIRED,
   LONG_TEXT_VALIDATIONS,
+  LONG_TEXT_VALIDATIONS_REQUIRED,
   NAME_VALIDATIONS,
+  NAME_VALIDATIONS_REQUIRED,
   PASSWORD_VALIDATIONS,
+  PASSWORD_VALIDATIONS_REQUIRED,
   REQUIRED,
 } from "../../../utils/formValidationConstants";
 import TextInput from "../../inputs/TextInput";
@@ -46,7 +50,12 @@ function UpdateUserForm({ selectedField, setUserInfo }) {
           {selectedField === "name" && (
             <TextInput
               label={"Nombre:"}
-              register={register("name", NAME_VALIDATIONS)}
+              register={register(
+                "name",
+                selectedField === "name"
+                  ? NAME_VALIDATIONS_REQUIRED
+                  : NAME_VALIDATIONS
+              )}
               errors={errors}
               registerName={"name"}
             />
@@ -54,7 +63,12 @@ function UpdateUserForm({ selectedField, setUserInfo }) {
           {selectedField === "lastName" && (
             <TextInput
               label={"Apellidos:"}
-              register={register("lastname", LASTNAME_VALIDATIONS)}
+              register={register(
+                "lastname",
+                selectedField === "lastName"
+                  ? LASTNAME_VALIDATIONS_REQUIRED
+                  : LASTNAME_VALIDATIONS
+              )}
               errors={errors}
               registerName={"lastname"}
             />
@@ -62,7 +76,12 @@ function UpdateUserForm({ selectedField, setUserInfo }) {
           {selectedField === "bio" && (
             <TextAreaInput
               label={"Bio:"}
-              register={register("bio", LONG_TEXT_VALIDATIONS)}
+              register={register(
+                "bio",
+                selectedField === "bio"
+                  ? LONG_TEXT_VALIDATIONS_REQUIRED
+                  : LONG_TEXT_VALIDATIONS
+              )}
               errors={errors}
               registerName={"bio"}
             />
@@ -71,19 +90,34 @@ function UpdateUserForm({ selectedField, setUserInfo }) {
             <>
               <TextInput
                 label={"Dirección:"}
-                register={register("address", LONG_TEXT_VALIDATIONS)}
+                register={register(
+                  "address",
+                  selectedField === "address"
+                    ? LONG_TEXT_VALIDATIONS_REQUIRED
+                    : LONG_TEXT_VALIDATIONS
+                )}
                 errors={errors}
                 registerName={"address"}
               />
               <TextInput
                 label={"Ciudad:"}
-                register={register("city", LONG_TEXT_VALIDATIONS)}
+                register={register(
+                  "city",
+                  selectedField === "address"
+                    ? LONG_TEXT_VALIDATIONS_REQUIRED
+                    : LONG_TEXT_VALIDATIONS
+                )}
                 errors={errors}
                 registerName={"city"}
               />
               <TextInput
                 label={"Provincia:"}
-                register={register("region", NAME_VALIDATIONS)}
+                register={register(
+                  "region",
+                  selectedField === "address"
+                    ? NAME_VALIDATIONS_REQUIRED
+                    : NAME_VALIDATIONS
+                )}
                 errors={errors}
                 registerName={"region"}
               />
@@ -102,7 +136,12 @@ function UpdateUserForm({ selectedField, setUserInfo }) {
             <>
               <PasswordInput
                 label={"Contraseña:"}
-                register={register("password", PASSWORD_VALIDATIONS)}
+                register={register(
+                  "password",
+                  selectedField === "password"
+                    ? PASSWORD_VALIDATIONS_REQUIRED
+                    : PASSWORD_VALIDATIONS
+                )}
                 errors={errors}
                 registerName={"password"}
               />
