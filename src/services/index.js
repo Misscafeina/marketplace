@@ -42,7 +42,8 @@ const isBearerTokenRequired = (url) => {
 
 axios.interceptors.request.use(
   function (config) {
-    const savedUserData = USER_INFO;
+    const savedUserData = JSON.parse(localStorage.getItem(USER_INFO));
+
     const token = savedUserData?.accessToken || resp;
 
     if (token && isBearerTokenRequired(config.url)) {

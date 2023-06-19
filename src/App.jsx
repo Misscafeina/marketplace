@@ -15,6 +15,7 @@ import Legal from "./pages/legal/Legal";
 import Cookies from "./cookies/Cookies";
 import { useAuth } from "./context/AuthContext";
 import { getOwnProfile } from "./services";
+import WishlistProvider from "./context/WishlistContext";
 
 
 function App() {
@@ -37,55 +38,39 @@ function App() {
   }, [isAuthenticated]);
   return (
     <PopUpProvider>
+      <WishlistProvider>
       <div className="app">
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route
-            path="/profile"
-            element={
-              <ProfilePage
-                userInfo={userInfo}
-                setSelectedField={setSelectedField}
-                selectedField={selectedField}
-                setUserInfo={setUserInfo}
-              />
-            }
-          />
+              path="/profile"
+              element={
+                isAuthenticated && (
+                  <ProfilePage
+                    userInfo={userInfo}
+                    setSelectedField={setSelectedField}
+                    selectedField={selectedField}
+                    setUserInfo={setUserInfo}
+                  />
+                )
+              }
+            />
           <Route path="/editproduct" element={<UpdateProductForm />} />
-        </Routes>
-
-
-        <Route path="/wishlist" element={<Wishlist />} />
-
-        {
-          <Route
-            path="/profile"
-            element={
-              isAuthenticated && (
-                <ProfilePage
-                  userInfo={userInfo}
-                  setSelectedField={setSelectedField}
-                  selectedField={selectedField}
-                  setUserInfo={setUserInfo}
-                />
-              )
-            }
-          />
-        }
-        <Route path="/editproduct" element={<UpdateProductForm />} />
-     
-           <Footer />
+          <Footer />
         <Routes>
           <Route path="/useConditions" element={<UseConditions />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/legal" element={<Legal />} />
           <Route path="/cookies" element={<Cookies />} />
         </Routes>
-      </div>
+      </div>   
+               
+       
+</WishlistProvider>
 
-    </PopUpProvider>
+ </PopUpProvider>
   );
 }
 
