@@ -96,7 +96,7 @@ function Footer() {
           </li>
         </ul>
       </nav>
-      <p> (c)RetroTech- 2023</p>
+      <p> © 2023, Retrotech.com, Inc. o sus afiliados</p>
     </footer>
   );
 }
