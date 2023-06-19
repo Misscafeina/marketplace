@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router";
-import { loginUser } from "../services/userService";
 import { useContext } from "react";
 import { PopUpContext } from "../context/popUpContext";
+import { useAuth } from "../context/AuthContext";
 
 function useLoginForm() {
+  const { user, setUser, login, isAuthenticated } = useAuth();
   const {
     showPopUp,
     setShowPopUp,
@@ -16,13 +17,13 @@ function useLoginForm() {
   const submitInfo = async (data) => {
     const { username, password } = data;
     try {
-      //   console.log(username, password);
-      const response = await loginUser(username, password);
+      const response = await login(username, password);
+      console.log(response.status);
       if (response.status === "ok") {
         setShowPopUp(false);
         setLoginActive(false);
       }
-      navigate("/profile");
+      // window.location.reload();
     } catch (err) {
       console.log(err);
     }
