@@ -22,6 +22,7 @@ function useLoginForm() {
       if (response.status === "ok") {
         setShowPopUp(false);
         setLoginActive(false);
+        // navigate("/profile");
       }
       // window.location.reload();
     } catch (err) {
