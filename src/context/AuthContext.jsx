@@ -12,22 +12,7 @@ function AuthProvider({ children }) {
 
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(!!savedUserData);
-  const [wishlist, setWishlist] = useState([]);
 
-  useEffect(() => {
-    const getInfo = async () => {
-      if (isAuthenticated) {
-        try {
-          const { data } = await getWishlist();
-          console.log(data);
-          setWishlist(data);
-        } catch (error) {
-          console.error(error);
-        }
-      }
-      getInfo();
-    };
-  }, []);
   const login = async (username, password) => {
     try {
       const response = await loginUser(username, password);
