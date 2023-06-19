@@ -11,6 +11,7 @@ import UpdateProductForm from "./components/products/updateProductForm/UpdatePro
 import Header from "./components/Header/Header";
 import { useAuth } from "./context/AuthContext";
 import { getOwnProfile } from "./services";
+import WishlistProvider from "./context/WishlistContext";
 
 function App() {
   const { isAuthenticated } = useAuth();
@@ -32,31 +33,33 @@ function App() {
   }, [isAuthenticated]);
   return (
     <PopUpProvider>
-      <Header />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
+      <WishlistProvider>
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
 
-        <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/wishlist" element={<Wishlist />} />
 
-        {
-          <Route
-            path="/profile"
-            element={
-              isAuthenticated && (
-                <ProfilePage
-                  userInfo={userInfo}
-                  setSelectedField={setSelectedField}
-                  selectedField={selectedField}
-                  setUserInfo={setUserInfo}
-                />
-              )
-            }
-          />
-        }
-        <Route path="/editproduct" element={<UpdateProductForm />} />
-      </Routes>
+          {
+            <Route
+              path="/profile"
+              element={
+                isAuthenticated && (
+                  <ProfilePage
+                    userInfo={userInfo}
+                    setSelectedField={setSelectedField}
+                    selectedField={selectedField}
+                    setUserInfo={setUserInfo}
+                  />
+                )
+              }
+            />
+          }
+          <Route path="/editproduct" element={<UpdateProductForm />} />
+        </Routes>
 
-      <Footer />
+        <Footer />
+      </WishlistProvider>
     </PopUpProvider>
   );
 }

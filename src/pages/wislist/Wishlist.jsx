@@ -1,4 +1,4 @@
-import useWishlist from "../../hooks/useWishlist";
+import { useWishlist } from "../../context/WishlistContext";
 
 function Wishlist() {
   const { wishlist } = useWishlist();
@@ -7,10 +7,7 @@ function Wishlist() {
     <div>
       <ul>
         {wishlist.map((product) => (
-          <>
-            <h1 key={product.id}>{product.name}</h1>
-            {/* <img src={} alt="" /> */}
-          </>
+          <h1 key={product.id}>{product.name}</h1>
         ))}
       </ul>
     </div>
