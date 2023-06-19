@@ -1,8 +1,11 @@
-import { useWishlist } from "../../context/WishlistContext";
+// import { useWishlist } from "../../context/WishlistContext";
+import PropTypes from "prop-types";
+Wishlist.propTypes = {
+  wishlist: PropTypes.arr,
+};
 
-function Wishlist() {
-  const { wishlist } = useWishlist();
-
+function Wishlist({ wishlist }) {
+  console.log(wishlist);
   return (
     <div>
       <ul>
