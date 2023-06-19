@@ -2,9 +2,6 @@ import "./style.css";
 
 import PropTypes from "prop-types";
 import UserProfile from "../../components/users/userProfile/UserProfile";
-import { useAuth } from "../../context/AuthContext";
-import { useNavigate } from "react-router";
-import { useEffect } from "react";
 
 ProfilePage.propTypes = {
   userInfo: PropTypes.object,
@@ -19,9 +16,6 @@ function ProfilePage({
   userInfo,
   setUserInfo,
 }) {
-  const navigate = useNavigate();
-  !userInfo && navigate("/");
-
   console.log(userInfo);
   return (
     <>

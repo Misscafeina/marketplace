@@ -26,7 +26,7 @@ function App() {
         }
       };
       getInfo();
-    }
+    } else setUserInfo({});
     console.log("hola");
   }, [isAuthenticated]);
   return (
@@ -37,7 +37,7 @@ function App() {
 
         <Route path="/wishlist" element={<Wishlist />} />
 
-        {userInfo && (
+        {
           <Route
             path="/profile"
             element={
@@ -49,7 +49,7 @@ function App() {
               />
             }
           />
-        )}
+        }
         <Route path="/editproduct" element={<UpdateProductForm />} />
       </Routes>
 

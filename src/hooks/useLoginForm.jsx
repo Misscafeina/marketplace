@@ -17,15 +17,13 @@ function useLoginForm() {
   const submitInfo = async (data) => {
     const { username, password } = data;
     try {
-      //   console.log(username, password);
-      // const response = await loginUser(username, password);
       const response = await login(username, password);
       console.log(response.status);
       if (response.status === "ok") {
         setShowPopUp(false);
         setLoginActive(false);
-        navigate("/profile");
       }
+      // window.location.reload();
     } catch (err) {
       console.log(err);
     }

@@ -26,7 +26,7 @@ function AuthProvider({ children }) {
     localStorage.clear("userInfo");
     setIsAuthenticated(false);
     navigate("/");
-    window.location.reload();
+    // window.location.reload();
   };
 
   return (
