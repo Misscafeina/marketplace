@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+/* eslint-disable react-refresh/only-export-components */
+import { useState } from "react";
 import { createContext } from "react";
 import { useContext } from "react";
 import { USER_INFO } from "../utils/constants";
-import { getOwnProfile, getWishlist, loginUser } from "../services/userService";
+import { loginUser } from "../services/userService";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router";
 const AuthContext = createContext();
