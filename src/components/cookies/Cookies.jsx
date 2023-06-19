@@ -1,4 +1,6 @@
 import "./style.css";
+import "../../context/ThemeContext";
+//import ThemeSwitcher from "../inputs/ThemeSwitcher";
 
 const Cookies = () => {
   return (
