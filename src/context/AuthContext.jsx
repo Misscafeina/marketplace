@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createContext } from "react";
 import { useContext } from "react";
 import { USER_INFO } from "../utils/constants";
-import { loginUser } from "../services/userService";
+import { getOwnProfile, loginUser } from "../services/userService";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router";
 const AuthContext = createContext();
@@ -16,7 +16,10 @@ function AuthProvider({ children }) {
       const response = await loginUser(username, password);
 
       response?.status === "ok" && setIsAuthenticated(true);
+      // console.log(response);
+      // console.log(response.data.accessToken);
 
+      // const user = await getOwnProfile(response.data.accessToken);
       return response;
     } catch (error) {
       return Promise.reject(error);
