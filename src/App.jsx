@@ -12,10 +12,16 @@ import { getOwnProfile } from "./services";
 import UpdateProductForm from "./components/products/updateProductForm/UpdateProductForm";
 import Header from "./components/header/Header";
 
+
 import UseConditions from "./components/useConditions/UseConditions";
 import Privacy from "./components/privacy/Privacy";
 import Legal from "./components/legal/Legal";
 import Cookies from "./components/cookies/Cookies";
+
+import { useAuth } from "./context/AuthContext";
+import { getOwnProfile } from "./services";
+import WishlistProvider from "./context/WishlistContext";
+
 
 function App() {
   const [userInfo, setUserInfo] = useState({});
@@ -35,33 +41,41 @@ function App() {
 
   return (
     <PopUpProvider>
-      <div className="app">
-        <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/wishlist" element={<Wishlist />} />
-          <Route
-            path="/profile"
-            element={
-              <ProfilePage
-                userInfo={userInfo}
-                setSelectedField={setSelectedField}
-                selectedField={selectedField}
-                setUserInfo={setUserInfo}
+     <WishlistProvider>
+        <div className="app">
+          <Header />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/editproduct" element={<UpdateProductForm />} />
+
+            <Route path="/wishlist" element={<Wishlist />} />
+            {
+              <Route
+                path="/profile"
+                element={
+                  isAuthenticated && (
+                    <ProfilePage
+                      userInfo={userInfo}
+                      setSelectedField={setSelectedField}
+                      selectedField={selectedField}
+                      setUserInfo={setUserInfo}
+                    />
+                  )
+                }
               />
             }
-          />
-          <Route path="/editproduct" element={<UpdateProductForm />} />
-        </Routes>
+            <Route path="/editproduct" element={<UpdateProductForm />} />
 
-        <Footer />
-        <>
-          <Route path="/useConditions" element={<UseConditions />} />
-          <Route path="/privacy" element={<Privacy />} />
-          <Route path="/legal" element={<Legal />} />
-          <Route path="/cookies" element={<Cookies />} />
-        </>
-      </div>
+            {/* <Routes>
+            <Route path="/useConditions" element={<UseConditions />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/legal" element={<Legal />} />
+            <Route path="/cookies" element={<Cookies />} /> */}
+          </Routes>
+          <Footer />
+        </div>
+      </WishlistProvider>
     </PopUpProvider>
   );
 }
