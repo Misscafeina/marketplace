@@ -1,6 +1,7 @@
 import "./style.css";
-
-const Cookies = () => {
+import "../../context/ThemeContext";
+//import ThemeSwitcher from "../inputs/ThemeSwitcher";
+const Privacy = () => {
   return (
     <main>
       <h2>Condiciones de uso</h2>
@@ -39,4 +40,4 @@ const Cookies = () => {
   );
 };
 
-export default Cookies;
+export default Privacy;

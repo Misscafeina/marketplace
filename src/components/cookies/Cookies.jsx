@@ -1,6 +1,8 @@
 import "./style.css";
+import "../../context/ThemeContext";
+//import ThemeSwitcher from "../inputs/ThemeSwitcher";
 
-const UseConditions = () => {
+const Cookies = () => {
   return (
     <main>
       <h2>Condiciones de uso</h2>
@@ -39,4 +41,4 @@ const UseConditions = () => {
   );
 };
 
-export default UseConditions;
+export default Cookies;

@@ -1,6 +1,8 @@
 import "./style.css";
+import "../../context/ThemeContext";
+//import ThemeSwitcher from "../inputs/ThemeSwitcher";
 
-const Privacy = () => {
+const Legal = () => {
   return (
     <main>
       <h2>Condiciones de uso</h2>
@@ -39,4 +41,4 @@ const Privacy = () => {
   );
 };
 
-export default Privacy;
+export default Legal;
