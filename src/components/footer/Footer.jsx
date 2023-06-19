@@ -39,7 +39,7 @@ function Footer() {
                 console.log("click");
               }}
             >
-              <img src="\public\instagram.png" alt="instagram"></img>
+              <img src="/instagram.png" alt="instagram"></img>
             </button>
           </li>
           <li>
@@ -50,7 +50,7 @@ function Footer() {
                 console.log("click");
               }}
             >
-              <img src="\public\facebook.png" alt="facebook"></img>
+              <img src="/facebook.png" alt="facebook"></img>
             </button>
           </li>
           <li>
@@ -61,7 +61,7 @@ function Footer() {
                 console.log("click");
               }}
             >
-              <img src="\public\gorjeo.png" alt="twitter"></img>
+              <img src="/twitter.png" alt="twitter"></img>
             </button>
           </li>
           <li>
@@ -72,7 +72,7 @@ function Footer() {
                 console.log("click");
               }}
             >
-              <img src="\public\whatsapp.png" alt="whatsapp"></img>
+              <img src="/whatsapp.png" alt="whatsapp"></img>
             </button>
           </li>
         </ul>
@@ -96,7 +96,7 @@ function Footer() {
           </li>
         </ul>
       </nav>
-      <p> (c)RetroTech- 2023</p>
+      <p> © 2023, Retrotech.com, Inc. o sus afiliados</p>
     </footer>
   );
 }
