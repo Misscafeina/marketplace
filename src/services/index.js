@@ -68,14 +68,6 @@ axios.interceptors.response.use(
   },
 
   function (error) {
-    if (
-      error.response.status === 401 &&
-      (error.config.url.indexOf("/login") !== -1 ||
-        error.config.url.indexOf("/account") !== -1)
-    ) {
-      localStorage.removeItem("userInfo");
-      window.location.href = "/login";
-    }
     return Promise.reject(error);
   }
 );
