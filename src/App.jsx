@@ -8,9 +8,14 @@ import { PopUpProvider } from "./context/popUpContext";
 import ProfilePage from "./pages/profilePage/ProfilePage";
 import Wishlist from "./pages/wislist/Wishlist";
 import UpdateProductForm from "./components/products/updateProductForm/UpdateProductForm";
-import Header from "./components/Header/Header";
+import Header from "./components/header/Header";
+import UseConditions from "./pages/useConditions/UseConditions";
+import Privacy from "./pages/privacy/Privacy";
+import Legal from "./pages/legal/Legal";
+import Cookies from "./cookies/Cookies";
 import { useAuth } from "./context/AuthContext";
 import { getOwnProfile } from "./services";
+
 
 function App() {
   const { isAuthenticated } = useAuth();
@@ -32,9 +37,25 @@ function App() {
   }, [isAuthenticated]);
   return (
     <PopUpProvider>
-      <Header />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
+      <div className="app">
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/wishlist" element={<Wishlist />} />
+          <Route
+            path="/profile"
+            element={
+              <ProfilePage
+                userInfo={userInfo}
+                setSelectedField={setSelectedField}
+                selectedField={selectedField}
+                setUserInfo={setUserInfo}
+              />
+            }
+          />
+          <Route path="/editproduct" element={<UpdateProductForm />} />
+        </Routes>
+
 
         <Route path="/wishlist" element={<Wishlist />} />
 
@@ -54,9 +75,16 @@ function App() {
           />
         }
         <Route path="/editproduct" element={<UpdateProductForm />} />
-      </Routes>
+     
+           <Footer />
+        <Routes>
+          <Route path="/useConditions" element={<UseConditions />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/legal" element={<Legal />} />
+          <Route path="/cookies" element={<Cookies />} />
+        </Routes>
+      </div>
 
-      <Footer />
     </PopUpProvider>
   );
 }
