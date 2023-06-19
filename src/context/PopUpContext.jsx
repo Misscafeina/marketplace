@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import PropTypes from "prop-types";
 
 const PopUpContext = createContext();
 
@@ -38,3 +39,6 @@ const PopUpProvider = ({ children }) => {
 };
 
 export { PopUpContext, PopUpProvider };
+PopUpProvider.propTypes = {
+  children: PropTypes.node,
+};

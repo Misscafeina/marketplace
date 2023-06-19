@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import "./style.css";
 import PropTypes from "prop-types";
 import { PopUpContext } from "../../../context/popUpContext";
@@ -9,6 +9,8 @@ import UpdateUserPopUp from "../../../pages/UpdateUserPopUp/UpdateUserPopUp";
 UserProfile.propTypes = {
   userInfo: PropTypes.object,
   setSelectedField: PropTypes.func,
+  selectedField: PropTypes.string,
+  setUserInfo: PropTypes.func,
 };
 
 function UserProfile({

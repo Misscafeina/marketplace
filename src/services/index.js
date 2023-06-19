@@ -22,10 +22,7 @@ import {
   loginUser,
   registerUser,
 } from "./userService";
-
-const savedUserData = USER_INFO;
-const token = savedUserData?.accessToken;
-
+let resp;
 const isBearerTokenRequired = (url) => {
   const parsedUrl = new URL(url);
   const publicRoutes = [
@@ -45,6 +42,9 @@ const isBearerTokenRequired = (url) => {
 
 axios.interceptors.request.use(
   function (config) {
+    const savedUserData = USER_INFO;
+    const token = savedUserData?.accessToken || resp;
+
     if (token && isBearerTokenRequired(config.url)) {
       config.headers["Authorization"] = `Bearer ${token}`;
     }
@@ -63,19 +63,12 @@ axios.interceptors.response.use(
     } = response;
     if (data?.accessToken) {
       localStorage.setItem("userInfo", JSON.stringify(data));
+      resp = data.accessToken;
     }
     return response;
   },
 
   function (error) {
-    if (
-      error.response.status === 401 &&
-      (error.config.url.indexOf("/login") !== -1 ||
-        error.config.url.indexOf("/account") !== -1)
-    ) {
-      localStorage.removeItem("userInfo");
-      window.location.href = "/login";
-    }
     return Promise.reject(error);
   }
 );
