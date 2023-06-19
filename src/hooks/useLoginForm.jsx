@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router";
-import { loginUser } from "../services/userService";
 import { useContext } from "react";
 import { PopUpContext } from "../context/popUpContext";
 import { useAuth } from "../context/AuthContext";
@@ -20,12 +19,13 @@ function useLoginForm() {
     try {
       //   console.log(username, password);
       // const response = await loginUser(username, password);
-
+      const response = await login(username, password);
+      console.log(response.status);
       if (response.status === "ok") {
         setShowPopUp(false);
         setLoginActive(false);
+        navigate("/profile");
       }
-      navigate("/profile");
     } catch (err) {
       console.log(err);
     }
