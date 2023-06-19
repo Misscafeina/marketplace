@@ -12,16 +12,13 @@ import { getOwnProfile } from "./services";
 import UpdateProductForm from "./components/products/updateProductForm/UpdateProductForm";
 import Header from "./components/header/Header";
 
-
 import UseConditions from "./components/useConditions/UseConditions";
 import Privacy from "./components/privacy/Privacy";
 import Legal from "./components/legal/Legal";
 import Cookies from "./components/cookies/Cookies";
 
 import { useAuth } from "./context/AuthContext";
-import { getOwnProfile } from "./services";
 import WishlistProvider from "./context/WishlistContext";
-
 
 function App() {
   const [userInfo, setUserInfo] = useState({});
@@ -41,7 +38,7 @@ function App() {
 
   return (
     <PopUpProvider>
-     <WishlistProvider>
+      <WishlistProvider>
         <div className="app">
           <Header />
           <Routes>
