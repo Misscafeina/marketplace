@@ -4,7 +4,7 @@ import Footer from "./components/footer/Footer";
 import HomePage from "./pages/homePage/HomePage";
 import { PopUpProvider } from "./context/popUpContext";
 import ProfilePage from "./pages/profilePage/ProfilePage";
-import Wishlist from "./pages/wislist/Wishlist";
+import Wishlist from "./pages/wishlist/Wishlist";
 import UpdateProductForm from "./components/products/updateProductForm/UpdateProductForm";
 import Header from "./components/header/Header";
 
