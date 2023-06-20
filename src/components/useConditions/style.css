@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h2 {
+  font-family: "Gill Sans MT", sans-serif;
+  font-style: normal;
+  font-size: 40px;
+  font-weight: 400;
+  text-align: center;
+  line-height: normal;
+  letter-spacing: 0.05em;
+  text-transform: unset;
+  margin-bottom: 50px;
+}
+
+main {
+  font-family: "Gill Sans MT Pro";
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.05em;
+  text-transform: unset;
+}
+
+UseConditions {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+UCHeader {
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #636565;
+  color: white;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  font-size: 3rem;
+}
+
+main {
+  flex-grow: 1;
+  padding: 2rem;
+}
+
+main.dark {
+  background-color: black;
+  color: white;
+}
+
+p {
+  margin-bottom: 1rem;
+}
