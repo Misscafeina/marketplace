@@ -57,7 +57,7 @@ const RegisterForm = () => {
             errors={errors}
             registerName={"repeatPassword"}
           />
-          <button>Boton de prueba</button>
+          <button>Registrarse</button>
         </form>
         <p>
           ¿Ya estás registrado?{" "}

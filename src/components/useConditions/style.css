@@ -40,11 +40,11 @@ UCHeader {
   color: white;
 }
 
-button {
+/* button {
   background-color: transparent;
   border: none;
   font-size: 3rem;
-}
+} */
 
 main {
   flex-grow: 1;

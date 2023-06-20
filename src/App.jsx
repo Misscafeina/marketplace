@@ -27,7 +27,6 @@ function App() {
     wishlistArray,
     handleAddRemoveFromWishlist,
   } = useApp();
-  console.log(wishlist);
   return (
     <PopUpProvider>
       <div className="app">

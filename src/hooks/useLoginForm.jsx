@@ -18,11 +18,9 @@ function useLoginForm() {
     const { username, password } = data;
     try {
       const response = await login(username, password);
-      console.log(response.status);
       if (response.status === "ok") {
         setShowPopUp(false);
         setLoginActive(false);
-        // navigate("/profile");
       }
       // window.location.reload();
     } catch (err) {
