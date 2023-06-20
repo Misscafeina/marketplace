@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Slider from 'react-slick';
 import StarRating from './StarRating';
-import MessageSeller from './MessageSeller';
+// import MessageSeller from './MessageSeller';
 import RelatedProducts from './RelatedProducts';
 import SellerRatings from './SellerRatings';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import "./style.css";
 
 const ProductDetail = () => {
   const [isFavorite, setIsFavorite] = useState(false);
