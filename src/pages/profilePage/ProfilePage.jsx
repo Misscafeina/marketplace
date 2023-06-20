@@ -6,22 +6,27 @@ import UserProfile from "../../components/users/userProfile/UserProfile";
 ProfilePage.propTypes = {
   userInfo: PropTypes.object,
   setSelectedField: PropTypes.func,
+  selectedField: PropTypes.string,
+  setUserInfo: PropTypes.func,
 };
 
 function ProfilePage({
-  userInfo,
-  setUserInfo,
   selectedField,
   setSelectedField,
+  userInfo,
+  setUserInfo,
 }) {
+  console.log(userInfo);
   return (
     <>
-      <UserProfile
-        userInfo={userInfo}
-        setSelectedField={setSelectedField}
-        selectedField={selectedField}
-        setUserInfo={setUserInfo}
-      />
+      {userInfo && (
+        <UserProfile
+          userInfo={userInfo}
+          setSelectedField={setSelectedField}
+          selectedField={selectedField}
+          setUserInfo={setUserInfo}
+        />
+      )}
     </>
   );
 }

@@ -5,8 +5,7 @@ import { PopUpContext } from "../../context/popUpContext";
 import RegisterForm from "../../components/users/registerForm/RegisterForm";
 
 function LoginPopUp() {
-  const { showPopUp, setShowPopUp, loginActive, registerActive } =
-    useContext(PopUpContext);
+  const { showPopUp, loginActive, registerActive } = useContext(PopUpContext);
 
   if (loginActive) {
     return <div>{showPopUp ? <LoginForm /> : null}</div>;

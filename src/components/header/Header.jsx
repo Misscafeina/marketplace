@@ -12,19 +12,22 @@ import { PopUpContext } from "../../context/popUpContext";
 import LoginForm from "../users/loginForm/LoginForm";
 import RegisterForm from "../users/registerForm/RegisterForm";
 import NewProductForm from "../products/newProductForm/NewProductForm";
+import { useAuth } from "../../context/AuthContext";
 
 function Header() {
   const { returnHome, userLog, wishList, messages, search, addNewProduct } =
     useHeader();
   const { showPopUp, loginActive, registerActive, newProductActive } =
     useContext(PopUpContext);
-
+  const { logout } = useAuth();
   return (
     <header>
       {loginActive && <div>{showPopUp ? <LoginForm /> : null}</div>}
       {registerActive && <div>{showPopUp ? <RegisterForm /> : null}</div>}
       {newProductActive && <div>{showPopUp ? <NewProductForm /> : null}</div>}
-      <h1 onClick={returnHome}>RetroTech</h1>
+      <h1 onClick={returnHome}>
+        <img src="/retrotech.png" alt="logoweb" />
+      </h1>
       <nav className="headerNav">
         <ul>
           <li>
@@ -76,6 +79,17 @@ function Header() {
               }}
             >
               <img src={addProductLogo} alt="Add new product button" />
+            </button>
+          </li>{" "}
+          <li>
+            <button
+              className="btn"
+              onClick={() => {
+                logout();
+                console.log("click");
+              }}
+            >
+              <img src={logInLogo} alt="Logout button" />
             </button>
           </li>
         </ul>
