@@ -1,5 +1,6 @@
 import "./style.css";
 import useFooter from "../../hooks/useFooter";
+import { Link } from "react-router-dom";
 
 function Footer() {
   const { instagram, facebook, twitter, whatsapp } = useFooter();
@@ -81,9 +82,7 @@ function Footer() {
       <nav className="navFooterTerms">
         <ul>
           <li>
-            <a href="../pages/useConditions/UseCondition.jsx">
-              Condiciones de uso
-            </a>
+            <Link to={"/useConditions"}>Condiciones de uso</Link>
           </li>
           <li>
             <a href="/pages/privacy/Privacy.jsx">Aviso de privacidad</a>

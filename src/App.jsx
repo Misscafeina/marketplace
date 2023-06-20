@@ -14,6 +14,7 @@ import Legal from "./components/legal/Legal";
 import Cookies from "./components/cookies/Cookies";
 
 import useApp from "./hooks/useApp";
+import NotFound from "./pages/notFound/NotFound";
 
 function App() {
   const {
@@ -64,6 +65,8 @@ function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/legal" element={<Legal />} />
           <Route path="/cookies" element={<Cookies />} />
+
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </div>
