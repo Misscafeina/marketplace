@@ -2,7 +2,8 @@ import "./style.css";
 import React, { useState } from "react";
 import Slider from "react-slick";
 import PropTypes from "prop-types";
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 const ProductDetail = ({ product }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -41,8 +42,12 @@ const ProductDetail = ({ product }) => {
       <div className="product-carousel">
         {/* Carrusel con fotos del producto */}
         <Slider {...settings}>
-          {product?.images?.map((image) => {
-            <img src={image} alt={product?.name} />;
+          {product?.images?.map((image, index) => {
+            return (
+              <div key={index}>
+                <img src={image} alt={product?.name} />
+              </div>
+            );
           })}
         </Slider>
       </div>
