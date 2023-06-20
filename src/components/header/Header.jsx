@@ -75,7 +75,6 @@ function Header() {
               className="btn"
               onClick={() => {
                 addNewProduct();
-                console.log("click");
               }}
             >
               <img src={addProductLogo} alt="Add new product button" />
@@ -86,7 +85,6 @@ function Header() {
               className="btn"
               onClick={() => {
                 logout();
-                console.log("click");
               }}
             >
               <img src={logInLogo} alt="Logout button" />

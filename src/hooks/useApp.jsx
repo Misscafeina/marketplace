@@ -14,7 +14,6 @@ function useApp() {
         try {
           const response = await getOwnProfile();
           response?.status === "ok" && setUserInfo(response.data);
-          console.log(response.data);
         } catch (error) {
           console.error(error);
         }
@@ -29,7 +28,6 @@ function useApp() {
       const getInfo = async () => {
         try {
           const { data } = await getWishlist();
-          console.log(data);
           setWishlist(data);
         } catch (error) {
           console.error(error);
@@ -45,7 +43,6 @@ function useApp() {
       const arr = wishlist.map((item) => {
         return item.id;
       });
-      console.log(arr);
       setWishlistArray(arr);
     }
   }, [wishlist, isAuthenticated]);

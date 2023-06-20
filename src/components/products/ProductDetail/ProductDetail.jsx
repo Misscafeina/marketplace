@@ -25,8 +25,6 @@ const ProductDetail = ({ product }) => {
     slidesToScroll: 1,
   };
 
-  console.log(product);
-
   return (
     <div className="product-detail">
       <h2>{product?.name}</h2>
