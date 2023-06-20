@@ -25,7 +25,7 @@ function App() {
     setSelectedField,
     wishlist,
     wishlistArray,
-    handleAddRevomveFromWishlist,
+    handleAddRemoveFromWishlist,
   } = useApp();
   console.log(wishlist);
   return (
@@ -41,7 +41,7 @@ function App() {
             element={
               <Wishlist
                 wishlist={wishlist}
-                handleAddRevomveFromWishlist={handleAddRevomveFromWishlist}
+                handleAddRevomveFromWishlist={handleAddRemoveFromWishlist}
               />
             }
           />

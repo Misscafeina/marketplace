@@ -14,7 +14,7 @@ import {
 
 import axios from "axios";
 import {
-  addRevomveFromWishlist,
+  addRemoveFromWishlist,
   editOwnProfile,
   getAnyUserProfile,
   getOwnProfile,
@@ -44,7 +44,7 @@ axios.interceptors.request.use(
   function (config) {
     const savedUserData = JSON.parse(localStorage.getItem(USER_INFO));
 
-    const token = savedUserData?.accessToken || resp;
+    const token = resp || savedUserData?.accessToken;
 
     if (token && isBearerTokenRequired(config.url)) {
       config.headers["Authorization"] = `Bearer ${token}`;
@@ -92,6 +92,6 @@ export {
   getOwnProfile,
   getAnyUserProfile,
   editOwnProfile,
-  addRevomveFromWishlist,
+  addRemoveFromWishlist,
   getWishlist,
 };

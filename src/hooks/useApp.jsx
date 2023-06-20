@@ -1,10 +1,6 @@
 import { useAuth } from "../context/AuthContext";
 import { useEffect, useState } from "react";
-import {
-  addRevomveFromWishlist,
-  getOwnProfile,
-  getWishlist,
-} from "../services";
+import { addRemoveFromWishlist, getOwnProfile, getWishlist } from "../services";
 
 function useApp() {
   const { isAuthenticated } = useAuth();
@@ -53,9 +49,9 @@ function useApp() {
       setWishlistArray(arr);
     }
   }, [wishlist, isAuthenticated]);
-  const handleAddRevomveFromWishlist = async (idProduct) => {
+  const handleAddRemoveFromWishlist = async (idProduct) => {
     try {
-      await addRevomveFromWishlist(idProduct);
+      await addRemoveFromWishlist(idProduct);
       const { data } = await getWishlist();
       setWishlist(data);
     } catch (error) {
@@ -72,7 +68,7 @@ function useApp() {
     setWishlist,
     wishlistArray,
     setWishlistArray,
-    handleAddRevomveFromWishlist,
+    handleAddRemoveFromWishlist,
   };
 }
 
