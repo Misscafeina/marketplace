@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getProducts } from "../../services/";
 import "./style.css";
-import ProductDetail from "../productDescription/productDescription";
+import ProductsContainer from "../../components/products/productsContainer/ProductsContainer";
 
 function HomePage() {
   const [products, setProducts] = useState([]);
@@ -14,12 +14,6 @@ function HomePage() {
     };
     requestProducts();
   }, [filter]);
-  return (
-    <ul>
-      {products.map((product) => {
-        return <ProductDetail key={product.id} product={product} />;
-      })}
-    </ul>
-  );
+  return <ProductsContainer products={products} />;
 }
 export default HomePage;

@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
+import ProductDetail from "../ProductDetail/ProductDetail";
 
-const ProductContainer = ({ children }) => {
-  return { children };
+const ProductContainer = ({ product }) => {
+  return <ProductDetail product={product} />;
 };
 
-ProductContainer.propTypes = { children: PropTypes.node };
+ProductContainer.propTypes = { product: PropTypes.object };
 
 export default ProductContainer;
