@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getProducts } from "../../services/";
 import "./style.css";
+import ProductDetail from "../productDescription/productDescription";
 
 function HomePage() {
   const [products, setProducts] = useState([]);
@@ -16,11 +17,7 @@ function HomePage() {
   return (
     <ul>
       {products.map((product) => {
-        return (
-          <li key={product.id}>
-            <h4>{product.name}</h4>
-          </li>
-        );
+        return <ProductDetail key={product.id} product={product} />;
       })}
     </ul>
   );
