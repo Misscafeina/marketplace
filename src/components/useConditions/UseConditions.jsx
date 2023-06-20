@@ -1,12 +1,12 @@
 import "./style.css";
-import "../../context/ThemeContext";
-import ThemeSwitcher from "../inputs/ThemeSwitcher";
+
+import "./UCHeader";
+import { Link } from "react-router-dom";
 
 const UseConditions = () => {
   return (
     <main>
-      <h2>Condiciones de uso de Retrotech</h2>
-      <ThemeSwitcher />
+      <h2>Condiciones De Uso Retrotech</h2>
       <p>
         Los presentes Términos y Condiciones de uso (en adelante, “Términos y
         Condiciones”) establecen las condiciones bajo las cuales se ofrece a los
@@ -65,9 +65,9 @@ const UseConditions = () => {
         Condiciones, el Usuario consiente que sus datos pasen a formar parte del
         fichero de Retrotech y el tratamiento de esos datos será conforme a lo
         previsto en la{" "}
-        <a href="../../components/privacy/Privacy.jsx">
+        <Link to="../../components/privacy/Privacy.jsx">
           Política de Privacidad
-        </a>
+        </Link>
         .
       </p>
       <h3>3.Normas de utilización del servicio</h3>
