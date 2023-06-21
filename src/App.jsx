@@ -15,6 +15,7 @@ import Cookies from "./components/cookies/Cookies";
 
 import useApp from "./hooks/useApp";
 import NotFound from "./pages/notFound/NotFound";
+import BestSellers from "./pages/bestsellers/BestSellers";
 
 function App() {
   const {
@@ -60,7 +61,7 @@ function App() {
               }
             />
           }
-
+          <Route path="/bestsellers" element={<BestSellers />} />
           <Route path="/editproduct" element={<UpdateProductForm />} />
           <Route path="/useConditions" element={<UseConditions />} />
           <Route path="/privacy" element={<Privacy />} />
