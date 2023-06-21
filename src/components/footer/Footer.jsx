@@ -3,7 +3,8 @@ import useFooter from "../../hooks/useFooter";
 import { Link } from "react-router-dom";
 
 function Footer() {
-  const { instagram, facebook, twitter, whatsapp } = useFooter();
+  const { instagram, facebook, twitter, whatsapp, AcceptCookies } = useFooter();
+
   return (
     <footer>
       <nav className="navFooterVarios">
@@ -13,7 +14,7 @@ function Footer() {
             <ul>
               <li>Register</li>
               <li>Upload Item</li>
-              <li>Best Sellers</li>
+              <Link to={"/bestsellers"}>Best Sellers</Link>
               <li>Map Search</li>
               <li>Categories</li>
               <li>All products</li>
@@ -25,10 +26,22 @@ function Footer() {
               <li>About us</li>
               <li>Shipping & returns</li>
               <li>FaQs</li>
-              <li>Contact Us</li>
+
+              <li></li>
             </ul>
           </li>
         </ul>
+        <div className="cookie">
+          <button
+            className="btn"
+            onClick={() => {
+              AcceptCookies();
+              console.log("click");
+            }}
+          >
+            <img src="/public/cookie.png" alt="cookie"></img>
+          </button>
+        </div>
       </nav>
       <nav className="navFooterRRSS">
         <ul className="rrssList">

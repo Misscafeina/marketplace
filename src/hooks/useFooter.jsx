@@ -18,6 +18,9 @@ function useFooter() {
     navigate("/whatsapp");
   };
 
-  return { instagram, facebook, twitter, whatsapp };
+  const AcceptCookies = () => {
+    navigate("/acceptcookies");
+  };
+  return { instagram, facebook, twitter, whatsapp, AcceptCookies };
 }
 export default useFooter;

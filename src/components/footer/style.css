@@ -1,6 +1,5 @@
 footer {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -16,6 +15,7 @@ footer {
 
 .navFooterVarios {
   width: 100%;
+  justify-content: space-between;
   display: flex;
   flex-direction: row;
 }
