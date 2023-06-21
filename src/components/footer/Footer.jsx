@@ -85,10 +85,10 @@ function Footer() {
             <Link to={"/useConditions"}>Condiciones de uso</Link>
           </li>
           <li>
-            <Link to={"/privacy"}>Aviso de privacidad</Link>
+            <Link to={"/privacy"}>Política de privacidad</Link>
           </li>
           <li>
-            <Link to={"/legal"}>Legal</Link>
+            <Link to={"/legal"}>Aviso Legal</Link>
           </li>
           <li>
             <Link to={"/cookies"}>Cookies</Link>

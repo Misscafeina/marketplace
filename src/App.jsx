@@ -7,11 +7,11 @@ import ProfilePage from "./pages/profilePage/ProfilePage";
 import Wishlist from "./pages/wishlist/Wishlist";
 import UpdateProductForm from "./components/products/updateProductForm/UpdateProductForm";
 import Header from "./components/header/Header";
-
 import UseConditions from "./components/useConditions/UseConditions";
 import Privacy from "./components/privacy/Privacy";
 import Legal from "./components/legal/Legal";
 import Cookies from "./components/cookies/Cookies";
+//import ThemeProvider from "./context/ThemeContext";
 
 import useApp from "./hooks/useApp";
 import NotFound from "./pages/notFound/NotFound";
@@ -29,6 +29,7 @@ function App() {
   } = useApp();
   return (
     <PopUpProvider>
+      {/*<Themeprovider>*/}
       <div className="app">
         <Header />
         <Routes>
@@ -59,6 +60,7 @@ function App() {
               }
             />
           }
+
           <Route path="/editproduct" element={<UpdateProductForm />} />
           <Route path="/useConditions" element={<UseConditions />} />
           <Route path="/privacy" element={<Privacy />} />
@@ -69,6 +71,7 @@ function App() {
         </Routes>
         <Footer />
       </div>
+      {/*</Themeprovider>*/}
     </PopUpProvider>
   );
 }
