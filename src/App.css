@@ -5,3 +5,11 @@
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif,
     monospace;
 }
+
+ul {
+  list-style: none;
+}
+
+header {
+  z-index: 1;
+}

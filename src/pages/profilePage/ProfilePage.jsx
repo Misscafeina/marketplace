@@ -19,7 +19,7 @@ function ProfilePage({
 }) {
   return (
     <>
-      {userInfo && (
+      {Object.keys(userInfo).length !== 0 && (
         <div>
           <UserProfile
             userInfo={userInfo}
@@ -29,7 +29,7 @@ function ProfilePage({
           />
           <ProductsContainer products={userInfo.products} />
           <h4 style={{ backgroundColor: "red" }}>Vendidos</h4>
-          <ProductsContainer products={userInfo.deals.selling} />
+          <ProductsContainer products={userInfo.deals?.selling} />
         </div>
       )}
     </>

@@ -23,6 +23,20 @@ function useApp() {
   }, [isAuthenticated]);
 
   useEffect(() => {
+    if (isAuthenticated) {
+      const getInfo = async () => {
+        try {
+          const response = await getOwnProfile();
+          response?.status === "ok" && setUserInfo(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      getInfo();
+    } else setUserInfo({});
+  }, []);
+
+  useEffect(() => {
     if (!isAuthenticated) setWishlist([]);
     else {
       const getInfo = async () => {
