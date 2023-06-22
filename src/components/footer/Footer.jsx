@@ -12,6 +12,7 @@ function Footer() {
 
   return (
     <footer>
+      {cookiesActive && <div>{showPopUp ? <AcceptCookies /> : null}</div>}
       <nav className="navFooterVarios">
         <ul className="firstList">
           <li>
@@ -36,7 +37,6 @@ function Footer() {
             </ul>
           </li>
         </ul>
-        {cookiesActive && <div>{showPopUp ? <AcceptCookies /> : null}</div>}
         <div className="cookie">
           <button
             className="btn"

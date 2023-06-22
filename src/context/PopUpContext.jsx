@@ -9,7 +9,7 @@ const PopUpProvider = ({ children }) => {
   const [registerActive, setRegisterActive] = useState(false);
   const [newProductActive, setNewProductActive] = useState(false);
   const [editProfileActive, setEditProfileActive] = useState(false);
-  const [hasAcceptedCookies, setHasAcceptedCookies] = useState(false);
+  const [cookiesPolicyActive, setCookiesPolicyActive] = useState(false);
   const [cookiesActive, setCookiesActive] = useState(false);
 
   const setAllFalse = () => {
@@ -37,6 +37,8 @@ const PopUpProvider = ({ children }) => {
         setAllFalse,
         cookiesActive,
         setCookiesActive,
+        cookiesPolicyActive,
+        setCookiesPolicyActive,
       }}
     >
       {children}
