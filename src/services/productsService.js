@@ -90,7 +90,7 @@ export const getProductsByPrice = async (price) => {
   return data;
 };
 export const getProductDetails = async (idProduct) => {
-  const { data } = await axios.get(`${BACKEND_URL}/products/:${idProduct}`);
+  const { data } = await axios.get(`${BACKEND_URL}/products/${idProduct}`);
   if (data.status !== "ok") throw new Error(data.message);
 
   return data;

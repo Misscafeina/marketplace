@@ -11,11 +11,12 @@ import UseConditions from "./components/useConditions/UseConditions";
 import Privacy from "./components/privacy/Privacy";
 import Legal from "./components/legal/Legal";
 import Cookies from "./components/cookies/Cookies";
-//import ThemeProvider from "./context/ThemeContext";
-
 import useApp from "./hooks/useApp";
 import NotFound from "./pages/notFound/NotFound";
+import SingleProduct from "./pages/singleProduct/SingleProduct";
+//import ThemeProvider from "./context/ThemeContext";
 import BestSellers from "./pages/bestsellers/BestSellers";
+
 
 function App() {
   const {
@@ -35,6 +36,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/product/:id" element={<SingleProduct />} />
           <Route path="/editproduct" element={<UpdateProductForm />} />
 
           <Route
