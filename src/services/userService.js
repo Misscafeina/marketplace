@@ -28,7 +28,7 @@ export const getOwnProfile = async () => {
   return data;
 };
 export const getAnyUserProfile = async (username) => {
-  const { data } = await axios.post(`${BACKEND_URL}/users/:${username}`);
+  const { data } = await axios.get(`${BACKEND_URL}/users/${username}`);
   if (data.status !== "ok") throw new Error(data.message);
 
   return data;
