@@ -1,6 +1,6 @@
 import Cookies from "../../components/cookies/Cookies";
 
-function AcceptCookies() {
+function CookiesPopUp() {
   return (
     <div className="popup">
       <div className="popup-inner">
@@ -11,4 +11,4 @@ function AcceptCookies() {
   );
 }
 
-export default AcceptCookies;
+export default CookiesPopUp;
