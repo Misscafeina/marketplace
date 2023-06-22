@@ -16,6 +16,7 @@ import NotFound from "./pages/notFound/NotFound";
 import SingleProduct from "./pages/singleProduct/SingleProduct";
 //import ThemeProvider from "./context/ThemeContext";
 import BestSellers from "./pages/bestsellers/BestSellers";
+import AcceptCookies from "./pages/acceptcookies/AcceptCookies";
 
 
 function App() {
@@ -38,7 +39,6 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/product/:id" element={<SingleProduct />} />
           <Route path="/editproduct" element={<UpdateProductForm />} />
-
           <Route
             path="/wishlist"
             element={
@@ -69,7 +69,7 @@ function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/legal" element={<Legal />} />
           <Route path="/cookies" element={<Cookies />} />
-
+          <Route path="/acceptcookies" element={<AcceptCookies />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
