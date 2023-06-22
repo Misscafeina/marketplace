@@ -3,7 +3,7 @@ import useFooter from "../../hooks/useFooter";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { PopUpContext } from "../../context/popUpContext";
-import AcceptCookies from "../../pages/acceptcookies/AcceptCookies";
+import AcceptCookies from "../../pages/cookiesPopUp/CookiesPopUp";
 
 function Footer() {
   const { instagram, facebook, twitter, whatsapp, handleClickCookies } =

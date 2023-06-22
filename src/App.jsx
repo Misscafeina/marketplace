@@ -16,7 +16,8 @@ import NotFound from "./pages/notFound/NotFound";
 import SingleProduct from "./pages/singleProduct/SingleProduct";
 //import ThemeProvider from "./context/ThemeContext";
 import BestSellers from "./pages/bestsellers/BestSellers";
-import AcceptCookies from "./pages/acceptcookies/AcceptCookies";
+import AcceptCookies from "./pages/cookiesPopUp/CookiesPopUp";
+import CookiesPopUp from "./pages/cookiesPopUp/CookiesPopUp";
 
 function App() {
   const {
@@ -67,7 +68,7 @@ function App() {
           <Route path="/useConditions" element={<UseConditions />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/legal" element={<Legal />} />
-          <Route path="/cookies" element={<Cookies />} />
+          <Route path="/cookies" element={<CookiesPopUp />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
