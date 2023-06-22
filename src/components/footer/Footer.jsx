@@ -39,7 +39,7 @@ function Footer() {
               console.log("click");
             }}
           >
-            <img src="/public/cookie.png" alt="cookie"></img>
+            <img src="/cookie.png" alt="cookie"></img>
           </button>
         </div>
       </nav>
