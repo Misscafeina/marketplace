@@ -68,7 +68,7 @@ function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/legal" element={<Legal />} />
           <Route path="/cookies" element={<Cookies />} />
-          <Route path="/acceptcookies" element={<AcceptCookies />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

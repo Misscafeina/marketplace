@@ -1,9 +1,14 @@
 import "./style.css";
 import useFooter from "../../hooks/useFooter";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { PopUpContext } from "../../context/popUpContext";
+import AcceptCookies from "../../pages/acceptcookies/AcceptCookies";
 
 function Footer() {
-  const { instagram, facebook, twitter, whatsapp, AcceptCookies } = useFooter();
+  const { instagram, facebook, twitter, whatsapp, handleClickCookies } =
+    useFooter();
+  const { cookiesActive, showPopUp } = useContext(PopUpContext);
 
   return (
     <footer>
@@ -31,11 +36,12 @@ function Footer() {
             </ul>
           </li>
         </ul>
+        {cookiesActive && <div>{showPopUp ? <AcceptCookies /> : null}</div>}
         <div className="cookie">
           <button
             className="btn"
             onClick={() => {
-              AcceptCookies();
+              handleClickCookies();
               console.log("click");
             }}
           >
