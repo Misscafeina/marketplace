@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const UseConditions = () => {
   return (
     <main>
-      <h2>Condiciones De Uso Retrotech</h2>
+      <h1>Condiciones De Uso Retrotech</h1>
       <p>
         Los presentes Términos y Condiciones de uso (en adelante, “Términos y
         Condiciones”) establecen las condiciones bajo las cuales se ofrece a los

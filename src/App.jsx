@@ -14,6 +14,9 @@ import Cookies from "./components/cookies/Cookies";
 import useApp from "./hooks/useApp";
 import NotFound from "./pages/notFound/NotFound";
 import SingleProduct from "./pages/singleProduct/SingleProduct";
+//import ThemeProvider from "./context/ThemeContext";
+import BestSellers from "./pages/bestsellers/BestSellers";
+
 
 function App() {
   const {
@@ -28,6 +31,7 @@ function App() {
   } = useApp();
   return (
     <PopUpProvider>
+      {/*<Themeprovider>*/}
       <div className="app">
         <Header />
         <Routes>
@@ -59,6 +63,7 @@ function App() {
               }
             />
           }
+          <Route path="/bestsellers" element={<BestSellers />} />
           <Route path="/editproduct" element={<UpdateProductForm />} />
           <Route path="/useConditions" element={<UseConditions />} />
           <Route path="/privacy" element={<Privacy />} />
@@ -69,6 +74,7 @@ function App() {
         </Routes>
         <Footer />
       </div>
+      {/*</Themeprovider>*/}
     </PopUpProvider>
   );
 }
