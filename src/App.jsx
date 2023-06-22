@@ -7,14 +7,13 @@ import ProfilePage from "./pages/profilePage/ProfilePage";
 import Wishlist from "./pages/wishlist/Wishlist";
 import UpdateProductForm from "./components/products/updateProductForm/UpdateProductForm";
 import Header from "./components/header/Header";
-
 import UseConditions from "./components/useConditions/UseConditions";
 import Privacy from "./components/privacy/Privacy";
 import Legal from "./components/legal/Legal";
 import Cookies from "./components/cookies/Cookies";
-
 import useApp from "./hooks/useApp";
 import NotFound from "./pages/notFound/NotFound";
+import SingleProduct from "./pages/singleProduct/SingleProduct";
 
 function App() {
   const {
@@ -33,6 +32,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/product/:id" element={<SingleProduct />} />
           <Route path="/editproduct" element={<UpdateProductForm />} />
 
           <Route
