@@ -44,7 +44,7 @@ function App() {
             element={
               <Wishlist
                 wishlist={wishlist}
-                handleAddRevomveFromWishlist={handleAddRemoveFromWishlist}
+                handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
               />
             }
           />
@@ -68,7 +68,7 @@ function App() {
           <Route path="/useConditions" element={<UseConditions />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/legal" element={<Legal />} />
-          <Route path="/cookies" element={<CookiesPopUp />} />
+          <Route path="/cookies" element={<Cookies />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
