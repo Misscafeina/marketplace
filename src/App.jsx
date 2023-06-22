@@ -18,7 +18,6 @@ import SingleProduct from "./pages/singleProduct/SingleProduct";
 import BestSellers from "./pages/bestsellers/BestSellers";
 import AcceptCookies from "./pages/acceptcookies/AcceptCookies";
 
-
 function App() {
   const {
     isAuthenticated,

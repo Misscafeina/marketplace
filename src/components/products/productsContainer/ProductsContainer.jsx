@@ -6,7 +6,11 @@ const ProductsContainer = ({ products }) => {
   return (
     <ul className="products-container">
       {products.map((product) => {
-        return <ProductContainer key={product.id} product={product} />;
+        return (
+          <li key={product.id}>
+            <ProductContainer product={product} />
+          </li>
+        );
       })}
     </ul>
   );
