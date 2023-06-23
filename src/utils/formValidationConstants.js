@@ -64,6 +64,7 @@ export const PASSWORD_VALIDATIONS_REQUIRED = {
 export const PRODUCT_NAME_REQUIRED = {
   minLength: { value: 4, message: "Mínimo 4 caracteres" },
   maxLength: { value: 100, message: "Máximo 100 caracteres" },
+  required,
 };
 export const PRODUCT_NAME = {
   minLength: { value: 4, message: "Mínimo 4 caracteres" },
