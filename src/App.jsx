@@ -18,6 +18,7 @@ import SingleProduct from "./pages/singleProduct/SingleProduct";
 import BestSellers from "./pages/bestsellers/BestSellers";
 import AcceptCookies from "./pages/cookiesPopUp/CookiesPopUp";
 import CookiesPopUp from "./pages/cookiesPopUp/CookiesPopUp";
+import MuiNewProductForm from "./components/mui/muiNewProductForm/muiNewProductForm";
 
 function App() {
   const {
@@ -63,6 +64,11 @@ function App() {
               }
             />
           }
+
+          <Route
+            path="/pruebas"
+            element={<MuiNewProductForm userInfo={userInfo} />}
+          />
           <Route path="/bestsellers" element={<BestSellers />} />
           <Route path="/editproduct" element={<UpdateProductForm />} />
           <Route path="/useConditions" element={<UseConditions />} />
