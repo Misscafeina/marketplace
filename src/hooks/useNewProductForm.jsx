@@ -10,7 +10,10 @@ function useNewProductForm() {
     useContext(PopUpContext);
 
   const submitInfo = async (data) => {
+    console.log("data");
+
     try {
+      console.log(data);
       const productData = { ...data };
       if (data.images.length > 10) throw new Error("maximo 10 fotos");
       delete productData.images;
