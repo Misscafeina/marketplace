@@ -51,7 +51,7 @@ export const editProduct = async (product) => {
 //!recordar que hay que agregar la config "Content-Type": "multipart/form-data" en el componente,
 export const uploadProductPictures = async (files, config, idProduct) => {
   const { data } = await axios.put(
-    `${BACKEND_URL}/products/:${idProduct}`,
+    `${BACKEND_URL}/products/${idProduct}`,
     files,
     config
   );

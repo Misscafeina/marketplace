@@ -8,3 +8,10 @@
   font-weight: 700;
   cursor: pointer;
 }
+.multiple-form-images-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.multiple-form-images-preview {
+  width: 150px;
+}

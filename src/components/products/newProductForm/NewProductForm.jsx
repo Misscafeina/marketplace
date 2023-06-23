@@ -13,6 +13,7 @@ import CategoriesInput from "../../inputs/CategoriesInput";
 import CountryInpunt from "../../inputs/CountryInput";
 import NumberInput from "../../inputs/NumberInput";
 import StatusInput from "../../inputs/StatusInput";
+import MultipleFilesInput from "../../inputs/MultipleFilesInput";
 
 const NewProductForm = () => {
   const {
@@ -90,6 +91,19 @@ const NewProductForm = () => {
             errors={errors}
           />
 
+          <MultipleFilesInput
+            label={"images"}
+            register={register("images", REQUIRED, {
+              validate: (value) => {
+                if (value.length > 10) {
+                  console.log(value);
+                  return "Máximo 10 fotos";
+                }
+              },
+            })}
+            errors={errors}
+            registerName={"images"}
+          />
           <button type="submit">Continuar</button>
         </form>
       </div>
