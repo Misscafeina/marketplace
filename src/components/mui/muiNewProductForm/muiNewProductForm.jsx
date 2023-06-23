@@ -79,9 +79,10 @@ function MuiNewProductForm({ userInfo }) {
                 <em>Seleccionar categoría</em>
               </MenuItem>
 
+              <MenuItem value={"games"}>Juegos</MenuItem>
               <MenuItem value={"consoles"}>Consolas</MenuItem>
-              <MenuItem value={"cloth"}>PC</MenuItem>
-              <MenuItem value={"used"}>Ropa</MenuItem>
+              <MenuItem value={"PC"}>PC</MenuItem>
+              <MenuItem value={"cloth"}>Ropa</MenuItem>
               <MenuItem value={"controllers"}>Mandos</MenuItem>
               <MenuItem value={"arcade"}>Arcade</MenuItem>
             </Select>
@@ -117,21 +118,23 @@ function MuiNewProductForm({ userInfo }) {
             errors={errors}
             helperText={errors.price?.message}
           />
-          <FormGroup>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  {...register("useSavedAddress")}
-                  checked={getSavedAddres}
-                  value={getSavedAddres ? 1 : undefined}
-                  onChange={() => {
-                    setGetSavedAddres(!getSavedAddres);
-                  }}
-                />
-              }
-              label="Utilizar Dirección guardada"
-            />
-          </FormGroup>
+          {userInfo?.userData?.locationLat && (
+            <FormGroup>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    {...register("useSavedAddress")}
+                    checked={getSavedAddres}
+                    value={getSavedAddres ? 1 : undefined}
+                    onChange={() => {
+                      setGetSavedAddres(!getSavedAddres);
+                    }}
+                  />
+                }
+                label="Utilizar Dirección guardada"
+              />
+            </FormGroup>
+          )}
           {!getSavedAddres && (
             <>
               <TextField
@@ -174,8 +177,8 @@ function MuiNewProductForm({ userInfo }) {
           )}
 
           <TextField
-            id="outlined-basic"
-            label="Outlined"
+            id="pictures"
+            label="Fotos"
             variant="outlined"
             type="file"
             {...register("images", REQUIRED, {
