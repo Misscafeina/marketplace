@@ -59,6 +59,7 @@ function MuiNewProductForm({ userInfo }) {
             variant="filled"
             {...register("description", LONG_TEXT_VALIDATIONS_REQUIRED)}
             errors={errors}
+            helperText={errors.description?.message}
             multiline
           />
           <FormControl>
@@ -69,6 +70,7 @@ function MuiNewProductForm({ userInfo }) {
               {...register("category", REQUIRED, {
                 minLength: { value: 2, message: "campo requerido" },
               })}
+              //   helperText={errors.category?.message}
               //   required
               variant="filled"
               defaultValue={""}
@@ -92,6 +94,8 @@ function MuiNewProductForm({ userInfo }) {
               {...register("status", REQUIRED, {
                 minLength: { value: 2, message: "campo requerido" },
               })}
+              errors={errors}
+              //   helperText={errors.status?.message}
               //   required
               variant="filled"
               defaultValue={""}
@@ -111,6 +115,7 @@ function MuiNewProductForm({ userInfo }) {
             variant="filled"
             {...register("price", REQUIRED)}
             errors={errors}
+            helperText={errors.price?.message}
           />
           <FormGroup>
             <FormControlLabel
@@ -118,6 +123,7 @@ function MuiNewProductForm({ userInfo }) {
                 <Checkbox
                   {...register("useSavedAddress")}
                   checked={getSavedAddres}
+                  value={getSavedAddres ? 1 : undefined}
                   onChange={() => {
                     setGetSavedAddres(!getSavedAddres);
                   }}
@@ -135,6 +141,7 @@ function MuiNewProductForm({ userInfo }) {
                 variant="filled"
                 {...register("address", LONG_TEXT_VALIDATIONS_REQUIRED)}
                 errors={errors}
+                helperText={errors.address?.message}
               />
               <TextField
                 label="Ciudad:"
@@ -143,6 +150,7 @@ function MuiNewProductForm({ userInfo }) {
                 variant="filled"
                 {...register("city", LONG_TEXT_VALIDATIONS_REQUIRED)}
                 errors={errors}
+                helperText={errors.city?.message}
               />
               <TextField
                 label="Provincia:"
@@ -151,6 +159,7 @@ function MuiNewProductForm({ userInfo }) {
                 variant="filled"
                 {...register("region", NAME_VALIDATIONS_REQUIRED)}
                 errors={errors}
+                helperText={errors.region?.message}
               />
               <TextField
                 label="País:"
@@ -159,6 +168,7 @@ function MuiNewProductForm({ userInfo }) {
                 variant="filled"
                 {...register("country", NAME_VALIDATIONS_REQUIRED)}
                 errors={errors}
+                helperText={errors.country?.message}
               />
             </>
           )}

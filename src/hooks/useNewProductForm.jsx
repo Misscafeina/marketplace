@@ -14,6 +14,7 @@ function useNewProductForm() {
 
     try {
       console.log(data);
+      console.log(data.useSavedAddress);
       const productData = { ...data };
       if (data.images.length > 10) throw new Error("maximo 10 fotos");
       delete productData.images;
