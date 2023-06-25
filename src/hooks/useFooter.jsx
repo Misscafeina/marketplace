@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { PopUpContext } from "../context/popUpContext";
 import AcceptCookies from "../pages/cookiesPopUp/CookiesPopUp";
@@ -15,7 +15,7 @@ function useFooter() {
       setCookiesActive(true);
       setShowPopUp(true);
     }
-  }, []);
+  }, [setCookiesActive, setShowPopUp]);
 
   const instagram = () => {
     navigate("/instagram");
