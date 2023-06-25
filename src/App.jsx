@@ -17,6 +17,12 @@ import SingleProduct from "./pages/singleProduct/SingleProduct";
 //import ThemeProvider from "./context/ThemeContext";
 import BestSellers from "./pages/bestsellers/BestSellers";
 
+import AcceptCookies from "./pages/cookiesPopUp/CookiesPopUp";
+import CookiesPopUp from "./pages/cookiesPopUp/CookiesPopUp";
+import MuiNewProductForm from "./components/mui/muiNewProductForm/muiNewProductForm";
+import SearchResult from "./pages/searchResult/SearchResult";
+
+
 function App() {
   const {
     isAuthenticated,
@@ -67,6 +73,7 @@ function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/legal" element={<Legal />} />
           <Route path="/cookies" element={<Cookies />} />
+          <Route exact path="/search" element={<SearchResult />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
