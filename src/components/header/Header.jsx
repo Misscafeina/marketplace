@@ -13,6 +13,7 @@ import LoginForm from "../users/loginForm/LoginForm";
 import RegisterForm from "../users/registerForm/RegisterForm";
 import NewProductForm from "../products/newProductForm/NewProductForm";
 import { useAuth } from "../../context/AuthContext";
+import Search from "../search/Search";
 
 function Header() {
   const { returnHome, userLog, wishList, messages, search, addNewProduct } =
@@ -30,6 +31,9 @@ function Header() {
       </h1>
       <nav className="headerNav">
         <ul>
+          <li>
+            <Search />
+          </li>
           <li>
             <button
               className="btn"
@@ -58,16 +62,6 @@ function Header() {
               }}
             >
               <img src={messageLogo} alt="message button" />
-            </button>
-          </li>
-          <li>
-            <button
-              className="btn"
-              onClick={() => {
-                search();
-              }}
-            >
-              <img src={searchLogo} alt="search button" />
             </button>
           </li>
           <li>
