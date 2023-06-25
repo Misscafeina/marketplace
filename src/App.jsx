@@ -16,10 +16,12 @@ import NotFound from "./pages/notFound/NotFound";
 import SingleProduct from "./pages/singleProduct/SingleProduct";
 //import ThemeProvider from "./context/ThemeContext";
 import BestSellers from "./pages/bestsellers/BestSellers";
+
 import AcceptCookies from "./pages/cookiesPopUp/CookiesPopUp";
 import CookiesPopUp from "./pages/cookiesPopUp/CookiesPopUp";
 import MuiNewProductForm from "./components/mui/muiNewProductForm/muiNewProductForm";
 import SearchResult from "./pages/searchResult/SearchResult";
+
 
 function App() {
   const {
@@ -46,7 +48,7 @@ function App() {
             element={
               <Wishlist
                 wishlist={wishlist}
-                handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
+                handleAddRevomveFromWishlist={handleAddRemoveFromWishlist}
               />
             }
           />
@@ -65,11 +67,6 @@ function App() {
               }
             />
           }
-
-          <Route
-            path="/pruebas"
-            element={<MuiNewProductForm userInfo={userInfo} />}
-          />
           <Route path="/bestsellers" element={<BestSellers />} />
           <Route path="/editproduct" element={<UpdateProductForm />} />
           <Route path="/useConditions" element={<UseConditions />} />
