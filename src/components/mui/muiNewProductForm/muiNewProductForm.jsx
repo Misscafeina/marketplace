@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import "./style.css";
 import {
   TextField,
   Button,
@@ -194,7 +195,11 @@ function MuiNewProductForm({ userInfo }) {
             }}
           />
 
-          <Button type="submit" variant="contained">
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{ backgroundColor: "gray" }}
+          >
             Enviar
           </Button>
         </Stack>

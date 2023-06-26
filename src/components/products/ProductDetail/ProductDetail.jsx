@@ -5,18 +5,16 @@ import PropTypes from "prop-types";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const ProductDetail = ({ product }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
-
-  const handleFavoriteClick = () => {
-    setIsFavorite(!isFavorite);
-  };
-
+const ProductDetail = ({
+  product,
+  wishlistArray,
+  handleAddRemoveFromWishlist,
+}) => {
   const handleMessageClick = () => {
     // Lógica para enviar mensaje al vendedor
     alert("Mensaje enviado al vendedor");
   };
-
+  console.log(wishlistArray);
   const settings = {
     dots: true,
     infinite: true,
@@ -32,8 +30,11 @@ const ProductDetail = ({ product }) => {
         {}
         Valoración: {}
       </div>
-      <p className="product-price">{product?.price}{" €"}</p>
-       <div className="product-carousel">
+      <p className="product-price">
+        {product?.price}
+        {" €"}
+      </p>
+      <div className="product-carousel">
         {/* Carrusel con fotos del producto */}
         <Slider {...settings}>
           {product?.images?.map((image, index) => {
@@ -48,11 +49,11 @@ const ProductDetail = ({ product }) => {
       <p className="product-description">{product?.description}</p>
       <div className="product-buttons">
         <button onClick={handleMessageClick}>Enviar mensaje</button>
-        <button onClick={handleFavoriteClick}>
-          {isFavorite ? "Eliminar de Favoritos" : "Añadir Favorito"}
+        <button onClick={() => handleAddRemoveFromWishlist(product.id)}>
+          {wishlistArray?.includes(product.id) ? "dislike" : "like"}
         </button>
       </div>
-     
+
       <div className="related-products">
         <h3>You may also like</h3>
         <ul>
@@ -74,5 +75,9 @@ const ProductDetail = ({ product }) => {
     </div>
   );
 };
-ProductDetail.propTypes = { product: PropTypes.object };
+ProductDetail.propTypes = {
+  product: PropTypes.object,
+  wishlistArray: PropTypes.array,
+  handleAddRemoveFromWishlist: PropTypes.func,
+};
 export default ProductDetail;

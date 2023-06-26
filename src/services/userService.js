@@ -51,7 +51,7 @@ export const getWishlist = async () => {
   return data;
 };
 export const addRemoveFromWishlist = async (idProduct) => {
-  const { data } = await axios.post(`${BACKEND_URL}/wishlist/:${idProduct}`);
+  const { data } = await axios.post(`${BACKEND_URL}/wishlist/${idProduct}`);
   if (data.status !== "ok") throw new Error(data.message);
 
   return data;
