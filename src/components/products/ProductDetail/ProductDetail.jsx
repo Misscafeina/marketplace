@@ -27,29 +27,32 @@ const ProductDetail = ({ product }) => {
 
   return (
     <div className="product-detail">
-      <h2>{product?.name}</h2>
+      <h2 className="product-title">{product?.name}</h2>
       <div className="product-rating">
         {}
         Valoración: {}
       </div>
-      <p>{product?.price}</p>
-      <p>{product?.description}</p>
-      <button onClick={handleMessageClick}>Enviar Mensaje al Vendedor</button>
-      <button onClick={handleFavoriteClick}>
-        {isFavorite ? "Eliminar de Favoritos" : "Añadir a Favoritos"}
-      </button>
-      <div className="product-carousel">
+      <p className="product-price">{product?.price}{" €"}</p>
+       <div className="product-carousel">
         {/* Carrusel con fotos del producto */}
         <Slider {...settings}>
           {product?.images?.map((image, index) => {
             return (
-              <div key={index}>
+              <div key={index} className="product-image">
                 <img src={image} alt={product?.name} />
               </div>
             );
           })}
         </Slider>
       </div>
+      <p className="product-description">{product?.description}</p>
+      <div className="product-buttons">
+        <button onClick={handleMessageClick}>Enviar mensaje</button>
+        <button onClick={handleFavoriteClick}>
+          {isFavorite ? "Eliminar de Favoritos" : "Añadir Favorito"}
+        </button>
+      </div>
+     
       <div className="related-products">
         <h3>You may also like</h3>
         <ul>
