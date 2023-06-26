@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { getProducts } from "../../services/";
+import PropTypes from "prop-types";
 import "./style.css";
 import ProductsContainer from "../../components/products/productsContainer/ProductsContainer";
 
-function HomePage() {
+function HomePage({ wishlistArray, handleAddRemoveFromWishlist }) {
   const [products, setProducts] = useState([]);
   const [filter, setFilter] = useState("");
 
@@ -14,6 +15,16 @@ function HomePage() {
     };
     requestProducts();
   }, [filter]);
-  return <ProductsContainer products={products} />;
+  return (
+    <ProductsContainer
+      products={products}
+      wishlistArray={wishlistArray}
+      handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
+    />
+  );
 }
+HomePage.propTypes = {
+  wishlistArray: PropTypes.array,
+  handleAddRemoveFromWishlist: PropTypes.func,
+};
 export default HomePage;
