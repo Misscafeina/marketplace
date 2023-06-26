@@ -22,7 +22,6 @@ import CookiesPopUp from "./pages/cookiesPopUp/CookiesPopUp";
 import MuiNewProductForm from "./components/mui/muiNewProductForm/muiNewProductForm";
 import SearchResult from "./pages/searchResult/SearchResult";
 
-
 function App() {
   const {
     isAuthenticated,
@@ -67,6 +66,10 @@ function App() {
               }
             />
           }
+          <Route
+            path="/pruebas"
+            element={<MuiNewProductForm userInfo={userInfo} />}
+          />
           <Route path="/bestsellers" element={<BestSellers />} />
           <Route path="/editproduct" element={<UpdateProductForm />} />
           <Route path="/useConditions" element={<UseConditions />} />
