@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getProducts } from "../../services/";
 import "./style.css";
+import Background from "../../components/background/Background";
 import ProductsContainer from "../../components/products/productsContainer/ProductsContainer";
 
 function HomePage() {
@@ -14,6 +15,13 @@ function HomePage() {
     };
     requestProducts();
   }, [filter]);
-  return <ProductsContainer products={products} />;
+
+  return (
+    <>
+      <Background />
+      <ProductsContainer products={products} />
+    </>
+  );
 }
+
 export default HomePage;

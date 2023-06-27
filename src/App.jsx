@@ -70,6 +70,7 @@ function App() {
             path="/pruebas"
             element={<MuiNewProductForm userInfo={userInfo} />}
           />
+
           <Route path="/bestsellers" element={<BestSellers />} />
           <Route path="/editproduct" element={<UpdateProductForm />} />
           <Route path="/useConditions" element={<UseConditions />} />
