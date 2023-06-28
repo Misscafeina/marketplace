@@ -16,6 +16,7 @@ import { useAuth } from "../../context/AuthContext";
 import Search from "../search/Search";
 
 function Header() {
+  const { isAuthenticated } = useAuth();
   const { returnHome, userLog, wishList, messages, search, addNewProduct } =
     useHeader();
   const { showPopUp, loginActive, registerActive, newProductActive } =
@@ -74,16 +75,18 @@ function Header() {
               <img src={addProductLogo} alt="Add new product button" />
             </button>
           </li>{" "}
-          <li>
-            <button
-              className="btn"
-              onClick={() => {
-                logout();
-              }}
-            >
-              <img src={logInLogo} alt="Logout button" />
-            </button>
-          </li>
+          {isAuthenticated && (
+            <li>
+              <button
+                className="btn"
+                onClick={() => {
+                  logout();
+                }}
+              >
+                <img src={logInLogo} alt="Logout button" />
+              </button>
+            </li>
+          )}
         </ul>
       </nav>
     </header>
