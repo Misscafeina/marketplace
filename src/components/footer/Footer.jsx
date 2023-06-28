@@ -1,14 +1,17 @@
 import "./style.css";
-import useFooter from "../../hooks/useFooter";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { PopUpContext } from "../../context/popUpContext";
 import AcceptCookies from "../../pages/cookiesPopUp/CookiesPopUp";
 
 function Footer() {
-  const { instagram, facebook, twitter, whatsapp, handleClickCookies } =
-    useFooter();
   const { cookiesActive, showPopUp } = useContext(PopUpContext);
+
+  const [activeIcon, setActiveIcon] = useState(false);
+
+  const handleIconClick = () => {
+    setActiveIcon(!activeIcon);
+  };
 
   return (
     <footer>
@@ -20,7 +23,11 @@ function Footer() {
             <ul>
               <li>Register</li>
               <li>Upload Item</li>
-              <Link to={"/bestsellers"}>Best Sellers</Link>
+              <li>
+                <Link to={"/bestsellers"} style={{ color: "white" }}>
+                  Best Sellers
+                </Link>
+              </li>
               <li>Map Search</li>
               <li>Categories</li>
               <li>All products</li>
@@ -32,85 +39,95 @@ function Footer() {
               <li>About us</li>
               <li>Shipping & returns</li>
               <li>FaQs</li>
-
-              <li></li>
             </ul>
           </li>
         </ul>
-        <div className="cookie">
-          <button
-            className="btn"
-            onClick={() => {
-              handleClickCookies();
-              console.log("click");
-            }}
-          >
-            <img src="/cookie.png" alt="cookie"></img>
-          </button>
-        </div>
       </nav>
       <nav className="navFooterRRSS">
-        <ul className="rrssList">
+        <ul className="social-icon">
           <li>
-            <button
-              className="btn"
-              onClick={() => {
-                instagram();
-                console.log("click");
-              }}
+            <Link
+              to="https://www.instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`social-icon ${activeIcon ? "active" : ""}`}
+              onClick={handleIconClick}
             >
-              <img src="/instagram.png" alt="instagram"></img>
-            </button>
+              <img
+                src="/instagram.png"
+                alt="instagram"
+                style={{ backgroundColor: "transparent", border: "none" }}
+              />
+            </Link>
           </li>
           <li>
-            <button
-              className="btn"
-              onClick={() => {
-                facebook();
-                console.log("click");
-              }}
+            <Link
+              to="https://twitter.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`social-icon ${activeIcon ? "active" : ""}`}
+              onClick={handleIconClick}
             >
-              <img src="/facebook.png" alt="facebook"></img>
-            </button>
+              <img
+                src="/twitter.png"
+                alt="twitter"
+                style={{ backgroundColor: "transparent", border: "none" }}
+              />
+            </Link>
           </li>
           <li>
-            <button
-              className="btn"
-              onClick={() => {
-                twitter();
-                console.log("click");
-              }}
+            <Link
+              to="https://www.facebook.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`social-icon ${activeIcon ? "active" : ""}`}
+              onClick={handleIconClick}
             >
-              <img src="/twitter.png" alt="twitter"></img>
-            </button>
+              <img
+                src="/facebook.png"
+                alt="facebook"
+                style={{ backgroundColor: "transparent", border: "none" }}
+              />
+            </Link>
           </li>
           <li>
-            <button
-              className="btn"
-              onClick={() => {
-                whatsapp();
-                console.log("click");
-              }}
+            <Link
+              to="https://api.whatsapp.com/send?text=Hello"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`social-icon ${activeIcon ? "active" : ""}`}
+              onClick={handleIconClick}
             >
-              <img src="/whatsapp.png" alt="whatsapp"></img>
-            </button>
+              <img
+                src="/whatsapp.png"
+                alt="whatsapp"
+                style={{ backgroundColor: "transparent", border: "none" }}
+              />
+            </Link>
           </li>
         </ul>
       </nav>
-
       <nav className="navFooterTerms">
-        <ul>
+        <ul className="link">
           <li>
-            <Link to={"/useConditions"}>Condiciones de uso</Link>
+            <Link to={"/useConditions"} style={{ color: "white" }}>
+              Condiciones de uso
+            </Link>
           </li>
           <li>
-            <Link to={"/privacy"}>Política de privacidad</Link>
+            <Link to={"/privacy"} style={{ color: "white" }}>
+              Política de privacidad
+            </Link>
           </li>
           <li>
-            <Link to={"/legal"}>Aviso Legal</Link>
+            <Link to={"/legal"} style={{ color: "white" }}>
+              Aviso Legal
+            </Link>
           </li>
           <li>
-            <Link to={"/cookies"}>Cookies</Link>
+            <Link to={"/cookies"} style={{ color: "white" }}>
+              Cookies
+            </Link>
           </li>
         </ul>
       </nav>

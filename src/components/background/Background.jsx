@@ -1,4 +1,4 @@
-import { AiOutlineSearch } from "react-icons/ai";
+import { BsSearch } from "react-icons/bs";
 import recording from "../../assets/Recording.mp4";
 import "./styles.css";
 
@@ -14,15 +14,13 @@ function Background() {
         />
       </div>
       <div className="form-container">
-        <form className="search-bar" size={12000}>
+        <form className="search-bar">
           <input
             className="search-input"
             type="text"
-            placeholder="Search products"
+            placeholder="Search in Retrotech"
           />
-          <button className="search-icon">
-            <AiOutlineSearch size={30} className="icon" />
-          </button>
+          <BsSearch className="icon-search" size={60} />
         </form>
       </div>
     </div>
