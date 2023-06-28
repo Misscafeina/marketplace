@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getProducts } from "../../services/";
 import PropTypes from "prop-types";
 import "./style.css";
+import Background from "../../components/background/Background";
 import ProductsContainer from "../../components/products/productsContainer/ProductsContainer";
 
 function HomePage({ wishlistArray, handleAddRemoveFromWishlist }) {
@@ -15,16 +16,21 @@ function HomePage({ wishlistArray, handleAddRemoveFromWishlist }) {
     };
     requestProducts();
   }, [filter]);
+
   return (
-    <ProductsContainer
+    <>
+      <Background />
+     <ProductsContainer
       products={products}
       wishlistArray={wishlistArray}
       handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
     />
+    </>    
   );
 }
 HomePage.propTypes = {
   wishlistArray: PropTypes.array,
   handleAddRemoveFromWishlist: PropTypes.func,
 };
+
 export default HomePage;
