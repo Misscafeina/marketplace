@@ -11,6 +11,7 @@ const PopUpProvider = ({ children }) => {
   const [editProfileActive, setEditProfileActive] = useState(false);
   const [cookiesPolicyActive, setCookiesPolicyActive] = useState(false);
   const [cookiesActive, setCookiesActive] = useState(false);
+  const [filterActive, setFilterActive] = useState(false);
 
   const setAllFalse = () => {
     setShowPopUp(false);
@@ -19,6 +20,7 @@ const PopUpProvider = ({ children }) => {
     setNewProductActive(false);
     setEditProfileActive(false);
     setCookiesActive(false);
+    setFilterActive(false);
   };
 
   return (
@@ -39,6 +41,8 @@ const PopUpProvider = ({ children }) => {
         setCookiesActive,
         cookiesPolicyActive,
         setCookiesPolicyActive,
+        filterActive,
+        setFilterActive,
       }}
     >
       {children}
