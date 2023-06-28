@@ -21,7 +21,8 @@ const ProductContainer = ({
       }
     };
     getUserId();
-  }, []);
+  }, [userInfo]);
+
   const handleProductClick = (e) => {
     const id = e.currentTarget.id;
     const url = window.location.href;
