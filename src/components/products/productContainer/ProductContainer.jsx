@@ -34,6 +34,7 @@ const ProductContainer = ({
   return (
     <li
       className="product-container"
+      color="white"
       key={product.id}
       id={product.id}
       onClick={() => {}}
