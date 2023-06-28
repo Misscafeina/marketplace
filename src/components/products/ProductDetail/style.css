@@ -4,6 +4,7 @@
   justify-content: space-between;
   padding: 20px;
   gap: 10px;
+  height: 100%;
 }
 
 h3 {
@@ -48,60 +49,37 @@ h3 {
 }
 
 .product-buttons {
-    display: flex;
-    justify-content: space-around;
-    padding-bottom: 20px;
-  }
-  
-  .product-buttons button {
-    display: flex;
-    align-items: center;
-    padding: 10px 10px;
-    font-size: 14px;
-    background-color: #1c1c1c;
-    color: #fff;
-    border: transparent;
-    border-radius: 5px;
-    cursor: pointer;
-    overflow: hidden;
-    position: relative;
-  }
-  
-  .product-buttons button:hover {
-    background-color: #d8d5d5;
-    color: #111;
-  }
-  
-  .product-buttons button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #d8d5d5;
-    color: #111;
-    opacity: 0;
-    transition: opacity 0.7s ease;
-    z-index: -1;
-  }
-
-  .product-buttons button:hover::before,
-.product-buttons button:focus::before {
-  left: 0;
-  opacity: 1;
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 20px;
 }
 
-.product-buttons button:hover,
-.product-buttons button:focus {
+.buy-button {
+  padding: 10px 15px 10px 15px;
+  font-size: 14px;
+  background-color: #1c1c1c;
+  color: #fff;
+  border: transparent;
+  border-radius: 25px;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.buy-button:hover {
+    background-color: #636262;
+  }
+
+.fav-button {
+  border: none;
   background-color: transparent;
-} */
-  
+  cursor: pointer;
+}
+
+.favorite {
+  color: red;
+}
 
 .related-products {
   margin-bottom: 15px;
-}
-
-.seller-ratings {
-    margin-top: 15px;
 }

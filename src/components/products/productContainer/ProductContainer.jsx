@@ -21,7 +21,8 @@ const ProductContainer = ({
       }
     };
     getUserId();
-  }, []);
+  }, [userInfo]);
+
   const handleProductClick = (e) => {
     const id = e.currentTarget.id;
     const url = window.location.href;
@@ -36,7 +37,9 @@ const ProductContainer = ({
       color="white"
       key={product.id}
       id={product.id}
-      onClick={() => {}}
+      // onClick={(e) => {
+      //   handleProductClick(e);
+      // }}
     >
       <ProductDetail
         product={product}
