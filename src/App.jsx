@@ -39,7 +39,15 @@ function App() {
       <div className="app">
         <Header />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/"
+            element={
+              <HomePage
+                wishlistArray={wishlistArray}
+                handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
+              />
+            }
+          />
           <Route path="/product/:id" element={<SingleProduct />} />
           <Route path="/editproduct" element={<UpdateProductForm />} />
           <Route

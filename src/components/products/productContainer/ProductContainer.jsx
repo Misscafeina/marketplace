@@ -5,7 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getAnyUserProfile } from "../../../services";
 
-const ProductContainer = ({ product }) => {
+const ProductContainer = ({
+  product,
+  wishlistArray,
+  handleAddRemoveFromWishlist,
+}) => {
   const navigate = useNavigate();
   const [userId, setUserId] = useState();
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -32,13 +36,21 @@ const ProductContainer = ({ product }) => {
       color="white"
       key={product.id}
       id={product.id}
-      onClick={handleProductClick}
+      onClick={() => {}}
     >
-      <ProductDetail product={product} />
+      <ProductDetail
+        product={product}
+        wishlistArray={wishlistArray}
+        handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
+      />
     </li>
   );
 };
 
-ProductContainer.propTypes = { product: PropTypes.object };
+ProductContainer.propTypes = {
+  product: PropTypes.object,
+  wishlistArray: PropTypes.array,
+  handleAddRemoveFromWishlist: PropTypes.func,
+};
 
 export default ProductContainer;
