@@ -10,6 +10,7 @@ function Background() {
           className="w-full h-full object-cover"
           src={recording}
           autoPlay
+          loop
           muted
         />
       </div>
