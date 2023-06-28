@@ -1,9 +1,10 @@
 import "./style.css";
-import { useState } from "react";
 import Slider from "react-slick";
 import PropTypes from "prop-types";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const ProductDetail = ({
   product,
@@ -48,9 +49,18 @@ const ProductDetail = ({
       </div>
       <p className="product-description">{product?.description}</p>
       <div className="product-buttons">
-        <button onClick={handleMessageClick}>Enviar mensaje</button>
-        <button onClick={() => handleAddRemoveFromWishlist(product.id)}>
-          {wishlistArray?.includes(product.id) ? "dislike" : "like"}
+        <button className="buy-button" onClick={handleMessageClick}>
+          Comprar
+        </button>
+        <button
+          className="fav-button"
+          onClick={() => handleAddRemoveFromWishlist(product.id)}
+        >
+          {wishlistArray?.includes(product.id) ? (
+            <FavoriteIcon className="favorite"/>
+          ) : (
+            <FavoriteBorderIcon className="no-favorite" />
+          )}
         </button>
       </div>
 
