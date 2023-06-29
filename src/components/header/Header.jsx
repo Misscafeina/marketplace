@@ -8,7 +8,7 @@ import registerUserLogo from "../../assets/user-plus.svg";
 import searchLogo from "../../assets/search.svg";
 import useHeader from "../../hooks/useHeader";
 import { useContext } from "react";
-import { PopUpContext } from "../../context/popUpContext";
+import { PopUpContext } from "../../context/PopUpContext";
 import LoginForm from "../users/loginForm/LoginForm";
 import RegisterForm from "../users/registerForm/RegisterForm";
 import NewProductForm from "../products/newProductForm/NewProductForm";
