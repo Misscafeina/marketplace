@@ -2,7 +2,6 @@ import { BsSearch } from "react-icons/bs";
 import recording from "../../assets/Recording.mp4";
 import "./styles.css";
 
-
 import { useContext } from "react";
 import { PopUpContext } from "../../context/PopUpContext";
 import Filter from "../filter/Filter";

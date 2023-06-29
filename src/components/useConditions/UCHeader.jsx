@@ -1,4 +1,4 @@
-import ThemeSwitcher from "../inputs/ThemeSwitcher";
+import ThemeSwitcher from "../../components/inputs/ThemeSwitcher";
 import Title from "./Title";
 
 const UCHeader = () => {

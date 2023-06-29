@@ -2,7 +2,7 @@ import "./style.css";
 
 import { Link } from "react-router-dom";
 //import ThemeSwitcher from "../inputs/ThemeSwitcher";
-
+import Footer from "../footer/Footer";
 const Cookies = () => {
   return (
     <main>
@@ -70,10 +70,11 @@ const Cookies = () => {
         podrás añadir elementos a tu cesta, tramitar pedidos o usar cualquier
         servicio de Retrotech que requiera que inicies sesión. Es posible que
         debas ajustar manualmente algunas de tus preferencias cada vez que
-        utilices nuestros servicios. Consulta nuestra
+        utilices nuestros servicios. Consulta nuestra{" "}
         <Link to={"/privacy"}>Política de privacidad</Link>
         para más información sobre los tipos de información que recabamos.
       </p>
+      <Footer />
     </main>
   );
 };
