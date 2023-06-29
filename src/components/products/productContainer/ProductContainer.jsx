@@ -7,9 +7,11 @@ import { getAnyUserProfile } from "../../../services";
 
 const ProductContainer = ({
   product,
-  whislistArray,
+  wishlistArray,
   handleAddRemoveFromWishlist,
 }) => {
+  console.log(wishlistArray);
+  console.log(handleAddRemoveFromWishlist);
   const navigate = useNavigate();
   const [userId, setUserId] = useState();
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -47,7 +49,7 @@ const ProductContainer = ({
     >
       <ProductDetail
         product={product}
-        wishlistArray={whislistArray}
+        wishlistArray={wishlistArray}
         handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
       />
     </li>
@@ -56,7 +58,7 @@ const ProductContainer = ({
 
 ProductContainer.propTypes = {
   product: PropTypes.object,
-  whislistArray: PropTypes.array,
+  wishlistArray: PropTypes.array,
   handleAddRemoveFromWishlist: PropTypes.func,
 };
 

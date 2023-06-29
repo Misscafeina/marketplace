@@ -14,6 +14,7 @@ import RegisterForm from "../users/registerForm/RegisterForm";
 import NewProductForm from "../products/newProductForm/NewProductForm";
 import { useAuth } from "../../context/AuthContext";
 import Search from "../search/Search";
+import { useNavigate } from "react-router";
 
 function Header() {
   const { isAuthenticated } = useAuth();
@@ -22,6 +23,8 @@ function Header() {
   const { showPopUp, loginActive, registerActive, newProductActive } =
     useContext(PopUpContext);
   const { logout } = useAuth();
+  const navigate = useNavigate();
+
   return (
     <header>
       {loginActive && <div>{showPopUp ? <LoginForm /> : null}</div>}
@@ -73,7 +76,7 @@ function Header() {
             <button
               className="btn"
               onClick={() => {
-                addNewProduct();
+                navigate("/newproduct");
               }}
             >
               <img src={addProductLogo} alt="Add new product button" />

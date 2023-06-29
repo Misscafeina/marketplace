@@ -3,8 +3,9 @@ import ProductContainer from "../../components/products/productContainer/Product
 import { getProductDetails } from "../../services";
 import "./style.css";
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
-function SingleProduct() {
+function SingleProduct({ wishlistArray, handleAddRemoveFromWishlist }) {
   const [product, setProduct] = useState({});
   const { id } = useParams();
 
@@ -17,7 +18,17 @@ function SingleProduct() {
     loadProduct();
   }, []);
 
-  return <ProductContainer product={product} />;
+  return (
+    <ProductContainer
+      product={product}
+      handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
+      wishlistArray={wishlistArray}
+    />
+  );
 }
+SingleProduct.propTypes = {
+  wishlistArray: PropTypes.array,
+  handleAddRemoveFromWishlist: PropTypes.func,
+};
 
 export default SingleProduct;
