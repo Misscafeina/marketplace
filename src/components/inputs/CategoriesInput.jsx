@@ -10,12 +10,15 @@ function CategoriesInput({ label, register, registerName, errors }) {
       errors={errors}
       defaultValue={"games"}
     >
-      <option value="consoles">Consolas</option>
-      <option value="games">Juegos</option>
-      <option value="pc">PC</option>
+      <option value="gaming">Gaming</option>
+      <option value="music">Música</option>
+      <option value="video">Video</option>
+      <option value="photography">Fotografía</option>
+      <option value="computer">Ordenador</option>
+      <option value="collector">Collección</option>
+      <option value="television">Televisión</option>
       <option value="cloth">Ropa</option>
-      <option value="controllers">Mandos</option>
-      <option value="arcade">Arcade</option>
+      <option value="others">Otros</option>
     </SelectInput>
   );
 }
