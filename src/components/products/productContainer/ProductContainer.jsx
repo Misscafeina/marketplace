@@ -21,7 +21,13 @@ const ProductContainer = ({ product }) => {
   const handleProductClick = (e) => {
     const id = e.currentTarget.id;
     const url = window.location.href;
-    if (url !== `http://localhost:5173/product/${id}`) {
+    console.log(e.target.localName);
+    if (
+      e.target.localName === "button" ||
+      e.target.localName === "svg" ||
+      e.target.localName === "path"
+    ) {
+    } else if (url !== `http://localhost:5173/product/${id}`) {
       navigate(`/product/${id}`);
       if (userId === product.idUser) console.log("Este producto es tuyo"); //Aqui va la logica de editar producto
     }
@@ -31,7 +37,11 @@ const ProductContainer = ({ product }) => {
       className="product-container"
       key={product.id}
       id={product.id}
-      onClick={handleProductClick}
+
+      onClick={(e) => {
+        handleProductClick(e);
+      }}
+
     >
       <ProductDetail product={product} />
     </li>

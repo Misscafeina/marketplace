@@ -38,8 +38,8 @@ footer {
 }
 .firstList ul {
   display: flex;
-  gap:5px;
-  color:white
+  gap: 5px;
+  color: white;
   list-style: none;
   flex-direction: column;
 }
@@ -63,7 +63,7 @@ footer {
   flex-direction: row;
 }
 
-p{
+p {
   display: flex;
   color: white;
   flex-direction: row;
@@ -71,13 +71,11 @@ p{
   margin-bottom: 20px;
   list-style: none;
   list-style-type: none;
-  
+
   flex-direction: row;
 }
 
-
-
-h4{
+h4 {
   margin-bottom: 10px;
 }
 

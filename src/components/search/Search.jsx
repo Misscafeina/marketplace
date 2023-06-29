@@ -3,7 +3,7 @@ import SearchLogo from "../../assets/search.svg";
 import useSearch from "../../hooks/useSearch";
 
 function Search() {
-  const { handleInput, handleSubmit } = useSearch();
+  const { handleInput, handleSubmit, input } = useSearch();
   return (
     <div className="wrap">
       <form
@@ -16,6 +16,7 @@ function Search() {
           type="text"
           className="searchTerm"
           placeholder="¿Qué estás buscando?"
+          value={input}
           onChange={(e) => {
             handleInput(e);
           }}
