@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Footer from "./components/footer/Footer";
+
 import HomePage from "./pages/homePage/HomePage";
 import { PopUpProvider } from "./context/PopUpContext";
 import ProfilePage from "./pages/profilePage/ProfilePage";
@@ -16,7 +16,6 @@ import NotFound from "./pages/notFound/NotFound";
 import SingleProduct from "./pages/singleProduct/SingleProduct";
 //import ThemeProvider from "./context/ThemeContext";
 import BestSellers from "./pages/bestsellers/BestSellers";
-
 import AcceptCookies from "./pages/cookiesPopUp/CookiesPopUp";
 import CookiesPopUp from "./pages/cookiesPopUp/CookiesPopUp";
 import MuiNewProductForm from "./components/mui/muiNewProductForm/muiNewProductForm";
@@ -38,6 +37,7 @@ function App() {
       {/*<Themeprovider>*/}
       <div className="app">
         <Header />
+
         <Routes>
           <Route
             path="/"
@@ -97,7 +97,6 @@ function App() {
 
           <Route path="*" element={<NotFound />} />
         </Routes>
-        <Footer />
       </div>
       {/*</Themeprovider>*/}
     </PopUpProvider>

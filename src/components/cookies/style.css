@@ -29,12 +29,13 @@ h2 {
 }
 
 main {
-  font-family: "Gill Sans MT Pro";
+  font-family: "Gill Sans MT Pro", sans-serifb;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.05em;
   text-transform: unset;
+  color: black;
 }
 
 Cookies {

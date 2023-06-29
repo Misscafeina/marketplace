@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { PopUpContext } from "../../context/PopUpContext";
 import AcceptCookies from "../../pages/cookiesPopUp/CookiesPopUp";
 
-function Footer() {
+function FooterHome() {
   const { cookiesActive, showPopUp } = useContext(PopUpContext);
 
   const [activeIcon, setActiveIcon] = useState(false);
@@ -14,18 +14,17 @@ function Footer() {
   };
 
   return (
-    <footer>
+    <body>
       {cookiesActive && <div>{showPopUp ? <AcceptCookies /> : null}</div>}
-
-      <nav className="navprincipal">
-        <ul className="principal">
+      <nav className="navFooterVarios">
+        <ul className="firstList">
           <li>
             <h4>SHOP AND BUY</h4>
             <ul>
               <li>Register</li>
               <li>Upload Item</li>
               <li>
-                <Link to={"/bestsellers"} style={{ color: "black" }}>
+                <Link to={"/bestsellers"} style={{ color: "white" }}>
                   Best Sellers
                 </Link>
               </li>
@@ -44,7 +43,7 @@ function Footer() {
           </li>
         </ul>
       </nav>
-      <nav className="navRRSS">
+      <nav className="navFooterRRSS">
         <ul className="social-icon">
           <li>
             <Link
@@ -55,7 +54,7 @@ function Footer() {
               onClick={handleIconClick}
             >
               <img
-                src="/instagramb.svg"
+                src="/instagram.svg"
                 alt="instagram"
                 style={{ backgroundColor: "transparent", border: "none" }}
               />
@@ -70,7 +69,7 @@ function Footer() {
               onClick={handleIconClick}
             >
               <img
-                src="/twitterb.svg"
+                src="/twitter.svg"
                 alt="twitter"
                 style={{ backgroundColor: "transparent", border: "none" }}
               />
@@ -85,7 +84,7 @@ function Footer() {
               onClick={handleIconClick}
             >
               <img
-                src="/facebookb.svg"
+                src="/facebook.svg"
                 alt="facebook"
                 style={{ backgroundColor: "transparent", border: "none" }}
               />
@@ -100,7 +99,7 @@ function Footer() {
               onClick={handleIconClick}
             >
               <img
-                src="/whatsappb.svg"
+                src="/whatsapp.svg"
                 alt="whatsapp"
                 style={{ backgroundColor: "transparent", border: "none" }}
               />
@@ -108,35 +107,38 @@ function Footer() {
           </li>
         </ul>
       </nav>
-      <nav className="navTerms">
-        <ul className="Terms">
+      <nav className="navFooterTerms">
+        <ul className="link">
           <li>
-            <Link to={"/useConditions"} style={{ color: "black" }}>
+            <Link to={"/useConditions"} style={{ color: "white" }}>
               Condiciones de uso
             </Link>
           </li>
           <li>
-            <Link to={"/privacy"} style={{ color: "black" }}>
+            <Link to={"/privacy"} style={{ color: "white" }}>
               Política de privacidad
             </Link>
           </li>
           <li>
-            <Link to={"/legal"} style={{ color: "black" }}>
+            <Link to={"/legal"} style={{ color: "white" }}>
               Aviso Legal
             </Link>
           </li>
           <li>
-            <Link to={"/cookies"} style={{ color: "black" }}>
+            <Link to={"/cookies"} style={{ color: "white" }}>
               Cookies
             </Link>
           </li>
         </ul>
       </nav>
 
-      <span className="inc"> © 2023, Retrotech.com, Inc. o sus afiliados</span>
-      <span className="theend">{""}</span>
-    </footer>
+      <span className="copyright">
+        {" "}
+        © 2023, Retrotech.com, Inc. o sus afiliados
+      </span>
+      <span className="last">{""}</span>
+    </body>
   );
 }
 
-export default Footer;
+export default FooterHome;

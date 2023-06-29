@@ -2,7 +2,7 @@ import "./style.css";
 
 import "./UCHeader";
 import { Link } from "react-router-dom";
-
+import Footer from "../footer/Footer";
 const UseConditions = () => {
   return (
     <main>
@@ -229,6 +229,7 @@ const UseConditions = () => {
         tribunales españoles correspondientes al domicilio de Retrotech, o bien
         ante los tribunales del lugar donde el Usuario esté domiciliado.
       </p>
+      <Footer />
     </main>
   );
 };
