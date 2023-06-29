@@ -48,7 +48,15 @@ function App() {
               />
             }
           />
-          <Route path="/product/:id" element={<SingleProduct />} />
+          <Route
+            path="/product/:id"
+            element={
+              <SingleProduct
+                handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
+                wishlistArray={wishlistArray}
+              />
+            }
+          />
           <Route path="/editproduct" element={<UpdateProductForm />} />
           <Route
             path="/wishlist"
@@ -75,7 +83,7 @@ function App() {
             />
           }
           <Route
-            path="/pruebas"
+            path="/newproduct"
             element={<MuiNewProductForm userInfo={userInfo} />}
           />
 
