@@ -9,7 +9,7 @@ const ProductsContainer = ({
 }) => {
   return (
     <ul className="products-container">
-      {products.map((product) => {
+      {products?.map((product) => {
         return (
           <ProductContainer
             key={product.id}

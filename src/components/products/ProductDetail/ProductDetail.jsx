@@ -5,13 +5,19 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { postNewDeal } from "../../../services";
 
 const ProductDetail = ({
   product,
   wishlistArray,
   handleAddRemoveFromWishlist,
 }) => {
-  const handleMessageClick = () => {
+  console.log(product);
+  const handleBuyButton = async () => {
+    const {
+      data: { id: idDeal },
+    } = await postNewDeal(product?.id);
+    console.log(idDeal);
     // Lógica para enviar mensaje al vendedor
     alert("Mensaje enviado al vendedor");
   };
@@ -48,7 +54,7 @@ const ProductDetail = ({
       </div>
       <p className="product-description">{product?.description}</p>
       <div className="product-buttons">
-        <button className="buy-button" onClick={handleMessageClick}>
+        <button className="buy-button" onClick={handleBuyButton}>
           Comprar
         </button>
         <button
