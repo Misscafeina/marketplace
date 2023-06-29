@@ -10,8 +10,6 @@ const ProductContainer = ({
   wishlistArray,
   handleAddRemoveFromWishlist,
 }) => {
-  console.log(wishlistArray);
-  console.log(handleAddRemoveFromWishlist);
   const navigate = useNavigate();
   const [userId, setUserId] = useState();
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));

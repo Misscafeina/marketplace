@@ -11,13 +11,12 @@ const ProductsContainer = ({
     <ul className="products-container">
       {products.map((product) => {
         return (
-          <li key={product.id}>
-            <ProductContainer
-              product={product}
-              wishlistArray={wishlistArray}
-              handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
-            />
-          </li>
+          <ProductContainer
+            key={product.id}
+            product={product}
+            wishlistArray={wishlistArray}
+            handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
+          />
         );
       })}
     </ul>
