@@ -15,7 +15,6 @@ const ProductDetail = ({
     // Lógica para enviar mensaje al vendedor
     alert("Mensaje enviado al vendedor");
   };
-  console.log(wishlistArray);
   const settings = {
     dots: true,
     infinite: true,
@@ -57,7 +56,7 @@ const ProductDetail = ({
           onClick={() => handleAddRemoveFromWishlist(product.id)}
         >
           {wishlistArray?.includes(product.id) ? (
-            <FavoriteIcon className="favorite"/>
+            <FavoriteIcon className="favorite" />
           ) : (
             <FavoriteBorderIcon className="no-favorite" />
           )}

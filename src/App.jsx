@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Footer from "./components/footer/Footer";
 import HomePage from "./pages/homePage/HomePage";
-import { PopUpProvider } from "./context/popUpContext";
+import { PopUpProvider } from "./context/PopUpContext";
 import ProfilePage from "./pages/profilePage/ProfilePage";
 import Wishlist from "./pages/wishlist/Wishlist";
 import UpdateProductForm from "./components/products/updateProductForm/UpdateProductForm";
