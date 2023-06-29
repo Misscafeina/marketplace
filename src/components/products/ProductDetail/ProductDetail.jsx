@@ -11,6 +11,8 @@ const ProductDetail = ({
   product,
   wishlistArray,
   handleAddRemoveFromWishlist,
+  setProducts,
+  products,
 }) => {
   console.log(product);
   const handleBuyButton = async () => {
@@ -18,6 +20,12 @@ const ProductDetail = ({
       data: { id: idDeal },
     } = await postNewDeal(product?.id);
     console.log(idDeal);
+    const updatedProducts = products.filter((item) =>
+      item.id === product.id ? false : true
+    );
+
+    setProducts([...updatedProducts]);
+
     // Lógica para enviar mensaje al vendedor
     alert("Mensaje enviado al vendedor");
   };
@@ -94,5 +102,7 @@ ProductDetail.propTypes = {
   product: PropTypes.object,
   wishlistArray: PropTypes.array,
   handleAddRemoveFromWishlist: PropTypes.func,
+  setProducts: PropTypes.func,
+  products: PropTypes.array,
 };
 export default ProductDetail;
