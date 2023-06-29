@@ -5,11 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getAnyUserProfile } from "../../../services";
 
-const ProductContainer = ({
-  product,
-  wishlistArray,
-  handleAddRemoveFromWishlist,
-}) => {
+const ProductContainer = ({ product }) => {
   const navigate = useNavigate();
   const [userId, setUserId] = useState();
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -21,8 +17,7 @@ const ProductContainer = ({
       }
     };
     getUserId();
-  }, [userInfo]);
-
+  }, []);
   const handleProductClick = (e) => {
     const id = e.currentTarget.id;
     const url = window.location.href;
@@ -40,26 +35,19 @@ const ProductContainer = ({
   return (
     <li
       className="product-container"
-      color="white"
       key={product.id}
       id={product.id}
+
       onClick={(e) => {
         handleProductClick(e);
       }}
+
     >
-      <ProductDetail
-        product={product}
-        wishlistArray={wishlistArray}
-        handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
-      />
+      <ProductDetail product={product} />
     </li>
   );
 };
 
-ProductContainer.propTypes = {
-  product: PropTypes.object,
-  wishlistArray: PropTypes.array,
-  handleAddRemoveFromWishlist: PropTypes.func,
-};
+ProductContainer.propTypes = { product: PropTypes.object };
 
 export default ProductContainer;
