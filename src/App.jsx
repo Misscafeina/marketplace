@@ -21,6 +21,7 @@ import AcceptCookies from "./pages/cookiesPopUp/CookiesPopUp";
 import CookiesPopUp from "./pages/cookiesPopUp/CookiesPopUp";
 import MuiNewProductForm from "./components/mui/muiNewProductForm/muiNewProductForm";
 import SearchResult from "./pages/searchResult/SearchResult";
+import ValidateEmail from "./pages/validateEmail/ValidateEmail";
 
 function App() {
   const {
@@ -63,10 +64,12 @@ function App() {
             element={
               <Wishlist
                 wishlist={wishlist}
+                wishlistArray={wishlistArray}
                 handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
               />
             }
           />
+          <Route path="/validate/:code" element={<ValidateEmail />} />
           {
             <Route
               path="/profile"

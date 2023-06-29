@@ -21,6 +21,12 @@ export const registerUser = async (userInfo) => {
 
   return data;
 };
+export const validateEmail = async (code) => {
+  const { data } = await axios.get(`${BACKEND_URL}/users/activate/${code}`);
+  if (data.status !== "ok") throw new Error(data.message);
+
+  return data;
+};
 export const getOwnProfile = async () => {
   const { data } = await axios.get(`${BACKEND_URL}/users/private`);
   if (data.status !== "ok") throw new Error(data.message);

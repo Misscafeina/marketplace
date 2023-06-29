@@ -21,6 +21,7 @@ import {
   getWishlist,
   loginUser,
   registerUser,
+  validateEmail,
 } from "./userService";
 let resp;
 const isBearerTokenRequired = (url) => {
@@ -94,4 +95,5 @@ export {
   editOwnProfile,
   addRemoveFromWishlist,
   getWishlist,
+  validateEmail,
 };
