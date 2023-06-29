@@ -1,7 +1,7 @@
 import "./style.css";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
-import { PopUpContext } from "../../context/popUpContext";
+import { PopUpContext } from "../../context/PopUpContext";
 import AcceptCookies from "../../pages/cookiesPopUp/CookiesPopUp";
 
 function Footer() {
