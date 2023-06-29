@@ -45,26 +45,30 @@ function Header() {
               <img src={userLogo} alt="user" />
             </button>
           </li>
-          <li>
-            <button
-              className="btn"
-              onClick={() => {
-                wishList();
-              }}
-            >
-              <img src={wishListLogo} alt="wishList" />
-            </button>
-          </li>
-          <li>
-            <button
-              className="btn"
-              onClick={() => {
-                messages();
-              }}
-            >
-              <img src={messageLogo} alt="message button" />
-            </button>
-          </li>
+          {isAuthenticated && (
+            <li>
+              <button
+                className="btn"
+                onClick={() => {
+                  wishList();
+                }}
+              >
+                <img src={wishListLogo} alt="wishList" />
+              </button>
+            </li>
+          )}
+          {isAuthenticated && (
+            <li>
+              <button
+                className="btn"
+                onClick={() => {
+                  messages();
+                }}
+              >
+                <img src={messageLogo} alt="message button" />
+              </button>
+            </li>
+          )}
           <li>
             <button
               className="btn"
@@ -74,7 +78,7 @@ function Header() {
             >
               <img src={addProductLogo} alt="Add new product button" />
             </button>
-          </li>{" "}
+          </li>
           {isAuthenticated && (
             <li>
               <button

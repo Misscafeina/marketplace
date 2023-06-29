@@ -37,9 +37,9 @@ const ProductContainer = ({
       color="white"
       key={product.id}
       id={product.id}
-      // onClick={(e) => {
-      //   handleProductClick(e);
-      // }}
+      onClick={(e) => {
+        handleProductClick(e);
+      }}
     >
       <ProductDetail
         product={product}
