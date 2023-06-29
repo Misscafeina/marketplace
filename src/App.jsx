@@ -39,7 +39,15 @@ function App() {
       <div className="app">
         <Header />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/"
+            element={
+              <HomePage
+                handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
+                wishlistArray={wishlistArray}
+              />
+            }
+          />
           <Route path="/product/:id" element={<SingleProduct />} />
           <Route path="/editproduct" element={<UpdateProductForm />} />
           <Route
@@ -47,7 +55,7 @@ function App() {
             element={
               <Wishlist
                 wishlist={wishlist}
-                handleAddRevomveFromWishlist={handleAddRemoveFromWishlist}
+                handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
               />
             }
           />
