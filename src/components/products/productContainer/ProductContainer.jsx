@@ -9,6 +9,8 @@ const ProductContainer = ({
   product,
   wishlistArray,
   handleAddRemoveFromWishlist,
+  setProducts,
+  products,
 }) => {
   const navigate = useNavigate();
   const [userId, setUserId] = useState();
@@ -47,8 +49,10 @@ const ProductContainer = ({
     >
       <ProductDetail
         product={product}
+        products={products}
         wishlistArray={wishlistArray}
         handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
+        setProducts={setProducts}
       />
     </li>
   );
@@ -58,6 +62,8 @@ ProductContainer.propTypes = {
   product: PropTypes.object,
   wishlistArray: PropTypes.array,
   handleAddRemoveFromWishlist: PropTypes.func,
+  setProducts: PropTypes.func,
+  products: PropTypes.array,
 };
 
 export default ProductContainer;

@@ -21,6 +21,7 @@ import CookiesPopUp from "./pages/cookiesPopUp/CookiesPopUp";
 import MuiNewProductForm from "./components/mui/muiNewProductForm/muiNewProductForm";
 import SearchResult from "./pages/searchResult/SearchResult";
 import ValidateEmail from "./pages/validateEmail/ValidateEmail";
+import SingleDeal from "./pages/SingleDeal/SingleDeal";
 
 function App() {
   const {
@@ -88,6 +89,10 @@ function App() {
           <Route
             path="/newproduct"
             element={<MuiNewProductForm userInfo={userInfo} />}
+          />
+          <Route
+            path="/deals/:idDeal"
+            element={<SingleDeal userInfo={userInfo} />}
           />
 
           <Route path="/bestsellers" element={<BestSellers />} />

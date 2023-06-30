@@ -37,6 +37,7 @@ function HomePage({ wishlistArray, handleAddRemoveFromWishlist }) {
         products={products}
         wishlistArray={wishlistArray}
         handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
+        setProducts={setProducts}
       />
       <FooterHome />
     </>

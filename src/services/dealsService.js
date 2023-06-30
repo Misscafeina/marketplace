@@ -24,3 +24,9 @@ export const postDealReview = async (idDeal, review) => {
 
   return data;
 };
+export const getDealDetails = async (idDeal) => {
+  const { data } = await axios.get(`${BACKEND_URL}/deals/${idDeal}`);
+  if (data.status !== "ok") throw new Error(data.message);
+
+  return data;
+};
