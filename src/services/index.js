@@ -10,6 +10,7 @@ import {
   getProductsByLocation,
   getProductsByPrice,
   getProductDetails,
+  findProductsByQuery,
 } from "./productsService";
 
 import axios from "axios";
@@ -23,6 +24,7 @@ import {
   registerUser,
   validateEmail,
 } from "./userService";
+
 let resp;
 const isBearerTokenRequired = (url) => {
   const parsedUrl = new URL(url);
@@ -96,4 +98,5 @@ export {
   addRemoveFromWishlist,
   getWishlist,
   validateEmail,
+  findProductsByQuery,
 };
