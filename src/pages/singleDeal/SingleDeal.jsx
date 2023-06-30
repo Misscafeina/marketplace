@@ -28,8 +28,8 @@ function SingleDeal({ userInfo }) {
     getInfo(idDeal);
   }, [idDeal]);
 
-  //   console.log(dealInfo);
-  //   console.log(userInfo);
+  console.log(dealInfo);
+  console.log(userInfo);
   return (
     <>
       {isAllowed && (
