@@ -11,6 +11,7 @@ const ProductContainer = ({
   handleAddRemoveFromWishlist,
   setProducts,
   products,
+  handleProductChanges,
 }) => {
   const navigate = useNavigate();
   const [userId, setUserId] = useState();
@@ -53,6 +54,7 @@ const ProductContainer = ({
         wishlistArray={wishlistArray}
         handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
         setProducts={setProducts}
+        handleProductChanges={handleProductChanges}
       />
     </li>
   );
@@ -64,6 +66,7 @@ ProductContainer.propTypes = {
   handleAddRemoveFromWishlist: PropTypes.func,
   setProducts: PropTypes.func,
   products: PropTypes.array,
+  handleProductChanges: PropTypes.func,
 };
 
 export default ProductContainer;

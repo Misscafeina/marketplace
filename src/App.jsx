@@ -33,6 +33,7 @@ function App() {
     wishlist,
     wishlistArray,
     handleAddRemoveFromWishlist,
+    handleProductChanges,
   } = useApp();
   return (
     <PopUpProvider>
@@ -47,6 +48,7 @@ function App() {
               <HomePage
                 handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
                 wishlistArray={wishlistArray}
+                handleProductChanges={handleProductChanges}
               />
             }
           />

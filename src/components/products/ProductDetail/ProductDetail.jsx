@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { postNewDeal } from "../../../services";
+import { useNavigate } from "react-router-dom";
 
 const ProductDetail = ({
   product,
@@ -13,20 +14,18 @@ const ProductDetail = ({
   handleAddRemoveFromWishlist,
   setProducts,
   products,
+  handleProductChanges,
 }) => {
+  const navigate = useNavigate();
   const handleBuyButton = async () => {
+    const data = await postNewDeal(product?.id);
+    data.status === "ok" && handleProductChanges();
+    const updatedProducts = products.filter((item) => item.id !== product.id);
     const {
       data: { id: idDeal },
-    } = await postNewDeal(product?.id);
-    console.log(idDeal);
-    const updatedProducts = products.filter((item) =>
-      item.id === product.id ? false : true
-    );
-
+    } = data;
     setProducts([...updatedProducts]);
-
-    // Lógica para enviar mensaje al vendedor
-    alert("Mensaje enviado al vendedor");
+    navigate(`/deals/${idDeal}`);
   };
   const settings = {
     dots: true,
@@ -103,5 +102,6 @@ ProductDetail.propTypes = {
   handleAddRemoveFromWishlist: PropTypes.func,
   setProducts: PropTypes.func,
   products: PropTypes.array,
+  handleProductChanges: PropTypes.func,
 };
 export default ProductDetail;
