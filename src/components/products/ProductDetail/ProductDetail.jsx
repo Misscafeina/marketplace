@@ -14,7 +14,6 @@ const ProductDetail = ({
   setProducts,
   products,
 }) => {
-  console.log(product);
   const handleBuyButton = async () => {
     const {
       data: { id: idDeal },
