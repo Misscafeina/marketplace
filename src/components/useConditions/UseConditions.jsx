@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Footer from "../footer/Footer";
 const UseConditions = () => {
   return (
-    <main>
+    <div className="use-conditions">
       <h1>Condiciones De Uso Retrotech</h1>
       <p>
         Los presentes Términos y Condiciones de uso (en adelante, “Términos y
@@ -230,7 +230,7 @@ const UseConditions = () => {
         ante los tribunales del lugar donde el Usuario esté domiciliado.
       </p>
       <Footer />
-    </main>
+    </div>
   );
 };
 

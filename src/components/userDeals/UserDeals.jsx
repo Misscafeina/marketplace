@@ -19,27 +19,29 @@ function UserDeals({ products, title }) {
         <ListSubheader component="div">{title}</ListSubheader>
       </ImageListItem>
       {products.map((item) => (
-        <ImageListItem key={item.id}>
-          <img
-            src={`${item?.images[0]}?w=248&fit=crop&auto=format`}
-            srcSet={`${item.images[0]}?w=248&fit=crop&auto=format&dpr=2 2x`}
-            alt={item.name}
-            loading="lazy"
-          />
-          <ImageListItemBar
-            title={item.name}
-            subtitle={item.status}
-            actionIcon={
-              <IconButton
-                sx={{ color: "rgba(255, 255, 255, 0.54)" }}
-                aria-label={`info about ${products.name}`}
-                href={`/deals/${item.idDeal}`}
-              >
-                <InfoIcon />
-              </IconButton>
-            }
-          />
-        </ImageListItem>
+        <article key={item.id}>
+          <ImageListItem>
+            <img
+              src={`${item?.images[0]}?w=248&fit=crop&auto=format`}
+              srcSet={`${item.images[0]}?w=248&fit=crop&auto=format&dpr=2 2x`}
+              alt={item.name}
+              loading="lazy"
+            />
+            <ImageListItemBar
+              title={item.name}
+              subtitle={item.status}
+              actionIcon={
+                <IconButton
+                  sx={{ color: "rgba(255, 255, 255, 0.54)" }}
+                  aria-label={`info about ${products.name}`}
+                  href={`/deals/${item.idDeal}`}
+                >
+                  <InfoIcon />
+                </IconButton>
+              }
+            />
+          </ImageListItem>
+        </article>
       ))}
     </ImageList>
   );

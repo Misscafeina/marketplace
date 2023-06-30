@@ -1,0 +1,6 @@
+.deal-container {
+  margin: 0 auto;
+  width: 370px;
+  display: flex;
+  flex-direction: column;
+}
