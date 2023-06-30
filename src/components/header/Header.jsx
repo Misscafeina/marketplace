@@ -18,7 +18,7 @@ import { useNavigate } from "react-router";
 
 function Header() {
   const { isAuthenticated } = useAuth();
-  const { returnHome, userLog, wishList, messages, search, addNewProduct } =
+  const { returnHome, userLog, wishList, messages, addNewProduct } =
     useHeader();
   const { showPopUp, loginActive, registerActive, newProductActive } =
     useContext(PopUpContext);

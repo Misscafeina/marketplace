@@ -20,8 +20,10 @@ import AcceptCookies from "./pages/cookiesPopUp/CookiesPopUp";
 import CookiesPopUp from "./pages/cookiesPopUp/CookiesPopUp";
 import MuiNewProductForm from "./components/mui/muiNewProductForm/muiNewProductForm";
 import SearchResult from "./pages/searchResult/SearchResult";
+
 import ValidateEmail from "./pages/validateEmail/ValidateEmail";
 import SingleDeal from "./pages/SingleDeal/SingleDeal";
+
 
 function App() {
   const {
@@ -61,6 +63,10 @@ function App() {
               />
             }
           />
+
+          
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/chat" element={<Chat />
           <Route path="/editproduct" element={<UpdateProductForm />} />
           <Route
             path="/wishlist"
