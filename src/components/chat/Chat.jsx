@@ -1,16 +1,25 @@
 import { useState } from "react";
-import ChatList from "./chatlist/ChatList";
-import ChatWindow from "./chatwindow/ChatWindow";
 import "./style.css";
 
-function Chat() {
+const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [showMenu, setShowMenu] = useState(false);
+  const [blockedUsers, setBlockedUsers] = useState([]);
+  const [reportedUsers, setReportedUsers] = useState([]);
 
   const handleSendMessage = () => {
-    setMessages([...messages, newMessage]);
-    setNewMessage("");
+    if (newMessage.trim() !== "") {
+      const message = {
+        content: newMessage,
+        user: {
+          name: "Willow",
+          profilePicture: "profile.jpg",
+        },
+      };
+      setMessages([...messages, message]);
+      setNewMessage("");
+    }
   };
 
   const handleMenuToggle = () => {
@@ -18,8 +27,19 @@ function Chat() {
   };
 
   const handleMenuOptionClick = (option) => {
-    // Aquí puedes implementar la lógica para cada opción del menú
-    console.log("Opción seleccionada:", option);
+    if (option === "Borrar conversación") {
+      setMessages([]);
+    } else if (option === "Bloquear usuario") {
+      const lastMessage = messages[messages.length - 1];
+      if (lastMessage && !blockedUsers.includes(lastMessage.user.name)) {
+        setBlockedUsers([...blockedUsers, lastMessage.user.name]);
+      }
+    } else if (option === "Reportar usuario") {
+      const lastMessage = messages[messages.length - 1];
+      if (lastMessage && !reportedUsers.includes(lastMessage.user.name)) {
+        setReportedUsers([...reportedUsers, lastMessage.user.name]);
+      }
+    }
   };
 
   return (
@@ -27,7 +47,13 @@ function Chat() {
       <div className="message-list">
         {messages.map((message, index) => (
           <div key={index} className="message">
-            {message}
+            <div className="user-profile">
+              <img src={message.user.profilePicture} alt="Profile" />
+            </div>
+            <div className="user-details">
+              <div className="user-name">{message.user.name}</div>
+              <div className="message-content">{message.content}</div>
+            </div>
           </div>
         ))}
       </div>
@@ -57,10 +83,8 @@ function Chat() {
           )}
         </div>
       </div>
-      <ChatList />
-      <ChatWindow />
     </div>
   );
-}
+};
 
 export default Chat;
