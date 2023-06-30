@@ -12,7 +12,7 @@ UserDeals.propTypes = {
 };
 
 function UserDeals({ products, title }) {
-  console.log(products);
+  // console.log(products);
   return (
     <ImageList sx={{ width: 500, height: 450 }}>
       <ImageListItem key="Subheader" cols={2}>

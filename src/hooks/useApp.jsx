@@ -69,6 +69,14 @@ function useApp() {
       console.error(error);
     }
   };
+  const handleProductChanges = async () => {
+    try {
+      const response = await getOwnProfile();
+      response?.status === "ok" && setUserInfo(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return {
     isAuthenticated,
     userInfo,
@@ -80,6 +88,7 @@ function useApp() {
     wishlistArray,
     setWishlistArray,
     handleAddRemoveFromWishlist,
+    handleProductChanges,
   };
 }
 

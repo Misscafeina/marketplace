@@ -7,6 +7,7 @@ const ProductsContainer = ({
   wishlistArray,
   handleAddRemoveFromWishlist,
   setProducts,
+  handleProductChanges,
 }) => {
   return (
     <ul className="products-container">
@@ -19,6 +20,7 @@ const ProductsContainer = ({
             wishlistArray={wishlistArray}
             handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
             setProducts={setProducts}
+            handleProductChanges={handleProductChanges}
           />
         );
       })}
@@ -32,6 +34,7 @@ ProductsContainer.propTypes = {
   wishlistArray: PropTypes.array,
   handleAddRemoveFromWishlist: PropTypes.func,
   setProducts: PropTypes.func,
+  handleProductChanges: PropTypes.func,
 };
 
 export default ProductsContainer;

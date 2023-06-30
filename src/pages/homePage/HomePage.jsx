@@ -13,7 +13,11 @@ import ProductsContainer from "../../components/products/productsContainer/Produ
 import { useSearchParams } from "react-router-dom";
 import useSearch from "../../hooks/useSearch";
 
-function HomePage({ wishlistArray, handleAddRemoveFromWishlist }) {
+function HomePage({
+  wishlistArray,
+  handleAddRemoveFromWishlist,
+  handleProductChanges,
+}) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [products, setProducts] = useState([]);
   const { input } = useSearch();
@@ -44,6 +48,7 @@ function HomePage({ wishlistArray, handleAddRemoveFromWishlist }) {
         wishlistArray={wishlistArray}
         handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
         setProducts={setProducts}
+        handleProductChanges={handleProductChanges}
       />
       <FooterHome />
     </>
@@ -52,6 +57,7 @@ function HomePage({ wishlistArray, handleAddRemoveFromWishlist }) {
 HomePage.propTypes = {
   wishlistArray: PropTypes.array,
   handleAddRemoveFromWishlist: PropTypes.func,
+  handleProductChanges: PropTypes.func,
 };
 
 export default HomePage;

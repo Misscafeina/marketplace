@@ -3,13 +3,6 @@ import PropTypes from "prop-types";
 import { getDealDetails } from "../../services/dealsService";
 import { useParams } from "react-router-dom";
 import DealContainer from "../../components/deals/dealContainer/DealContainer";
-import {
-  Avatar,
-  IconButton,
-  ImageListItem,
-  ImageListItemBar,
-  Stack,
-} from "@mui/material";
 import DealImage from "../../components/deals/dealImage/DealImage";
 import DealMessagesContainer from "../../components/deals/dealMessagesContainer/DealMessagesContainer";
 import DealMessage from "../../components/deals/dealMessage/DealMessage";
@@ -35,8 +28,8 @@ function SingleDeal({ userInfo }) {
     getInfo(idDeal);
   }, [idDeal]);
 
-  console.log(dealInfo);
-  console.log(userInfo);
+  //   console.log(dealInfo);
+  //   console.log(userInfo);
   return (
     <>
       {isAllowed && (
