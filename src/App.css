@@ -23,7 +23,9 @@ header {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
 }
-
+#root {
+  width: 100vw;
+}
 .popup-inner {
   background-color: white;
   position: absolute;
