@@ -6,18 +6,22 @@ const ProductsContainer = ({
   products,
   wishlistArray,
   handleAddRemoveFromWishlist,
+  setProducts,
+  handleProductChanges,
 }) => {
   return (
     <ul className="products-container">
-      {products.map((product) => {
+      {products?.map((product) => {
         return (
-          <li key={product.id}>
-            <ProductContainer
-              product={product}
-              wishlistArray={wishlistArray}
-              handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
-            />
-          </li>
+          <ProductContainer
+            key={product.id}
+            product={product}
+            products={products}
+            wishlistArray={wishlistArray}
+            handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
+            setProducts={setProducts}
+            handleProductChanges={handleProductChanges}
+          />
         );
       })}
     </ul>
@@ -29,6 +33,8 @@ ProductsContainer.propTypes = {
   products: PropTypes.array,
   wishlistArray: PropTypes.array,
   handleAddRemoveFromWishlist: PropTypes.func,
+  setProducts: PropTypes.func,
+  handleProductChanges: PropTypes.func,
 };
 
 export default ProductsContainer;

@@ -20,8 +20,10 @@ import AcceptCookies from "./pages/cookiesPopUp/CookiesPopUp";
 import CookiesPopUp from "./pages/cookiesPopUp/CookiesPopUp";
 import MuiNewProductForm from "./components/mui/muiNewProductForm/muiNewProductForm";
 import SearchResult from "./pages/searchResult/SearchResult";
-import Chat from "./components/chat/Chat";
-import ProductDetail from "./components/products/productdetail/ProductDetail";
+
+import ValidateEmail from "./pages/validateEmail/ValidateEmail";
+import SingleDeal from "./pages/SingleDeal/SingleDeal";
+
 
 function App() {
   const {
@@ -33,6 +35,7 @@ function App() {
     wishlist,
     wishlistArray,
     handleAddRemoveFromWishlist,
+    handleProductChanges,
   } = useApp();
   return (
     <PopUpProvider>
@@ -47,22 +50,35 @@ function App() {
               <HomePage
                 handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
                 wishlistArray={wishlistArray}
+                handleProductChanges={handleProductChanges}
               />
             }
           />
-          <Route path="/product/:id" element={<SingleProduct />} />
+          <Route
+            path="/product/:id"
+            element={
+              <SingleProduct
+                handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
+                wishlistArray={wishlistArray}
+              />
+            }
+          />
+
+          
           <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/chat" element={<Chat />} />
+          <Route path="/chat" element={<Chat />
           <Route path="/editproduct" element={<UpdateProductForm />} />
           <Route
             path="/wishlist"
             element={
               <Wishlist
                 wishlist={wishlist}
+                wishlistArray={wishlistArray}
                 handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
               />
             }
           />
+          <Route path="/validate/:code" element={<ValidateEmail />} />
           {
             <Route
               path="/profile"
@@ -79,8 +95,12 @@ function App() {
             />
           }
           <Route
-            path="/pruebas"
+            path="/newproduct"
             element={<MuiNewProductForm userInfo={userInfo} />}
+          />
+          <Route
+            path="/deals/:idDeal"
+            element={<SingleDeal userInfo={userInfo} />}
           />
 
           <Route path="/bestsellers" element={<BestSellers />} />

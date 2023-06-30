@@ -50,12 +50,20 @@ export const editProduct = async (product) => {
   return data;
 };
 
-//!recordar que hay que agregar la config "Content-Type": "multipart/form-data" en el componente,
 export const uploadProductPictures = async (files, config, idProduct) => {
   const { data } = await axios.put(
     `${BACKEND_URL}/products/${idProduct}`,
     files,
     config
+  );
+  if (data.status !== "ok") throw new Error(data.message);
+
+  return data;
+};
+
+export const findProductsByQuery = async (name, category, price) => {
+  const { data } = await axios.get(
+    `${BACKEND_URL}/products/search/?name=${name}&category=${category}&price=${price}`
   );
   if (data.status !== "ok") throw new Error(data.message);
 
