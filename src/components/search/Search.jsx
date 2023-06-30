@@ -16,7 +16,7 @@ function Search() {
           type="text"
           className="searchTerm"
           placeholder="¿Qué estás buscando?"
-          value={input}
+          value={input || ""}
           onChange={(e) => {
             handleInput(e);
           }}

@@ -3,6 +3,7 @@ import { PopUpContext } from "../../context/PopUpContext";
 import { useSearchParams } from "react-router-dom";
 import "./style.css";
 import { useState } from "react";
+import useSearch from "../../hooks/useSearch";
 
 function Filter() {
   const { setAllFalse } = useContext(PopUpContext);
@@ -10,13 +11,15 @@ function Filter() {
   const [ascCheck, setAscCheck] = useState(true);
   const [descCheck, setDescCheck] = useState(false);
   const [checkValue, setCheckValue] = useState("ASC");
+  const { input } = useSearch();
   const handleSubmitForm = (e) => {
     e.preventDefault();
     setAllFalse();
     setSearchParams({
+      name: input,
       category: e.target[0].value,
       price: checkValue,
-      location: e.target.location.value,
+      //   location: e.target.location.value,
     });
   };
   const handleSortChange = (e) => {
@@ -38,12 +41,15 @@ function Filter() {
           <label htmlFor="category">Elija una categoría:</label>
           <select id="category">
             <option>All</option>
-            <option value="consoles">Consolas</option>
-            <option value="games">Juegos</option>
-            <option value="pc">PC</option>
+            <option value="music">Música</option>
+            <option value="video">Video</option>
+            <option value="photography">Fotografia</option>
+            <option value="gaming">Gaming</option>
+            <option value="computer">Computer</option>
+            <option value="collector">Collector</option>
+            <option value="television">Television</option>
             <option value="cloth">Ropa</option>
-            <option value="controllers">Mandos</option>
-            <option value="arcade">Arcade</option>
+            <option value="others">Otros</option>
           </select>
           <fieldset className="sort" id="sort">
             <label htmlFor="ascPrice">Precio de menor a mayor</label>

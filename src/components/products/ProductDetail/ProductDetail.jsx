@@ -5,16 +5,31 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+
 import { Link } from "react-router-dom";
+
+import { postNewDeal } from "../../../services";
+import { useNavigate } from "react-router-dom";
+
 
 const ProductDetail = ({
   product,
   wishlistArray,
   handleAddRemoveFromWishlist,
+  setProducts,
+  products,
+  handleProductChanges,
 }) => {
-  const handleMessageClick = () => {
-    // Lógica para enviar mensaje al vendedor
-    alert("Mensaje enviado al vendedor");
+  const navigate = useNavigate();
+  const handleBuyButton = async () => {
+    const data = await postNewDeal(product?.id);
+    data.status === "ok" && handleProductChanges();
+    const updatedProducts = products.filter((item) => item.id !== product.id);
+    const {
+      data: { id: idDeal },
+    } = data;
+    setProducts([...updatedProducts]);
+    navigate(`/deals/${idDeal}`);
   };
 
   const settings = {
@@ -52,7 +67,7 @@ const ProductDetail = ({
       </div>
       <p className="product-description">{product?.description}</p>
       <div className="product-buttons">
-        <button className="buy-button" onClick={handleMessageClick}>
+        <button className="buy-button" onClick={handleBuyButton}>
           Comprar
         </button>
         <button
@@ -97,5 +112,8 @@ ProductDetail.propTypes = {
   product: PropTypes.object,
   wishlistArray: PropTypes.array,
   handleAddRemoveFromWishlist: PropTypes.func,
+  setProducts: PropTypes.func,
+  products: PropTypes.array,
+  handleProductChanges: PropTypes.func,
 };
 export default ProductDetail;

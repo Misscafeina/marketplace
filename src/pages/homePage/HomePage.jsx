@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { getProducts, getProductsByName } from "../../services/";
+import {
+  findProductsByQuery,
+  getProducts,
+  getProductsByName,
+} from "../../services/";
 import PropTypes from "prop-types";
 import "./style.css";
 import Background from "../../components/background/Background";
@@ -7,17 +11,23 @@ import FooterHome from "../../components/footerhome/FooterHome";
 
 import ProductsContainer from "../../components/products/productsContainer/ProductsContainer";
 import { useSearchParams } from "react-router-dom";
+import useSearch from "../../hooks/useSearch";
 
-function HomePage({ wishlistArray, handleAddRemoveFromWishlist }) {
+function HomePage({
+  wishlistArray,
+  handleAddRemoveFromWishlist,
+  handleProductChanges,
+}) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [products, setProducts] = useState([]);
+  const { input } = useSearch();
 
   useEffect(() => {
-    const { category, price, name, location } =
-      Object.fromEntries(searchParams);
-    if (name) {
+    const { category, price, location } = Object.fromEntries(searchParams);
+    if (name || category || price || location) {
       const getProducts = async () => {
-        const result = await getProductsByName(name);
+        const name = input;
+        const result = await findProductsByQuery(name, category, price);
         setProducts(result.data.products);
       };
       getProducts();
@@ -37,6 +47,8 @@ function HomePage({ wishlistArray, handleAddRemoveFromWishlist }) {
         products={products}
         wishlistArray={wishlistArray}
         handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
+        setProducts={setProducts}
+        handleProductChanges={handleProductChanges}
       />
       <FooterHome />
     </>
@@ -45,6 +57,7 @@ function HomePage({ wishlistArray, handleAddRemoveFromWishlist }) {
 HomePage.propTypes = {
   wishlistArray: PropTypes.array,
   handleAddRemoveFromWishlist: PropTypes.func,
+  handleProductChanges: PropTypes.func,
 };
 
 export default HomePage;

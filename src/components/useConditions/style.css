@@ -1,10 +1,4 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-h1 {
+.use-conditions h1 {
   font-family: "Gill Sans MT", sans-serif;
   font-style: normal;
   text-transform: uppercase;
@@ -16,7 +10,7 @@ h1 {
   margin-bottom: 50px;
 }
 
-h3 {
+.use-conditions h3 {
   font-family: "Gill Sans MT", sans-serif;
   font-style: normal;
   font-size: 20px;
@@ -28,7 +22,7 @@ h3 {
   margin-bottom: 20px;
 }
 
-main {
+.use-conditions {
   font-family: "Gill Sans MT Pro", sans-serifb;
   font-style: normal;
   font-weight: 400;
@@ -36,6 +30,8 @@ main {
   letter-spacing: 0.05em;
   text-transform: unset;
   color: black;
+  flex-grow: 1;
+  padding: 2rem;
 }
 
 UseConditions {
@@ -59,16 +55,11 @@ UCHeader {
   font-size: 3rem;
 } */
 
-main {
-  flex-grow: 1;
-  padding: 2rem;
-}
-
-main.dark {
+.use-conditions.dark {
   background-color: black;
   color: white;
 }
 
-p {
+.use-conditions p {
   margin-bottom: 1rem;
 }

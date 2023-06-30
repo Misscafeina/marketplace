@@ -7,8 +7,11 @@ import { getAnyUserProfile } from "../../../services";
 
 const ProductContainer = ({
   product,
-  whislistArray,
+  wishlistArray,
   handleAddRemoveFromWishlist,
+  setProducts,
+  products,
+  handleProductChanges,
 }) => {
   const navigate = useNavigate();
   const [userId, setUserId] = useState();
@@ -47,8 +50,11 @@ const ProductContainer = ({
     >
       <ProductDetail
         product={product}
-        wishlistArray={whislistArray}
+        products={products}
+        wishlistArray={wishlistArray}
         handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
+        setProducts={setProducts}
+        handleProductChanges={handleProductChanges}
       />
     </li>
   );
@@ -56,8 +62,11 @@ const ProductContainer = ({
 
 ProductContainer.propTypes = {
   product: PropTypes.object,
-  whislistArray: PropTypes.array,
+  wishlistArray: PropTypes.array,
   handleAddRemoveFromWishlist: PropTypes.func,
+  setProducts: PropTypes.func,
+  products: PropTypes.array,
+  handleProductChanges: PropTypes.func,
 };
 
 export default ProductContainer;

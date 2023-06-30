@@ -80,12 +80,15 @@ function MuiNewProductForm({ userInfo }) {
                 <em>Seleccionar categoría</em>
               </MenuItem>
 
-              <MenuItem value={"games"}>Juegos</MenuItem>
-              <MenuItem value={"consoles"}>Consolas</MenuItem>
-              <MenuItem value={"PC"}>PC</MenuItem>
+              <MenuItem value={"gaming"}>Gaming</MenuItem>
+              <MenuItem value={"music"}>Música</MenuItem>
+              <MenuItem value={"video"}>Video</MenuItem>
+              <MenuItem value={"photography"}>Fotografía</MenuItem>
+              <MenuItem value={"computer"}>Ordenador</MenuItem>
+              <MenuItem value={"collector"}>Collección</MenuItem>
+              <MenuItem value={"television"}>Televisión</MenuItem>
               <MenuItem value={"cloth"}>Ropa</MenuItem>
-              <MenuItem value={"controllers"}>Mandos</MenuItem>
-              <MenuItem value={"arcade"}>Arcade</MenuItem>
+              <MenuItem value={"others"}>Otros</MenuItem>
             </Select>
           </FormControl>
           <FormControl>

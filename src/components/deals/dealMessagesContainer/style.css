@@ -1,0 +1,23 @@
+.deal-messages-container {
+  margin: 0 auto;
+  width: 370px;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  gap: 5px;
+}
+.deal-message {
+  display: flex;
+  width: 100%;
+  background-color: #f3f3f3;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #818181a4;
+  gap: 5px;
+}
+.deal-message-sender-info {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: start;
+  padding: 15px 5px;
+}
