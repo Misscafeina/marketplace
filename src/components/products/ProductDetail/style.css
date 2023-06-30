@@ -67,8 +67,8 @@ h3 {
 }
 
 .buy-button:hover {
-    background-color: #636262;
-  }
+  background-color: #636262;
+}
 
 .fav-button {
   border: none;
@@ -80,6 +80,20 @@ h3 {
   color: red;
 }
 
+.chat-button:hover {
+  background-color: #636262;
+}
 .related-products {
   margin-bottom: 15px;
+}
+.chat-button {
+  padding: 10px 15px 10px 15px;
+  font-size: 14px;
+  background-color: #1c1c1c;
+  color: #fff;
+  border: transparent;
+  border-radius: 25px;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
 }

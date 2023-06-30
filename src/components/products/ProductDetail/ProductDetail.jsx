@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Link } from "react-router-dom";
 
 const ProductDetail = ({
   product,
@@ -15,6 +16,7 @@ const ProductDetail = ({
     // Lógica para enviar mensaje al vendedor
     alert("Mensaje enviado al vendedor");
   };
+
   const settings = {
     dots: true,
     infinite: true,
@@ -30,10 +32,12 @@ const ProductDetail = ({
         {}
         Valoración: {}
       </div>
+
       <p className="product-price">
         {product?.price}
         {" €"}
       </p>
+
       <div className="product-carousel">
         {/* Carrusel con fotos del producto */}
         <Slider {...settings}>
@@ -80,6 +84,11 @@ const ProductDetail = ({
           <li>Valoración 2</li>
           <li>Valoración 3</li>
         </ul>
+      </div>
+      <div>
+        <Link to="/chat">
+          <button className="chat-button">Chat</button>
+        </Link>
       </div>
     </div>
   );

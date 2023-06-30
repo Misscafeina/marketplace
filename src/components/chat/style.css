@@ -1,0 +1,34 @@
+.menu {
+  position: relative;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.menu-button {
+  padding: 5px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-options {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  list-style-type: none;
+  z-index: 999;
+}
+
+.menu-options li {
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.menu-options li:hover {
+  background-color: #f2f2f2;
+}

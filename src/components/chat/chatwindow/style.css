@@ -1,0 +1,34 @@
+/* Estilo para el área del chat */
+.chat-window {
+  background-color: #fff;
+  padding: 10px;
+  height: 400px;
+  overflow-y: scroll;
+}
+
+/* Estilo para cada mensaje */
+.message {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+/* Estilo para el mensaje enviado por el usuario actual */
+.message.sent {
+  background-color: #c2e8c2;
+}
+
+/* Estilo para el mensaje recibido de la otra parte */
+.message.received {
+  background-color: #f0f0f0;
+}
+
+/* Estilo para el remitente del mensaje */
+.message .sender {
+  font-weight: bold;
+}
+
+/* Estilo para el contenido del mensaje */
+.message .content {
+  margin-top: 5px;
+}

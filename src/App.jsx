@@ -20,6 +20,8 @@ import AcceptCookies from "./pages/cookiesPopUp/CookiesPopUp";
 import CookiesPopUp from "./pages/cookiesPopUp/CookiesPopUp";
 import MuiNewProductForm from "./components/mui/muiNewProductForm/muiNewProductForm";
 import SearchResult from "./pages/searchResult/SearchResult";
+import Chat from "./components/chat/Chat";
+import ProductDetail from "./components/products/productdetail/ProductDetail";
 
 function App() {
   const {
@@ -49,6 +51,8 @@ function App() {
             }
           />
           <Route path="/product/:id" element={<SingleProduct />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/chat" element={<Chat />} />
           <Route path="/editproduct" element={<UpdateProductForm />} />
           <Route
             path="/wishlist"
