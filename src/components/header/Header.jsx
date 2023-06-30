@@ -15,6 +15,7 @@ import NewProductForm from "../products/newProductForm/NewProductForm";
 import { useAuth } from "../../context/AuthContext";
 import Search from "../search/Search";
 import { useNavigate } from "react-router";
+import { useLocation } from "react-router-dom";
 
 function Header() {
   const { isAuthenticated } = useAuth();
@@ -24,7 +25,7 @@ function Header() {
     useContext(PopUpContext);
   const { logout } = useAuth();
   const navigate = useNavigate();
-
+  const location = useLocation();
   return (
     <header>
       {loginActive && <div>{showPopUp ? <LoginForm /> : null}</div>}
@@ -35,9 +36,11 @@ function Header() {
       </h1>
       <nav className="headerNav">
         <ul>
-          <li>
-            <Search />
-          </li>
+          {location.pathname !== "/" ? (
+            <li>
+              <Search />
+            </li>
+          ) : null}
           <li>
             <button
               className="btn"
