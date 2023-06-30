@@ -40,6 +40,8 @@ function Background() {
           <BsSearch className="icon-search" size={60} />
         </form>
       </div>
+      <button onClick={handleButtonClick}>Filtrar</button>
+      {filterActive && <div>{showPopUp ? <Filter /> : null}</div>}
     </div>
   );
 }
