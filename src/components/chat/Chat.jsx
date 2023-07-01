@@ -1,24 +1,24 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import "./style.css";
+import { postChatMessage } from "../../services";
+import { getDealDetails } from "../../services/dealsService";
 
-const Chat = () => {
-  const [messages, setMessages] = useState([]);
+const Chat = ({ dealInfo, setDealInfo }) => {
   const [newMessage, setNewMessage] = useState("");
   const [showMenu, setShowMenu] = useState(false);
-  const [blockedUsers, setBlockedUsers] = useState([]);
-  const [reportedUsers, setReportedUsers] = useState([]);
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-  const handleSendMessage = () => {
-    if (newMessage.trim() !== "") {
-      const message = {
-        content: newMessage,
-        user: {
-          name: userInfo.username,
-          profilePicture: userInfo.avatar,
-        },
-      };
-      setMessages([...messages, message]);
+  // const [blockedUsers, setBlockedUsers] = useState([]);
+  // const [reportedUsers, setReportedUsers] = useState([]);
+  const handleSendMessage = async () => {
+    try {
+      const message = { message: newMessage, status: "approved" };
+      await postChatMessage(dealInfo.dealData.id, message);
       setNewMessage("");
+
+      const response = await getDealDetails(dealInfo.dealData.id);
+      response.status === "ok" && setDealInfo(response.data);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -26,33 +26,50 @@ const Chat = () => {
     setShowMenu(!showMenu);
   };
 
-  const handleMenuOptionClick = (option) => {
-    if (option === "Borrar conversación") {
-      setMessages([]);
-    } else if (option === "Bloquear usuario") {
-      const lastMessage = messages[messages.length - 1];
-      if (lastMessage && !blockedUsers.includes(lastMessage.user.name)) {
-        setBlockedUsers([...blockedUsers, lastMessage.user.name]);
-      }
-    } else if (option === "Reportar usuario") {
-      const lastMessage = messages[messages.length - 1];
-      if (lastMessage && !reportedUsers.includes(lastMessage.user.name)) {
-        setReportedUsers([...reportedUsers, lastMessage.user.name]);
-      }
-    }
-  };
+  // const handleMenuOptionClick = (option) => {
+  //   if (option === "Borrar conversación") {
+  //     setMessages([]);
+  //   } else if (option === "Bloquear usuario") {
+  //     const lastMessage = messages[messages.length - 1];
+  //     if (lastMessage && !blockedUsers.includes(lastMessage.user.name)) {
+  //       setBlockedUsers([...blockedUsers, lastMessage.user.name]);
+  //     }
+  //   } else if (option === "Reportar usuario") {
+  //     const lastMessage = messages[messages.length - 1];
+  //     if (lastMessage && !reportedUsers.includes(lastMessage.user.name)) {
+  //       setReportedUsers([...reportedUsers, lastMessage.user.name]);
+  //     }
+  //   }
+  // };
+  const {
+    avatarVendorUrl,
+    usernameVendor,
+
+    avatarBuyerUrl,
+    usernameBuyer,
+    idBuyer,
+  } = dealInfo?.dealData;
 
   return (
     <div className="container">
       <div className="message-list">
-        {messages.map((message, index) => (
-          <div key={index} className="message">
+        {dealInfo?.messages.map((message) => (
+          <div key={message.id} className="message">
             <div className="user-profile">
-              <img src={message.user.profilePicture} alt="Profile" />
+              <img
+                src={
+                  message.idSender === idBuyer
+                    ? avatarBuyerUrl
+                    : avatarVendorUrl
+                }
+                alt="Profile"
+              />
             </div>
             <div className="user-details">
-              <div className="user-name">{message.user.name}</div>
-              <div className="message-content">{message.content}</div>
+              <div className="user-name">
+                {message.idSender === idBuyer ? usernameBuyer : usernameVendor}
+              </div>
+              <div className="message-content">{message.message}</div>
             </div>
           </div>
         ))}
@@ -86,5 +103,8 @@ const Chat = () => {
     </div>
   );
 };
-
+Chat.propTypes = {
+  dealInfo: PropTypes.object,
+  setDealInfo: PropTypes.func,
+};
 export default Chat;
