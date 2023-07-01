@@ -7,14 +7,14 @@ const Chat = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [blockedUsers, setBlockedUsers] = useState([]);
   const [reportedUsers, setReportedUsers] = useState([]);
-
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const handleSendMessage = () => {
     if (newMessage.trim() !== "") {
       const message = {
         content: newMessage,
         user: {
-          name: "Willow",
-          profilePicture: "profile.jpg",
+          name: userInfo.username,
+          profilePicture: userInfo.avatar,
         },
       };
       setMessages([...messages, message]);
