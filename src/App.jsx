@@ -99,7 +99,9 @@ function App() {
           />
           <Route
             path="/deals/:idDeal"
-            element={<SingleDeal userInfo={userInfo} />}
+            element={
+              <SingleDeal userInfo={userInfo} setUserInfo={setUserInfo} />
+            }
           />
 
           <Route path="/bestsellers" element={<BestSellers />} />

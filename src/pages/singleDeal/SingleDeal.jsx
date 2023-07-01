@@ -6,6 +6,7 @@ import DealContainer from "../../components/deals/dealContainer/DealContainer";
 import DealImage from "../../components/deals/dealImage/DealImage";
 import DealMessagesContainer from "../../components/deals/dealMessagesContainer/DealMessagesContainer";
 import DealMessage from "../../components/deals/dealMessage/DealMessage";
+import Chat from "../../components/chat/Chat";
 
 SingleDeal.propTypes = {
   userInfo: PropTypes.object,
@@ -27,9 +28,8 @@ function SingleDeal({ userInfo }) {
     };
     getInfo(idDeal);
   }, [idDeal]);
-
-  console.log(dealInfo);
-  console.log(userInfo);
+  // console.log(userInfo);
+  // console.log(dealInfo);
   return (
     <>
       {isAllowed && (
@@ -39,7 +39,12 @@ function SingleDeal({ userInfo }) {
       )}
       {isAllowed && (
         <DealMessagesContainer>
-          {dealInfo?.messages?.map((message) => {
+          <Chat
+            dealInfo={dealInfo}
+            userInfo={userInfo}
+            setDealInfo={setDealInfo}
+          />
+          {/* {dealInfo?.messages?.map((message) => {
             return (
               <DealMessage
                 key={message.id}
@@ -47,7 +52,7 @@ function SingleDeal({ userInfo }) {
                 dealInfo={dealInfo}
               />
             );
-          })}
+          })} */}
         </DealMessagesContainer>
       )}
     </>
