@@ -5,12 +5,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-
+import Rating from "react-rating";
 import { Link } from "react-router-dom";
-
 import { postNewDeal } from "../../../services";
 import { useNavigate } from "react-router-dom";
-
 
 const ProductDetail = ({
   product,
@@ -39,13 +37,22 @@ const ProductDetail = ({
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+  console.log(product);
 
   return (
     <div className="product-detail">
       <h2 className="product-title">{product?.name}</h2>
       <div className="product-rating">
-        {}
-        Valoración: {}
+        <Rating
+          className="rating"
+          initialRating={
+            product?.avgReviewsVendor
+          } /* Si el initialRating tiene un valor que salga el empty y el full del color amarillo del css y sino, que los bordes salgan en gris (#888)*/
+          emptySymbol={<span className="rating-empty">&#9734;</span>}
+          fullSymbol={<span className="rating-full">&#9733;</span>}
+          readonly
+        />
+        {product?.avgReviewsVendor}
       </div>
 
       <p className="product-price">
@@ -54,7 +61,7 @@ const ProductDetail = ({
       </p>
 
       <div className="product-carousel">
-        {/* Carrusel con fotos del producto */}
+        {}
         <Slider {...settings}>
           {product?.images?.map((image, index) => {
             return (
@@ -108,6 +115,7 @@ const ProductDetail = ({
     </div>
   );
 };
+
 ProductDetail.propTypes = {
   product: PropTypes.object,
   wishlistArray: PropTypes.array,
@@ -116,4 +124,5 @@ ProductDetail.propTypes = {
   products: PropTypes.array,
   handleProductChanges: PropTypes.func,
 };
+
 export default ProductDetail;

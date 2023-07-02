@@ -32,9 +32,9 @@ h3 {
   margin-bottom: 10px;
 }
 
-/* .product-rating {
-    "Estrellitas iconos"
-} */
+.rating {
+  color: #fec810;
+}
 
 .product-price {
   font-size: 18px;
