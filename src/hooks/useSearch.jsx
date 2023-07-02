@@ -6,6 +6,7 @@ function useSearch() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [input, setInput] = useState(searchParams.get("name") ?? "");
   const navigate = useNavigate();
+
   const handleInput = (e) => {
     setInput(e.target.value);
   };

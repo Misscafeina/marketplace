@@ -61,9 +61,11 @@ export const uploadProductPictures = async (files, config, idProduct) => {
   return data;
 };
 
-export const findProductsByQuery = async (name, category, price) => {
+export const findProductsByQuery = async (name, category, order, lat, long) => {
+  console.log(name, category, order, lat, long);
   const { data } = await axios.get(
-    `${BACKEND_URL}/products/search/?name=${name}&category=${category}&price=${price}`
+    `${BACKEND_URL}/products/search/?name=${name}&category=${category}&order=${order}`,
+    { params: { lat, long } }
   );
   if (data.status !== "ok") throw new Error(data.message);
 

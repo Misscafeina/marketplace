@@ -17,17 +17,27 @@ function HomePage({
   wishlistArray,
   handleAddRemoveFromWishlist,
   handleProductChanges,
+  locationLat,
+  locationLong,
 }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [products, setProducts] = useState([]);
   const { input } = useSearch();
 
   useEffect(() => {
-    const { category, price, location } = Object.fromEntries(searchParams);
-    if (name || category || price || location) {
+    const { category, order } = Object.fromEntries(searchParams);
+    if (name || category || order) {
       const getProducts = async () => {
         const name = input;
-        const result = await findProductsByQuery(name, category, price);
+        const lat = locationLat;
+        const long = locationLong;
+        const result = await findProductsByQuery(
+          name,
+          category,
+          order,
+          lat,
+          long
+        );
         setProducts(result.data.products);
       };
       getProducts();
@@ -39,6 +49,7 @@ function HomePage({
       requestProducts();
     }
   }, [searchParams]);
+  console.log(products);
 
   return (
     <>
@@ -58,6 +69,8 @@ HomePage.propTypes = {
   wishlistArray: PropTypes.array,
   handleAddRemoveFromWishlist: PropTypes.func,
   handleProductChanges: PropTypes.func,
+  locationLat: PropTypes.string,
+  locationLong: PropTypes.string,
 };
 
 export default HomePage;
