@@ -36,6 +36,8 @@ function App() {
     wishlistArray,
     handleAddRemoveFromWishlist,
     handleProductChanges,
+    locationLat,
+    locationLong,
   } = useApp();
   return (
     <PopUpProvider>
@@ -51,6 +53,8 @@ function App() {
                 handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
                 wishlistArray={wishlistArray}
                 handleProductChanges={handleProductChanges}
+                locationLat={locationLat}
+                locationLong={locationLong}
               />
             }
           />
