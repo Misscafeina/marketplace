@@ -9,6 +9,10 @@ header {
   background-color: white;
 }
 
+.headerNav {
+  width: 30%;
+}
+
 .headerNav ul {
   display: flex;
   align-items: center;
@@ -16,6 +20,13 @@ header {
   list-style: none;
   gap: 8px;
 }
+
+.btn {
+  
+  background-color: transparent;
+  border: none;
+}
+
 /* 
 .btn {
   position: relative;
