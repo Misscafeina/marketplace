@@ -68,7 +68,7 @@ function App() {
             }
           />
 
-          <Route path="/product/:id" element={<ProductDetail />} />
+          {/* <Route path="/product/:id" element={<ProductDetail />} /> */}
           <Route path="/chat" element={<Chat />} />
           <Route path="/editproduct" element={<UpdateProductForm />} />
           <Route
