@@ -11,7 +11,6 @@ import { useContext } from "react";
 import { PopUpContext } from "../../context/PopUpContext";
 import LoginForm from "../users/loginForm/LoginForm";
 import RegisterForm from "../users/registerForm/RegisterForm";
-import NewProductForm from "../products/newProductForm/NewProductForm";
 import { useAuth } from "../../context/AuthContext";
 import Search from "../search/Search";
 import { useNavigate } from "react-router";

@@ -2,8 +2,6 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { PopUpContext } from "../context/popUpContext";
 import LoginPopUp from "../pages/loginPopUp/LoginPopUp";
-import NewProductPage from "../pages/newProductPage/NewProductPage";
-import NewProductForm from "../components/products/newProductForm/NewProductForm";
 
 function useHeader() {
   const navigate = useNavigate();
