@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import DealContainer from "../../components/deals/dealContainer/DealContainer";
 import DealImage from "../../components/deals/dealImage/DealImage";
 import DealMessagesContainer from "../../components/deals/dealMessagesContainer/DealMessagesContainer";
-import DealMessage from "../../components/deals/dealMessage/DealMessage";
 import Chat from "../../components/chat/Chat";
 
 SingleDeal.propTypes = {
