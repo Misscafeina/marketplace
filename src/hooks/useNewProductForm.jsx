@@ -2,10 +2,12 @@ import {
   postNewProduct,
   uploadProductPictures,
 } from "../services/productsService";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { PopUpContext } from "../context/popUpContext";
 
 function useNewProductForm() {
+  const [errorMessage, setErrorMessage] = useState("");
+
   const { setNewProductActive, setShowPopUp, setAllFalse } =
     useContext(PopUpContext);
 
@@ -41,10 +43,12 @@ function useNewProductForm() {
         },
       };
 
-      const filesResponse = await uploadProductPictures(formData, config, id);
+      const filesResponse = await uploadProductPictures(formDta, config, id);
       filesResponse.status === "ok" && setAllFalse();
     } catch (err) {
-      console.log(err);
+      setErrorMessage(err.message);
+
+      console.log(err.message);
     }
   };
 

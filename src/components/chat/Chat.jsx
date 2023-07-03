@@ -7,11 +7,12 @@ import { getDealDetails } from "../../services/dealsService";
 const Chat = ({ dealInfo, setDealInfo }) => {
   const [newMessage, setNewMessage] = useState("");
   const [showMenu, setShowMenu] = useState(false);
+  const [status, setStatus] = useState(dealInfo.dealData.status);
   // const [blockedUsers, setBlockedUsers] = useState([]);
   // const [reportedUsers, setReportedUsers] = useState([]);
   const handleSendMessage = async () => {
     try {
-      const message = { message: newMessage, status: "approved" };
+      const message = { message: newMessage, status: "cancelled" };
       await postChatMessage(dealInfo.dealData.id, message);
       setNewMessage("");
 
