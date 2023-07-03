@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 import { useContext } from "react";
 import { PopUpContext } from "../context/popUpContext";
 import { useAuth } from "../context/AuthContext";
+import { useError } from "../context/ErrorContext";
 
 function useLoginForm() {
   const { user, setUser, login, isAuthenticated } = useAuth();
@@ -12,7 +13,11 @@ function useLoginForm() {
     loginActive,
     registerActive,
     setRegisterActive,
+    setErrorActive,
+    errorActive,
+    setAllFalse,
   } = useContext(PopUpContext);
+  const { setErrorMessage } = useError();
   const navigate = useNavigate();
   const submitInfo = async (data) => {
     const { username, password } = data;
@@ -24,7 +29,9 @@ function useLoginForm() {
       }
       // window.location.reload();
     } catch (err) {
-      console.log(err);
+      setShowPopUp(true);
+      setErrorActive(true);
+      setErrorMessage(err.response.data.error);
     }
   };
   return {
@@ -34,6 +41,7 @@ function useLoginForm() {
     loginActive,
     registerActive,
     setRegisterActive,
+    errorActive,
     submitInfo,
   };
 }

@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import "./style.css";
 import { postChatMessage } from "../../services";
 import { getDealDetails } from "../../services/dealsService";
+import { PopUpContext } from "../../context/popUpContext";
+import { useError } from "../../context/ErrorContext";
 
 const Chat = ({ dealInfo, setDealInfo }) => {
   const [newMessage, setNewMessage] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [status, setStatus] = useState(dealInfo.dealData.status);
+  const { setShowPopUp, setErrorActive } = useContext(PopUpContext);
+  const { setErrorMessage } = useError();
   // const [blockedUsers, setBlockedUsers] = useState([]);
   // const [reportedUsers, setReportedUsers] = useState([]);
   const handleSendMessage = async () => {
@@ -19,7 +23,9 @@ const Chat = ({ dealInfo, setDealInfo }) => {
       const response = await getDealDetails(dealInfo.dealData.id);
       response.status === "ok" && setDealInfo(response.data);
     } catch (error) {
-      console.error(error);
+      setShowPopUp(true);
+      setErrorActive(true);
+      setErrorMessage(error.response.data.error);
     }
   };
 

@@ -2,10 +2,12 @@ import { useContext } from "react";
 import { editOwnProfile } from "../services/userService";
 import { useNavigate } from "react-router";
 import { PopUpContext } from "../context/popUpContext";
+import { useError } from "../context/ErrorContext";
 
 function useUpdateUserForm() {
-  const { showPopUp, setShowPopUp, setEditProfileActive } =
+  const { showPopUp, setShowPopUp, setEditProfileActive, setErrorActive } =
     useContext(PopUpContext);
+  const { setErrorMessage } = useError();
   window.addEventListener("click", ({ target }) => {
     if (target.className === "popup") {
       setShowPopUp(false);
@@ -44,7 +46,9 @@ function useUpdateUserForm() {
         setShowPopUp(false) &&
         setEditProfileActive(false);
     } catch (err) {
-      console.log(err);
+      setShowPopUp(true);
+      setErrorActive(true);
+      setErrorMessage(err.response.data.error);
     }
   };
   return {

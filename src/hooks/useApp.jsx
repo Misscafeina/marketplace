@@ -1,6 +1,8 @@
 import { useAuth } from "../context/AuthContext";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { addRemoveFromWishlist, getOwnProfile, getWishlist } from "../services";
+import { PopUpContext } from "../context/popUpContext";
+import { useError } from "../context/ErrorContext";
 
 function useApp() {
   const { isAuthenticated } = useAuth();
@@ -10,14 +12,18 @@ function useApp() {
   const [wishlistArray, setWishlistArray] = useState([]);
   const [locationLat, setLocationLat] = useState();
   const [locationLong, setLocationLong] = useState();
+  const { setShowPopUp, setErrorActive } = useContext(PopUpContext);
+  const { setErrorMessage } = useError();
   useEffect(() => {
     if (isAuthenticated) {
       const getInfo = async () => {
         try {
           const response = await getOwnProfile();
           response?.status === "ok" && setUserInfo(response.data);
-        } catch (error) {
-          console.error(error);
+        } catch (err) {
+          setShowPopUp(true);
+          setErrorActive(true);
+          setErrorMessage(err.response.data.error);
         }
       };
       getInfo();
@@ -79,8 +85,10 @@ function useApp() {
         try {
           const { data } = await getWishlist();
           setWishlist(data);
-        } catch (error) {
-          console.error(error);
+        } catch (err) {
+          setShowPopUp(true);
+          setErrorActive(true);
+          setErrorMessage(err.response.data.error);
         }
       };
       getInfo();
@@ -101,16 +109,20 @@ function useApp() {
       await addRemoveFromWishlist(idProduct);
       const { data } = await getWishlist();
       setWishlist(data);
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      setShowPopUp(true);
+      setErrorActive(true);
+      setErrorMessage(err.response.data.error);
     }
   };
   const handleProductChanges = async () => {
     try {
       const response = await getOwnProfile();
       response?.status === "ok" && setUserInfo(response.data);
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      setShowPopUp(true);
+      setErrorActive(true);
+      setErrorMessage(err.response.data.error);
     }
   };
   return {
