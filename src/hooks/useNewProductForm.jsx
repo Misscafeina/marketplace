@@ -4,9 +4,10 @@ import {
 } from "../services/productsService";
 import { useContext, useState } from "react";
 import { PopUpContext } from "../context/popUpContext";
+import { useError } from "../context/ErrorContext";
 
 function useNewProductForm() {
-  const [errorMessage, setErrorMessage] = useState("");
+  const { setErrorMessage, erroMessage } = useError();
 
   const { setNewProductActive, setShowPopUp, setAllFalse } =
     useContext(PopUpContext);
