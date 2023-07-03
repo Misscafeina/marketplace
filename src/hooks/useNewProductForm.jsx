@@ -44,12 +44,13 @@ function useNewProductForm() {
         },
       };
 
-      const filesResponse = await uploadProductPictures(formDta, config, id);
+      const filesResponse = await uploadProductPictures(formData, config, id);
       filesResponse.status === "ok" && setAllFalse();
     } catch (err) {
+      console.log(err);
       setShowPopUp(true);
       setErrorActive(true);
-      setErrorMessage(err.response.data.error);
+      setErrorMessage(err.response?.data?.error);
     }
   };
 

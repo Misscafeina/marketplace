@@ -82,7 +82,7 @@ function Header() {
             <button
               className="btn"
               onClick={() => {
-                navigate("/newproduct");
+                addNewProduct();
               }}
             >
               <img src={addProductLogo} alt="Add new product button" />

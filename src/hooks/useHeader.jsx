@@ -51,9 +51,7 @@ function useHeader() {
       setShowPopUp(true);
       setLoginActive(true);
     } else {
-      setShowPopUp(true);
-      setNewProductActive(true);
-      showPopUp && NewProductPage;
+      navigate("/newproduct");
     }
   };
   return { returnHome, userLog, wishList, messages, search, addNewProduct };
