@@ -22,10 +22,15 @@ import TextAreaInput from "../../inputs/TextAreaInput";
 import { useNavigate } from "react-router";
 import useUpdateUserForm from "../../../hooks/useUpdateUserForm";
 import { getOwnProfile } from "../../../services";
+import { useContext } from "react";
+import { PopUpContext } from "../../../context/popUpContext";
+import { useError } from "../../../context/ErrorContext";
 
 function UpdateUserForm({ selectedField, setUserInfo }) {
   const navigate = useNavigate();
   const { submitInfo } = useUpdateUserForm();
+  const { setShowPopUp, setErrorActive } = useContext(PopUpContext);
+  const { setErrorMessage } = useError();
   const onSubmit = async (data) => {
     try {
       await submitInfo(data);
@@ -33,7 +38,9 @@ function UpdateUserForm({ selectedField, setUserInfo }) {
       updatedProfile?.status === "ok" && setUserInfo(updatedProfile.data);
       navigate("/profile");
     } catch (err) {
-      console.log(err);
+      setShowPopUp(true);
+      setErrorActive(true);
+      setErrorMessage(err.response.data.error);
     }
   };
   const {

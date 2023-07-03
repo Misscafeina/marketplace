@@ -1,10 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { editProduct, getProducts } from "../services/productsService";
 import { useNavigate } from "react-router";
+import { PopUpContext } from "../context/popUpContext";
+import { useError } from "../context/ErrorContext";
 
 function useUpdateProductForm() {
   const navigate = useNavigate();
   const [productInfo, setproductInfo] = useState({});
+  const { setShowPopUp, setErrorActive } = useContext(PopUpContext);
+  const { setErrorMessage } = useError();
   useEffect(() => {
     const getProductInfo = async () => {
       const {
@@ -29,7 +33,9 @@ function useUpdateProductForm() {
       await editProduct(data, config);
       navigate("/newproduct");
     } catch (err) {
-      console.log(err);
+      setShowPopUp(true);
+      setErrorActive(true);
+      setErrorMessage(err.response.data.error);
     }
 
     console.log(data);

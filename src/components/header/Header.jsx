@@ -16,12 +16,13 @@ import { useAuth } from "../../context/AuthContext";
 import Search from "../search/Search";
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
+import ErrorPopUp from "../errorPopUp/errorPopUp";
 
 function Header() {
   const { isAuthenticated } = useAuth();
   const { returnHome, userLog, wishList, messages, addNewProduct } =
     useHeader();
-  const { showPopUp, loginActive, registerActive, newProductActive } =
+  const { showPopUp, loginActive, registerActive, errorActive } =
     useContext(PopUpContext);
   const { logout } = useAuth();
   const navigate = useNavigate();
@@ -31,7 +32,8 @@ function Header() {
     <header>
       {loginActive && <div>{showPopUp ? <LoginForm /> : null}</div>}
       {registerActive && <div>{showPopUp ? <RegisterForm /> : null}</div>}
-      {newProductActive && <div>{showPopUp ? <NewProductForm /> : null}</div>}
+      {errorActive && <div>{showPopUp ? <ErrorPopUp /> : null}</div>}
+
       <h1 onClick={returnHome}>
         <img src="/logo.png" alt="logoweb" />
       </h1>

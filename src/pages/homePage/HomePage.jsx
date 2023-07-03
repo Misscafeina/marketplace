@@ -25,10 +25,10 @@ function HomePage({
   const { input } = useSearch();
 
   useEffect(() => {
-    const { category, order } = Object.fromEntries(searchParams);
+    const { name, category, order } = Object.fromEntries(searchParams);
     if (name || category || order) {
       const getProducts = async () => {
-        const name = input;
+        // const name = input;
         const lat = locationLat;
         const long = locationLong;
         const result = await findProductsByQuery(

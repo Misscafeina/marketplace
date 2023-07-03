@@ -9,7 +9,7 @@ import { useError } from "../context/ErrorContext";
 function useNewProductForm() {
   const { setErrorMessage, erroMessage } = useError();
 
-  const { setNewProductActive, setShowPopUp, setAllFalse } =
+  const { setNewProductActive, setShowPopUp, setAllFalse, setErrorActive } =
     useContext(PopUpContext);
 
   const submitInfo = async (data) => {
@@ -47,9 +47,9 @@ function useNewProductForm() {
       const filesResponse = await uploadProductPictures(formDta, config, id);
       filesResponse.status === "ok" && setAllFalse();
     } catch (err) {
-      setErrorMessage(err.message);
-
-      console.log(err.message);
+      setShowPopUp(true);
+      setErrorActive(true);
+      setErrorMessage(err.response.data.error);
     }
   };
 
