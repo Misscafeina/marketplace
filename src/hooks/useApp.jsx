@@ -117,6 +117,8 @@ function useApp() {
   };
   const handleProductChanges = async () => {
     try {
+      console.log("actualizando datos de usuario");
+
       const response = await getOwnProfile();
       response?.status === "ok" && setUserInfo(response.data);
     } catch (err) {

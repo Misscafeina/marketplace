@@ -74,3 +74,4 @@ export const HASHTAG_VALIDATIONS = {
   maxLength: { value: 100, message: "Máximo 100 caracteres" },
 };
 export const REQUIRED = { required };
+export const PICTURE_REQUIRED = { required: "Debes incluir una foto" };

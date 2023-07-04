@@ -13,15 +13,16 @@ function ValidateEmail() {
   const code = window.location.pathname.split("/")[2];
   const verify = async (code) => {
     try {
-      console.log(code);
       const response = await validateEmail(code);
-      console.log(response);
-
-      navigate("/");
+      response.status === "ok" && navigate("/");
     } catch (err) {
-      setShowPopUp(true);
-      setErrorActive(true);
-      setErrorMessage(err.response.data.error);
+      console.log(err);
+      if (err.response.status !== 403) {
+        setShowPopUp(true);
+        setErrorActive(true);
+        setErrorMessage(err.response.data.error);
+      }
+      navigate("/");
     }
   };
   verify(code);
