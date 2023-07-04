@@ -12,14 +12,13 @@ UserDeals.propTypes = {
 };
 
 function UserDeals({ products, title }) {
-  // console.log(products);
   return (
     <ImageList sx={{ width: 500, height: 450 }}>
       <ImageListItem key="Subheader" cols={2}>
         <ListSubheader component="div">{title}</ListSubheader>
       </ImageListItem>
       {products.map((item) => (
-        <article key={item.id}>
+        <article key={item.idDeal}>
           <ImageListItem>
             <img
               src={`${item?.images[0]}?w=248&fit=crop&auto=format`}

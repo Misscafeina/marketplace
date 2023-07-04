@@ -6,12 +6,19 @@ import { getDealDetails } from "../../services/dealsService";
 import { PopUpContext } from "../../context/popUpContext";
 import { useError } from "../../context/ErrorContext";
 
-const Chat = ({ dealInfo, setDealInfo }) => {
+const Chat = ({
+  userInfo,
+  dealInfo,
+  setDealInfo,
+  setUserInfo,
+  handleProductChanges,
+}) => {
   const [newMessage, setNewMessage] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [status, setStatus] = useState(dealInfo.dealData.status);
   const { setShowPopUp, setErrorActive } = useContext(PopUpContext);
   const { setErrorMessage } = useError();
+  console.log(userInfo);
   // const [blockedUsers, setBlockedUsers] = useState([]);
   // const [reportedUsers, setReportedUsers] = useState([]);
   const handleSendMessage = async () => {
@@ -19,6 +26,7 @@ const Chat = ({ dealInfo, setDealInfo }) => {
       const message = { message: newMessage, status: "cancelled" };
       await postChatMessage(dealInfo.dealData.id, message);
       setNewMessage("");
+      handleProductChanges();
 
       const response = await getDealDetails(dealInfo.dealData.id);
       response.status === "ok" && setDealInfo(response.data);
@@ -113,5 +121,7 @@ const Chat = ({ dealInfo, setDealInfo }) => {
 Chat.propTypes = {
   dealInfo: PropTypes.object,
   setDealInfo: PropTypes.func,
+  setUserInfo: PropTypes.func,
+  handleProductChanges: PropTypes.func,
 };
 export default Chat;

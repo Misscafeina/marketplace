@@ -49,7 +49,6 @@ function HomePage({
       requestProducts();
     }
   }, [searchParams]);
-  console.log(products);
 
   return (
     <>
