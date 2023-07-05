@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "./style.css";
 import {
@@ -17,13 +17,24 @@ import useNewProductForm from "../../../hooks/useNewProductForm";
 import {
   LONG_TEXT_VALIDATIONS_REQUIRED,
   NAME_VALIDATIONS_REQUIRED,
+  PICTURE_REQUIRED,
   PRODUCT_NAME_REQUIRED,
   REQUIRED,
 } from "../../../utils/formValidationConstants";
 import { useForm } from "react-hook-form";
-MuiNewProductForm.propTypes = { userInfo: PropTypes.object };
+import { postNewProduct, uploadProductPictures } from "../../../services";
+import { useNavigate } from "react-router-dom";
+import { useError } from "../../../context/ErrorContext";
+import { PopUpContext } from "../../../context/popUpContext";
+MuiNewProductForm.propTypes = {
+  userInfo: PropTypes.object,
+  handleProductChanges: PropTypes.func,
+};
 
-function MuiNewProductForm({ userInfo }) {
+function MuiNewProductForm({ userInfo, handleProductChanges }) {
+  const { setErrorMessage, errorMessage } = useError();
+  const navigate = useNavigate();
+  const { setShowPopUp, setErrorActive } = useContext(PopUpContext);
   const [getSavedAddres, setGetSavedAddres] = useState(false);
 
   useEffect(() => {
@@ -35,9 +46,43 @@ function MuiNewProductForm({ userInfo }) {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const submitInfo = async (data) => {
+    try {
+      if (!data.images[0]) throw new Error("Debes incluir al menos 1 foto");
+      const productData = { ...data };
+      if (data.images.length > 10)
+        throw new Error("El máximo son 10 fotos por producto");
+      delete productData.images;
+      const response = await postNewProduct(productData);
+      const {
+        data: {
+          productInfo: { id },
+        },
+      } = response;
+      if (response.status !== "ok") throw new Error(response?.data?.error);
+      const formData = new FormData();
 
-  const { submitInfo } = useNewProductForm();
-  console.log(getSavedAddres);
+      for (let i = 0; i < data.images.length; i++) {
+        formData.append("images", data.images[i]);
+      }
+
+      const config = {
+        header: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+
+      const filesResponse = await uploadProductPictures(formData, config, id);
+
+      filesResponse.status === "ok" && navigate(`/product/${id}`);
+      handleProductChanges();
+    } catch (err) {
+      setShowPopUp(true);
+      setErrorActive(true);
+      setErrorMessage(err.response?.data?.error || err.message);
+    }
+  };
+  // const { submitInfo } = useNewProductForm();
   return (
     <div>
       <h2>¿Qué producto vas a subir?</h2>
@@ -127,9 +172,10 @@ function MuiNewProductForm({ userInfo }) {
               <FormControlLabel
                 control={
                   <Checkbox
-                    {...register("useSavedAddress")}
+                    {...register("useSavedAddress", {
+                      value: { getSavedAddres },
+                    })}
                     checked={getSavedAddres}
-                    value={getSavedAddres ? 1 : undefined}
                     onChange={() => {
                       setGetSavedAddres(!getSavedAddres);
                     }}
@@ -185,11 +231,12 @@ function MuiNewProductForm({ userInfo }) {
             label="Fotos"
             variant="outlined"
             type="file"
-            {...register("images", REQUIRED, {
+            {...register("images", PICTURE_REQUIRED, {
               validate: (value) => {
                 if (value.length > 10) {
-                  console.log(value);
                   return "Máximo 10 fotos";
+                } else if (value.length === 0) {
+                  return "Mínimo 1 foto";
                 }
               },
             })}

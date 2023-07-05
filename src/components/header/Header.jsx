@@ -16,6 +16,7 @@ import Search from "../search/Search";
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 import ErrorPopUp from "../errorPopUp/errorPopUp";
+import Navbar from "../navbar/Navbar";
 
 function Header() {
   const { isAuthenticated } = useAuth();
@@ -33,74 +34,74 @@ function Header() {
       {registerActive && <div>{showPopUp ? <RegisterForm /> : null}</div>}
       {errorActive && <div>{showPopUp ? <ErrorPopUp /> : null}</div>}
 
-      <h1 onClick={returnHome}>
+      <h1 className="logo" onClick={returnHome}>
         <img src="/logo.png" alt="logoweb" />
       </h1>
-      <nav className="headerNav">
-        <ul>
-          {location.pathname !== "/" ? (
-            <li>
-              <Search />
-            </li>
-          ) : null}
-          <li>
-            <button
-              className="btn"
-              onClick={() => {
-                userLog();
-              }}
-            >
-              <img src={userLogo} alt="user" />
-            </button>
-          </li>
-          {isAuthenticated && (
+      {location.pathname !== "/" ? <Search /> : null}
+      {window.innerWidth <= 840 ? (
+        <Navbar />
+      ) : (
+        <nav className="headerNav">
+          <ul>
             <li>
               <button
                 className="btn"
                 onClick={() => {
-                  wishList();
+                  userLog();
                 }}
               >
-                <img src={wishListLogo} alt="wishList" />
+                <img src={userLogo} alt="user" />
               </button>
             </li>
-          )}
-          {isAuthenticated && (
+            {isAuthenticated && (
+              <li>
+                <button
+                  className="btn"
+                  onClick={() => {
+                    wishList();
+                  }}
+                >
+                  <img src={wishListLogo} alt="wishList" />
+                </button>
+              </li>
+            )}
+            {isAuthenticated && (
+              <li>
+                <button
+                  className="btn"
+                  onClick={() => {
+                    messages();
+                  }}
+                >
+                  <img src={messageLogo} alt="message button" />
+                </button>
+              </li>
+            )}
             <li>
               <button
                 className="btn"
                 onClick={() => {
-                  messages();
+                  addNewProduct();
                 }}
               >
-                <img src={messageLogo} alt="message button" />
+                <img src={addProductLogo} alt="Add new product button" />
               </button>
             </li>
-          )}
-          <li>
-            <button
-              className="btn"
-              onClick={() => {
-                addNewProduct();
-              }}
-            >
-              <img src={addProductLogo} alt="Add new product button" />
-            </button>
-          </li>
-          {isAuthenticated && (
-            <li>
-              <button
-                className="btn"
-                onClick={() => {
-                  logout();
-                }}
-              >
-                <img src={logInLogo} alt="Logout button" />
-              </button>
-            </li>
-          )}
-        </ul>
-      </nav>
+            {isAuthenticated && (
+              <li>
+                <button
+                  className="btn"
+                  onClick={() => {
+                    logout();
+                  }}
+                >
+                  <img src={logInLogo} alt="Logout button" />
+                </button>
+              </li>
+            )}
+          </ul>
+        </nav>
+      )}
     </header>
   );
 }

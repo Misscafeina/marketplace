@@ -22,11 +22,16 @@ header {
 }
 
 .btn {
-  
   background-color: transparent;
   border: none;
 }
 
+button:hover {
+  cursor: pointer;
+}
+.logo:hover {
+  cursor: pointer;
+}
 /* 
 .btn {
   position: relative;

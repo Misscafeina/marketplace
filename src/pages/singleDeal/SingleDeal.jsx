@@ -11,9 +11,11 @@ import { useError } from "../../context/ErrorContext";
 
 SingleDeal.propTypes = {
   userInfo: PropTypes.object,
+  setUserInfo: PropTypes.func,
+  handleProductChanges: PropTypes.func,
 };
 
-function SingleDeal({ userInfo }) {
+function SingleDeal({ handleProductChanges, userInfo, setUserInfo }) {
   const [dealInfo, setDealInfo] = useState({});
   const [isAllowed, setIsAllowed] = useState(false);
   const { setShowPopUp, setErrorActive } = useContext(PopUpContext);
@@ -48,6 +50,8 @@ function SingleDeal({ userInfo }) {
             dealInfo={dealInfo}
             userInfo={userInfo}
             setDealInfo={setDealInfo}
+            setUserInfo={setUserInfo}
+            handleProductChanges={handleProductChanges}
           />
           {/* {dealInfo?.messages?.map((message) => {
             return (

@@ -28,7 +28,6 @@ const ProductContainer = ({
   const handleProductClick = (e) => {
     const id = e.currentTarget.id;
     const url = window.location.href;
-    console.log(e.target.localName);
     if (
       e.target.localName === "button" ||
       e.target.localName === "svg" ||

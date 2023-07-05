@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 
 import HomePage from "./pages/homePage/HomePage";
-import { PopUpProvider } from "./context/PopUpContext";
+// import { PopUpProvider } from "./context/PopUpContext";
 import ProfilePage from "./pages/profilePage/ProfilePage";
 import Wishlist from "./pages/wishlist/Wishlist";
 import UpdateProductForm from "./components/products/updateProductForm/UpdateProductForm";
@@ -16,15 +16,15 @@ import NotFound from "./pages/notFound/NotFound";
 import SingleProduct from "./pages/singleProduct/SingleProduct";
 //import ThemeProvider from "./context/ThemeContext";
 import BestSellers from "./pages/bestsellers/BestSellers";
-import AcceptCookies from "./pages/cookiesPopUp/CookiesPopUp";
-import CookiesPopUp from "./pages/cookiesPopUp/CookiesPopUp";
+// import AcceptCookies from "./pages/cookiesPopUp/CookiesPopUp";
+// import CookiesPopUp from "./pages/cookiesPopUp/CookiesPopUp";
 import MuiNewProductForm from "./components/mui/muiNewProductForm/muiNewProductForm";
 import SearchResult from "./pages/searchResult/SearchResult";
 import Chat from "./components/chat/Chat";
 import ValidateEmail from "./pages/validateEmail/ValidateEmail";
 import SingleDeal from "./pages/SingleDeal/SingleDeal";
-import ProductDetail from "./components/products/ProductDetail/ProductDetail";
-import ErrorProvider from "./context/ErrorContext";
+// import ProductDetail from "./components/products/ProductDetail/ProductDetail";
+// import ErrorProvider from "./context/ErrorContext";
 
 function App() {
   const {
@@ -67,7 +67,6 @@ function App() {
           }
         />
 
-        {/* <Route path="/product/:id" element={<ProductDetail />} /> */}
         <Route path="/chat" element={<Chat />} />
         <Route path="/editproduct" element={<UpdateProductForm />} />
         <Route
@@ -98,11 +97,22 @@ function App() {
         }
         <Route
           path="/newproduct"
-          element={<MuiNewProductForm userInfo={userInfo} />}
+          element={
+            <MuiNewProductForm
+              userInfo={userInfo}
+              handleProductChanges={handleProductChanges}
+            />
+          }
         />
         <Route
           path="/deals/:idDeal"
-          element={<SingleDeal userInfo={userInfo} setUserInfo={setUserInfo} />}
+          element={
+            <SingleDeal
+              userInfo={userInfo}
+              setUserInfo={setUserInfo}
+              handleProductChanges={handleProductChanges}
+            />
+          }
         />
 
         <Route path="/bestsellers" element={<BestSellers />} />

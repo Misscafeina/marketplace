@@ -6,7 +6,13 @@ import { getDealDetails } from "../../services/dealsService";
 import { PopUpContext } from "../../context/popUpContext";
 import { useError } from "../../context/ErrorContext";
 
-const Chat = ({ dealInfo, setDealInfo }) => {
+const Chat = ({
+  userInfo,
+  dealInfo,
+  setDealInfo,
+  setUserInfo,
+  handleProductChanges,
+}) => {
   const [newMessage, setNewMessage] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [status, setStatus] = useState(dealInfo.dealData.status);
@@ -14,26 +20,12 @@ const Chat = ({ dealInfo, setDealInfo }) => {
   const { setShowPopUp, setErrorActive } = useContext(PopUpContext);
   const { setErrorMessage } = useError();
 
-  useEffect(() => {
-    // Lógica para obtener el ID del usuario actual desde la base de datos SQL
-    const fetchUserId = async () => {
-      try {
-        const response = await fetch(""); // Ruta de la API para obtener el ID del usuario actual
-        const data = await response.json();
-        setUserId(data.userId);
-      } catch (error) {
-        console.error("Error fetching user ID:", error);
-      }
-    };
-
-    fetchUserId();
-  }, []);
-
   const handleSendMessage = async () => {
     try {
       const message = { message: newMessage, status };
       await postChatMessage(dealInfo.dealData.id, message);
       setNewMessage("");
+      handleProductChanges();
 
       const response = await getDealDetails(dealInfo.dealData.id);
       response.status === "ok" && setDealInfo(response.data);
@@ -144,6 +136,8 @@ const Chat = ({ dealInfo, setDealInfo }) => {
 Chat.propTypes = {
   dealInfo: PropTypes.object,
   setDealInfo: PropTypes.func,
+  setUserInfo: PropTypes.func,
+  handleProductChanges: PropTypes.func,
 };
 
 export default Chat;
