@@ -53,14 +53,22 @@
   padding: 5px;
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
+  flex-direction: column;
+  gap: 10px;
+  align-items: stretch;
 
+  border-radius: 20px;
+}
+.send-button {
+  height: 100%;
+}
 .message-input input {
   flex: 1;
   padding: 10px;
   border: none;
   border-radius: 20px;
   background-color: #f7f7f7;
+  width: 100%;
 }
 
 .message-input button {
@@ -72,13 +80,15 @@
   border-radius: 20px;
   cursor: pointer;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  width: 45%;
 }
 
 .menu {
   position: relative;
   margin-left: 10px;
 }
-
+.chat-buttons {
+}
 .menu-button {
   padding: 10px;
   background-color: #f7f7f7;

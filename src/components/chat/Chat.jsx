@@ -7,24 +7,27 @@ import { PopUpContext } from "../../context/popUpContext";
 import { useError } from "../../context/ErrorContext";
 
 const Chat = ({
-  userInfo,
   dealInfo,
   setDealInfo,
-  setUserInfo,
+
   handleProductChanges,
 }) => {
   const [newMessage, setNewMessage] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [status, setStatus] = useState(dealInfo.dealData.status);
-  const [userId, setUserId] = useState(null); // Estado para almacenar el ID del usuario actual
+  const [newStatus, setNewStatus] = useState("");
   const { setShowPopUp, setErrorActive } = useContext(PopUpContext);
   const { setErrorMessage } = useError();
 
   const handleSendMessage = async () => {
     try {
-      const message = { message: newMessage, status };
+      const message = { message: newMessage };
+      if (newStatus) message.status = newStatus;
+      console.log(message);
       await postChatMessage(dealInfo.dealData.id, message);
       setNewMessage("");
+      setStatus(newStatus);
+      setNewStatus("");
       handleProductChanges();
 
       const response = await getDealDetails(dealInfo.dealData.id);
@@ -40,22 +43,7 @@ const Chat = ({
     setShowMenu(!showMenu);
   };
 
-  const handleUpdateStatus = (option) => {
-    if (option === "Completar pedido") {
-      setStatus("Completado");
-      // Lógica adicional para completar pedido
-    } else if (option === "Cancelar pedido") {
-      setStatus("Cancelado");
-      // Lógica adicional para cancelar pedido
-    } else if (option === "Aceptar pedido") {
-      setStatus("Aceptado");
-      // Lógica adicional para aceptar pedido
-    } else if (option === "Rechazar pedido") {
-      setStatus("Rechazado");
-      // Lógica adicional para rechazar pedido
-    }
-  };
-
+  console.log(dealInfo);
   const {
     avatarVendorUrl,
     usernameVendor,
@@ -63,39 +51,12 @@ const Chat = ({
     usernameBuyer,
     idBuyer,
     idVendor,
+    userRole,
   } = dealInfo?.dealData;
 
   return (
     <div className="container">
-      <div className="status">
-        <button className="status-button" onClick={handleMenuToggle}>
-          Actualizar Estado
-        </button>
-        {showMenu && (
-          <ul className="status-options">
-            {userId === idBuyer && (
-              <>
-                <li onClick={() => handleUpdateStatus("Completar pedido")}>
-                  Completar pedido
-                </li>
-                <li onClick={() => handleUpdateStatus("Cancelar pedido")}>
-                  Cancelar pedido
-                </li>
-              </>
-            )}
-            {userId === idVendor && (
-              <>
-                <li onClick={() => handleUpdateStatus("Aceptar pedido")}>
-                  Aceptar pedido
-                </li>
-                <li onClick={() => handleUpdateStatus("Rechazar pedido")}>
-                  Rechazar pedido
-                </li>
-              </>
-            )}
-          </ul>
-        )}
-      </div>
+      <div className="status"></div>
       <div className="message-list">
         {dealInfo?.messages.map((message) => (
           <div key={message.id} className="message">
@@ -124,10 +85,74 @@ const Chat = ({
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
         />
-        <button onClick={handleSendMessage}>Enviar</button>
-        <button className="delete-button" onClick={handleMenuToggle}>
-          Borrar
-        </button>
+        <div className="chat-buttons">
+          <div className="menu ">
+            <button className="menu-button" onClick={handleMenuToggle}>
+              Seleccionar Estado
+            </button>
+            {showMenu && (
+              <ul className="menu-options">
+                {userRole === "buyer" && (
+                  <>
+                    <li
+                      onClick={() => {
+                        setNewStatus("cancelled");
+                        setShowMenu(!showMenu);
+                      }}
+                    >
+                      Cancelar pedido
+                    </li>
+                    {status === "approved" && (
+                      <li
+                        onClick={() => {
+                          setNewStatus("completed");
+                          setShowMenu(!showMenu);
+                        }}
+                      >
+                        Completar pedido
+                      </li>
+                    )}
+                  </>
+                )}
+                {userRole === "vendor" && (
+                  <>
+                    {status === "requested" && (
+                      <li
+                        onClick={() => {
+                          setNewStatus("approved");
+                          setShowMenu(!showMenu);
+                        }}
+                      >
+                        Aceptar pedido
+                      </li>
+                    )}
+                    <li
+                      onClick={() => {
+                        setNewStatus("rejected");
+                        setShowMenu(!showMenu);
+                      }}
+                    >
+                      Rechazar pedido
+                    </li>
+                    {status === "approved" && (
+                      <li
+                        onClick={() => {
+                          setNewStatus("completed");
+                          setShowMenu(!showMenu);
+                        }}
+                      >
+                        Completar pedido
+                      </li>
+                    )}
+                  </>
+                )}
+              </ul>
+            )}
+            <button className="send-button" onClick={handleSendMessage}>
+              Enviar mensaje
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
