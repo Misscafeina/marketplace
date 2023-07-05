@@ -1,3 +1,9 @@
+import { useState } from "react";
+import PropTypes from "prop-types";
+import {
+  postChatMessage,
+  getDealDetails,
+} from "../../../services/dealsService";
 import {
   Button,
   FormControl,
@@ -7,21 +13,13 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
-import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
-import {
-  LONG_TEXT_VALIDATIONS,
-  LONG_TEXT_VALIDATIONS_REQUIRED,
-  REQUIRED,
-} from "../../../utils/formValidationConstants";
-import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
-import { useState } from "react";
+import "dayjs/locale/es";
 import {
-  getDealDetails,
-  postChatMessage,
-} from "../../../services/dealsService";
+  LONG_TEXT_VALIDATIONS_REQUIRED,
+  LONG_TEXT_VALIDATIONS,
+} from "../../../constants/formValidation";
 
 DealChat.propTypes = {
   dealInfo: PropTypes.object,
