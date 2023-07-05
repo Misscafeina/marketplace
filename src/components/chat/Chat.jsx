@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./style.css";
 import { postChatMessage } from "../../services";
@@ -16,14 +16,13 @@ const Chat = ({
   const [newMessage, setNewMessage] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [status, setStatus] = useState(dealInfo.dealData.status);
+  const [userId, setUserId] = useState(null); // Estado para almacenar el ID del usuario actual
   const { setShowPopUp, setErrorActive } = useContext(PopUpContext);
   const { setErrorMessage } = useError();
-  console.log(userInfo);
-  // const [blockedUsers, setBlockedUsers] = useState([]);
-  // const [reportedUsers, setReportedUsers] = useState([]);
+
   const handleSendMessage = async () => {
     try {
-      const message = { message: newMessage, status: "cancelled" };
+      const message = { message: newMessage, status };
       await postChatMessage(dealInfo.dealData.id, message);
       setNewMessage("");
       handleProductChanges();
@@ -41,32 +40,62 @@ const Chat = ({
     setShowMenu(!showMenu);
   };
 
-  // const handleMenuOptionClick = (option) => {
-  //   if (option === "Borrar conversación") {
-  //     setMessages([]);
-  //   } else if (option === "Bloquear usuario") {
-  //     const lastMessage = messages[messages.length - 1];
-  //     if (lastMessage && !blockedUsers.includes(lastMessage.user.name)) {
-  //       setBlockedUsers([...blockedUsers, lastMessage.user.name]);
-  //     }
-  //   } else if (option === "Reportar usuario") {
-  //     const lastMessage = messages[messages.length - 1];
-  //     if (lastMessage && !reportedUsers.includes(lastMessage.user.name)) {
-  //       setReportedUsers([...reportedUsers, lastMessage.user.name]);
-  //     }
-  //   }
-  // };
+  const handleUpdateStatus = (option) => {
+    if (option === "Completar pedido") {
+      setStatus("Completado");
+      // Lógica adicional para completar pedido
+    } else if (option === "Cancelar pedido") {
+      setStatus("Cancelado");
+      // Lógica adicional para cancelar pedido
+    } else if (option === "Aceptar pedido") {
+      setStatus("Aceptado");
+      // Lógica adicional para aceptar pedido
+    } else if (option === "Rechazar pedido") {
+      setStatus("Rechazado");
+      // Lógica adicional para rechazar pedido
+    }
+  };
+
   const {
     avatarVendorUrl,
     usernameVendor,
-
     avatarBuyerUrl,
     usernameBuyer,
     idBuyer,
+    idVendor,
   } = dealInfo?.dealData;
 
   return (
     <div className="container">
+      <div className="status">
+        <button className="status-button" onClick={handleMenuToggle}>
+          Actualizar Estado
+        </button>
+        {showMenu && (
+          <ul className="status-options">
+            {userId === idBuyer && (
+              <>
+                <li onClick={() => handleUpdateStatus("Completar pedido")}>
+                  Completar pedido
+                </li>
+                <li onClick={() => handleUpdateStatus("Cancelar pedido")}>
+                  Cancelar pedido
+                </li>
+              </>
+            )}
+            {userId === idVendor && (
+              <>
+                <li onClick={() => handleUpdateStatus("Aceptar pedido")}>
+                  Aceptar pedido
+                </li>
+                <li onClick={() => handleUpdateStatus("Rechazar pedido")}>
+                  Rechazar pedido
+                </li>
+              </>
+            )}
+          </ul>
+        )}
+      </div>
       <div className="message-list">
         {dealInfo?.messages.map((message) => (
           <div key={message.id} className="message">
@@ -95,33 +124,20 @@ const Chat = ({
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
         />
-        <button onClick={handleSendMessage}>Send</button>
-        <div className="menu">
-          <button className="menu-button" onClick={handleMenuToggle}>
-            ...
-          </button>
-          {showMenu && (
-            <ul className="menu-options">
-              <li onClick={() => handleMenuOptionClick("Borrar conversación")}>
-                Borrar conversación
-              </li>
-              <li onClick={() => handleMenuOptionClick("Reportar usuario")}>
-                Reportar usuario
-              </li>
-              <li onClick={() => handleMenuOptionClick("Bloquear usuario")}>
-                Bloquear usuario
-              </li>
-            </ul>
-          )}
-        </div>
+        <button onClick={handleSendMessage}>Enviar</button>
+        <button className="delete-button" onClick={handleMenuToggle}>
+          Borrar
+        </button>
       </div>
     </div>
   );
 };
+
 Chat.propTypes = {
   dealInfo: PropTypes.object,
   setDealInfo: PropTypes.func,
   setUserInfo: PropTypes.func,
   handleProductChanges: PropTypes.func,
 };
+
 export default Chat;
