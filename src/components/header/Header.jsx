@@ -34,19 +34,15 @@ function Header() {
       {registerActive && <div>{showPopUp ? <RegisterForm /> : null}</div>}
       {errorActive && <div>{showPopUp ? <ErrorPopUp /> : null}</div>}
 
-      <h1 onClick={returnHome}>
+      <h1 className="logo" onClick={returnHome}>
         <img src="/logo.png" alt="logoweb" />
       </h1>
+      {location.pathname !== "/" ? <Search /> : null}
       {window.innerWidth <= 840 ? (
         <Navbar />
       ) : (
         <nav className="headerNav">
           <ul>
-            {location.pathname !== "/" ? (
-              <li>
-                <Search />
-              </li>
-            ) : null}
             <li>
               <button
                 className="btn"

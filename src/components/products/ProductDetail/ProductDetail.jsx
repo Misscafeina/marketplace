@@ -9,6 +9,9 @@ import Rating from "react-rating";
 import { Link } from "react-router-dom";
 import { postNewDeal } from "../../../services";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { PopUpContext } from "../../../context/popUpContext";
+import { useError } from "../../../context/ErrorContext";
 
 const ProductDetail = ({
   product,
@@ -19,15 +22,23 @@ const ProductDetail = ({
   handleProductChanges,
 }) => {
   const navigate = useNavigate();
+  const { setShowPopUp, setErrorActive } = useContext(PopUpContext);
+  const { setErrorMessage } = useError();
   const handleBuyButton = async () => {
-    const data = await postNewDeal(product?.id);
-    data.status === "ok" && handleProductChanges();
-    const updatedProducts = products.filter((item) => item.id !== product.id);
-    const {
-      data: { id: idDeal },
-    } = data;
-    setProducts([...updatedProducts]);
-    navigate(`/deals/${idDeal}`);
+    try {
+      const data = await postNewDeal(product?.id);
+      data.status === "ok" && handleProductChanges();
+      const updatedProducts = products.filter((item) => item.id !== product.id);
+      const {
+        data: { id: idDeal },
+      } = data;
+      setProducts([...updatedProducts]);
+      navigate(`/deals/${idDeal}`);
+    } catch (err) {
+      setShowPopUp(true);
+      setErrorActive(true);
+      setErrorMessage(err.response.data.error);
+    }
   };
 
   const settings = {
