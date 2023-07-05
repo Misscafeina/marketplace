@@ -8,6 +8,7 @@ import logInLogo from "../../assets/log-in.svg";
 import addProductLogo from "../../assets/plus-square.svg";
 import wishListLogo from "../../assets/heart.svg";
 import messageLogo from "../../assets/message-circle.svg";
+import MenuButton from "../../assets/menu.svg";
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
@@ -21,7 +22,9 @@ function Navbar() {
     <>
       <div className="navbar">
         <Link to="#" className="menu-bars">
-          <button onClick={showSidebar}>hhh</button>
+          <button onClick={showSidebar}>
+            <img src={MenuButton} alt="Botón de menú" />
+          </button>
         </Link>
       </div>
       <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
