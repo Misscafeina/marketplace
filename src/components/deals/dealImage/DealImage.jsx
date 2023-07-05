@@ -23,7 +23,7 @@ function DealImage({ dealInfo }) {
           subtitle={"Esperando aprobación del vendedor"}
         />
       )}
-      {dealInfo?.dealData?.status === "accepted" && (
+      {dealInfo?.dealData?.status === "approved" && (
         <ImageListItemBar
           title={"Estado:"}
           subtitle={"Aceptado por el vendedor"}
