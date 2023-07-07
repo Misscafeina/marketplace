@@ -1,12 +1,13 @@
 import { useParams } from "react-router-dom";
 import ProductContainer from "../../components/products/productContainer/ProductContainer";
-import { getProductDetails } from "../../services";
+import { findProductsByQuery, getProductDetails } from "../../services";
 import "./style.css";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 function SingleProduct({ wishlistArray, handleAddRemoveFromWishlist }) {
   const [product, setProduct] = useState({});
+  const [lastSearch, setLastSearch] = useState("");
   const { id } = useParams();
 
   useEffect(() => {
@@ -16,7 +17,7 @@ function SingleProduct({ wishlistArray, handleAddRemoveFromWishlist }) {
       response.status === "ok" ? setProduct(response.data) : null;
     };
     loadProduct();
-  }, []);
+  }, [id]);
 
   return (
     <ProductContainer

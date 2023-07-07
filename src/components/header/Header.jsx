@@ -27,7 +27,6 @@ function Header() {
   const { logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(window.innerWidth);
   return (
     <header>
       {loginActive && <div>{showPopUp ? <LoginForm /> : null}</div>}
