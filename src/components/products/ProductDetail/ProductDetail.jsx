@@ -145,11 +145,11 @@ const ProductDetail = ({
               <>
                 <h3>Productos que quizás te interesen:</h3>
                 <ul>
-                  {relatedProducts.map((product) => {
-                    const path = `/product/${product.id}`;
+                  {relatedProducts.map((p) => {
+                    const path = `/product/${p.id}`;
                     return (
-                      <li key={product.id}>
-                        <Link to={path}>{product.name}</Link>
+                      <li key={p.id}>
+                        <Link to={path}>{p.name}</Link>
                       </li>
                     );
                   })}

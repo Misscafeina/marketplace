@@ -5,6 +5,7 @@ header {
   top: 0;
   padding: 6px;
   border-bottom: 1px black solid;
+
   position: sticky;
   background-color: white;
 }

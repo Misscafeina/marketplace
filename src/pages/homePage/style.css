@@ -20,3 +20,7 @@ body {
   height: auto;
   min-height: 100%;
 }
+
+.navbar {
+  margin-top: 15px;
+}

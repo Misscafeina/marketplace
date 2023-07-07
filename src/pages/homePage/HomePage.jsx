@@ -7,7 +7,6 @@ import {
 import PropTypes from "prop-types";
 import "./style.css";
 import Background from "../../components/background/Background";
-import FooterHome from "../../components/footerhome/FooterHome";
 
 import ProductsContainer from "../../components/products/productsContainer/ProductsContainer";
 import { useSearchParams } from "react-router-dom";
