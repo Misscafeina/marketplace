@@ -32,7 +32,8 @@ const ProductContainer = ({
       e.target.localName === "button" ||
       e.target.localName === "svg" ||
       e.target.localName === "path" ||
-      e.target.localName === "span"
+      e.target.localName === "span" ||
+      e.target.localName === "a"
     ) {
     } else if (url !== `http://localhost:5173/product/${id}`) {
       navigate(`/product/${id}`);

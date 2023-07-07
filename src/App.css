@@ -38,6 +38,9 @@ header {
   width: 40%;
   max-height: 90vh;
   overflow: scroll;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .popup-inner h2 {
@@ -100,4 +103,19 @@ header {
   background-color: #bfbfbf;
   color: #ffffff;
   cursor: not-allowed;
+}
+
+@media (width<=820px) {
+  form.formContainer {
+    width: 100%;
+  }
+  .popup-inner {
+    width: 60%;
+  }
+  .popup-inner input {
+    width: max-content;
+  }
+  .popup-inner button {
+    width: 200px;
+  }
 }

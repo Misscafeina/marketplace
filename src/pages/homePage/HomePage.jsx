@@ -68,8 +68,8 @@ HomePage.propTypes = {
   wishlistArray: PropTypes.array,
   handleAddRemoveFromWishlist: PropTypes.func,
   handleProductChanges: PropTypes.func,
-  locationLat: PropTypes.string,
-  locationLong: PropTypes.string,
+  locationLat: PropTypes.number,
+  locationLong: PropTypes.number,
 };
 
 export default HomePage;
