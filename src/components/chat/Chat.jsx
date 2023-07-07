@@ -88,7 +88,7 @@ const Chat = ({
         <div className="chat-buttons">
           <div className="menu ">
             <button className="menu-button" onClick={handleMenuToggle}>
-              Seleccionar Estado
+              Estado del pedido
             </button>
             {showMenu && (
               <ul className="menu-options">
