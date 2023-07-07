@@ -60,7 +60,6 @@ function HomePage({
         setProducts={setProducts}
         handleProductChanges={handleProductChanges}
       />
-      <FooterHome />
     </>
   );
 }

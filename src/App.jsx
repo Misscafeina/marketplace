@@ -23,6 +23,8 @@ import SearchResult from "./pages/searchResult/SearchResult";
 import Chat from "./components/chat/Chat";
 import ValidateEmail from "./pages/validateEmail/ValidateEmail";
 import SingleDeal from "./pages/SingleDeal/SingleDeal";
+import FooterHome from "./components/footerhome/FooterHome";
+import Footer from "./components/footer/Footer";
 // import ProductDetail from "./components/products/ProductDetail/ProductDetail";
 // import ErrorProvider from "./context/ErrorContext";
 
@@ -125,6 +127,7 @@ function App() {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
+      {location.pathname === "/" ? <FooterHome /> : <Footer />}
     </div>
   );
 }
