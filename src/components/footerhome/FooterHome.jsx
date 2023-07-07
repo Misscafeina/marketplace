@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { PopUpContext } from "../../context/PopUpContext";
 import AcceptCookies from "../../pages/cookiesPopUp/CookiesPopUp";
+import { useEffect } from "react";
 
 function FooterHome() {
-  const { cookiesActive, showPopUp } = useContext(PopUpContext);
+  const { cookiesActive, showPopUp, setCookiesActive, setShowPopUp } =
+    useContext(PopUpContext);
 
   const [activeIcon, setActiveIcon] = useState(false);
 
@@ -13,6 +15,13 @@ function FooterHome() {
     setActiveIcon(!activeIcon);
   };
 
+  useEffect(() => {
+    const cookies = JSON.parse(localStorage.getItem("cookies"));
+    if (!cookies) {
+      setCookiesActive(true);
+      setShowPopUp(true);
+    }
+  }, []);
   return (
     <body>
       {cookiesActive && <div>{showPopUp ? <AcceptCookies /> : null}</div>}
@@ -23,13 +32,6 @@ function FooterHome() {
             <ul>
               <li>Register</li>
               <li>Upload Item</li>
-              <li>
-                <Link to={"/bestsellers"} style={{ color: "white" }}>
-                  Best Sellers
-                </Link>
-              </li>
-              <li>Map Search</li>
-              <li>Categories</li>
               <li>All products</li>
             </ul>
           </li>
@@ -37,8 +39,6 @@ function FooterHome() {
             <h4>RETROTECH</h4>
             <ul>
               <li>About us</li>
-              <li>Shipping & returns</li>
-              <li>FaQs</li>
             </ul>
           </li>
         </ul>

@@ -3,9 +3,6 @@ import userLogo from "../../assets/userLogo.svg";
 import logInLogo from "../../assets/log-in.svg";
 import addProductLogo from "../../assets/plus-square.svg";
 import wishListLogo from "../../assets/heart.svg";
-import messageLogo from "../../assets/message-circle.svg";
-import registerUserLogo from "../../assets/user-plus.svg";
-import searchLogo from "../../assets/search.svg";
 import useHeader from "../../hooks/useHeader";
 import { useContext } from "react";
 import { PopUpContext } from "../../context/PopUpContext";
@@ -20,8 +17,7 @@ import Navbar from "../navbar/Navbar";
 
 function Header() {
   const { isAuthenticated } = useAuth();
-  const { returnHome, userLog, wishList, messages, addNewProduct } =
-    useHeader();
+  const { returnHome, userLog, wishList, addNewProduct } = useHeader();
   const { showPopUp, loginActive, registerActive, errorActive } =
     useContext(PopUpContext);
   const { logout } = useAuth();
@@ -61,18 +57,6 @@ function Header() {
                   }}
                 >
                   <img src={wishListLogo} alt="wishList" />
-                </button>
-              </li>
-            )}
-            {isAuthenticated && (
-              <li>
-                <button
-                  className="btn"
-                  onClick={() => {
-                    messages();
-                  }}
-                >
-                  <img src={messageLogo} alt="message button" />
                 </button>
               </li>
             )}

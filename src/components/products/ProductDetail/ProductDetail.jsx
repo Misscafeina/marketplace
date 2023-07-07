@@ -141,17 +141,21 @@ const ProductDetail = ({
       {homePage ? null : (
         <>
           <div className="related-products">
-            <h3>Productos que quizás te interesen:</h3>
-            <ul>
-              {relatedProducts.map((product) => {
-                const path = `/product/${product.id}`;
-                return (
-                  <li key={product.id}>
-                    <Link to={path}>{product.name}</Link>
-                  </li>
-                );
-              })}
-            </ul>
+            {relatedProducts.length > 0 ? (
+              <>
+                <h3>Productos que quizás te interesen:</h3>
+                <ul>
+                  {relatedProducts.map((product) => {
+                    const path = `/product/${product.id}`;
+                    return (
+                      <li key={product.id}>
+                        <Link to={path}>{product.name}</Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </>
+            ) : null}
           </div>
           <div className="seller-ratings">
             <h3>Valoraciones del Vendedor</h3>
