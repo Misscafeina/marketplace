@@ -14,7 +14,6 @@ body {
 
 .video-container {
   background-size: cover;
-
   position: fixed;
   top: 0;
   left: 0;
@@ -33,15 +32,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: minmax(370px, 1000px);
+  margin-top: 40px;
+  margin-bottom: 40px;
   margin-left: auto;
   margin-right: auto;
-  max-width: 2000px;
-  margin-left: 60px;
+  max-width: 700px;
   background-color: white;
   border-radius: 2000px;
   box-shadow: 0 2px 4px silver;
   padding: 8px 12px;
+  object-fit: cover;
 }
 
 .search-input {
