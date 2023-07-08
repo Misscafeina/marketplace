@@ -1,7 +1,7 @@
 import "./style.css";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
-import { PopUpContext } from "../../context/PopUpContext";
+import { PopUpContext } from "../../context/popUpContext";
 import AcceptCookies from "../../pages/cookiesPopUp/CookiesPopUp";
 import { useEffect } from "react";
 
