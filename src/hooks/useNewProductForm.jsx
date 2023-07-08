@@ -4,19 +4,22 @@ import {
 } from "../services/productsService";
 import { useContext } from "react";
 import { PopUpContext } from "../context/popUpContext";
+import { useError } from "../context/ErrorContext";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import useApp from "./useApp";
 
 function useNewProductForm() {
-  const { setNewProductActive, setShowPopUp, setAllFalse } =
-    useContext(PopUpContext);
-
+  const { setErrorMessage, errorMessage } = useError();
+  const navigate = useNavigate();
+  const { setShowPopUp, setErrorActive } = useContext(PopUpContext);
+  const { handleProductChanges } = useApp();
   const submitInfo = async (data) => {
-    console.log("data");
-
     try {
-      console.log(data);
-      console.log(data.useSavedAddress);
+      if (!data.images[0]) throw new Error("Debes incluir al menos 1 foto");
       const productData = { ...data };
-      if (data.images.length > 10) throw new Error("maximo 10 fotos");
+      if (data.images.length > 10)
+        throw new Error("El máximo son 10 fotos por producto");
       delete productData.images;
       const response = await postNewProduct(productData);
       const {
@@ -24,15 +27,12 @@ function useNewProductForm() {
           productInfo: { id },
         },
       } = response;
-      if (response.status !== "ok") throw new Error("no se creo");
+      if (response.status !== "ok") throw new Error(response?.data?.error);
       const formData = new FormData();
-      console.log(data);
-      console.log(data.images);
 
       console.log("id", id, +id);
       for (let i = 0; i < data.images.length; i++) {
         formData.append("images", data.images[i]);
-        console.log(formData);
       }
 
       const config = {
@@ -42,9 +42,13 @@ function useNewProductForm() {
       };
 
       const filesResponse = await uploadProductPictures(formData, config, id);
-      filesResponse.status === "ok" && setAllFalse();
+      handleProductChanges();
+      filesResponse.status === "ok" && navigate(`/product/${id}`);
     } catch (err) {
       console.log(err);
+      setShowPopUp(true);
+      setErrorActive(true);
+      setErrorMessage(err.response?.data?.error || err.message);
     }
   };
 

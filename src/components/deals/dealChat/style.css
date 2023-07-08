@@ -49,30 +49,21 @@
 .message-input {
   display: flex;
   align-items: center;
-  padding: 5px;
+  padding: 10px;
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  flex-direction: column;
-  gap: 5px;
-  align-items: stretch;
-  justify-content: center;
-  border-radius: 20px;
 }
-.send-button {
-  height: 100%;
-}
+
 .message-input input {
   flex: 1;
   padding: 10px;
   border: none;
   border-radius: 20px;
   background-color: #f7f7f7;
-  width: 100%;
 }
 
 .message-input button {
-  margin-left: 5px;
-  margin-right: 15px;
+  margin-left: 10px;
   padding: 10px 20px;
   background-color: #96af4c;
   color: #fff;
@@ -80,7 +71,6 @@
   border-radius: 20px;
   cursor: pointer;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  width: 45%;
 }
 
 .menu {
@@ -116,21 +106,4 @@
 
 .menu-options li:hover {
   background-color: #f7f7f7;
-}
-.send-button {
-  padding: 10px;
-  background-color: #f7f7f7;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  position: absolute;
-  padding: 10px 20px;
-  cursor: pointer;
-  right: 0;
-  padding: 10px 0;
-  background-color: #fff;
-  list-style: none;
-  margin: 0;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }

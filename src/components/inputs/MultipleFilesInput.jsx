@@ -15,7 +15,6 @@ function MultipleFilesInput({ label, register, registerName, errors }) {
     }
     setImageUrls([...urls]);
   };
-  console.log(imageUrls);
   return (
     <>
       <label>{label}</label>

@@ -1,17 +1,27 @@
 import "./style.css";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
-import { PopUpContext } from "../../context/PopUpContext";
+import { PopUpContext } from "../../context/popUpContext";
 import AcceptCookies from "../../pages/cookiesPopUp/CookiesPopUp";
+import { useEffect } from "react";
 
 function Footer() {
-  const { cookiesActive, showPopUp } = useContext(PopUpContext);
+  const { cookiesActive, showPopUp, setCookiesActive, setShowPopUp } =
+    useContext(PopUpContext);
 
   const [activeIcon, setActiveIcon] = useState(false);
 
   const handleIconClick = () => {
     setActiveIcon(!activeIcon);
   };
+
+  useEffect(() => {
+    const cookies = JSON.parse(localStorage.getItem("cookies"));
+    if (!cookies) {
+      setCookiesActive(true);
+      setShowPopUp(true);
+    }
+  }, []);
 
   return (
     <footer>
@@ -24,13 +34,6 @@ function Footer() {
             <ul>
               <li>Register</li>
               <li>Upload Item</li>
-              <li>
-                <Link to={"/bestsellers"} style={{ color: "black" }}>
-                  Best Sellers
-                </Link>
-              </li>
-              <li>Map Search</li>
-              <li>Categories</li>
               <li>All products</li>
             </ul>
           </li>
@@ -38,8 +41,6 @@ function Footer() {
             <h4>RETROTECH</h4>
             <ul>
               <li>About us</li>
-              <li>Shipping & returns</li>
-              <li>FaQs</li>
             </ul>
           </li>
         </ul>

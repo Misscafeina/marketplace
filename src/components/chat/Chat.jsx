@@ -1,24 +1,41 @@
-import { useState } from "react";
+import { useContext, useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import "./style.css";
+import { postChatMessage } from "../../services";
+import { getDealDetails } from "../../services/dealsService";
+import { PopUpContext } from "../../context/popUpContext";
+import { useError } from "../../context/ErrorContext";
 
-const Chat = () => {
-  const [messages, setMessages] = useState([]);
+const Chat = ({
+  dealInfo,
+  setDealInfo,
+
+  handleProductChanges,
+}) => {
   const [newMessage, setNewMessage] = useState("");
   const [showMenu, setShowMenu] = useState(false);
-  const [blockedUsers, setBlockedUsers] = useState([]);
-  const [reportedUsers, setReportedUsers] = useState([]);
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-  const handleSendMessage = () => {
-    if (newMessage.trim() !== "") {
-      const message = {
-        content: newMessage,
-        user: {
-          name: userInfo.username,
-          profilePicture: userInfo.avatar,
-        },
-      };
-      setMessages([...messages, message]);
+  const [status, setStatus] = useState(dealInfo.dealData.status);
+  const [newStatus, setNewStatus] = useState("");
+  const { setShowPopUp, setErrorActive } = useContext(PopUpContext);
+  const { setErrorMessage } = useError();
+
+  const handleSendMessage = async () => {
+    try {
+      const message = { message: newMessage };
+      if (newStatus) message.status = newStatus;
+      console.log(message);
+      await postChatMessage(dealInfo.dealData.id, message);
       setNewMessage("");
+      setStatus(newStatus);
+      setNewStatus("");
+      handleProductChanges();
+
+      const response = await getDealDetails(dealInfo.dealData.id);
+      response.status === "ok" && setDealInfo(response.data);
+    } catch (error) {
+      setShowPopUp(true);
+      setErrorActive(true);
+      setErrorMessage(error.response.data.error);
     }
   };
 
@@ -26,33 +43,38 @@ const Chat = () => {
     setShowMenu(!showMenu);
   };
 
-  const handleMenuOptionClick = (option) => {
-    if (option === "Borrar conversación") {
-      setMessages([]);
-    } else if (option === "Bloquear usuario") {
-      const lastMessage = messages[messages.length - 1];
-      if (lastMessage && !blockedUsers.includes(lastMessage.user.name)) {
-        setBlockedUsers([...blockedUsers, lastMessage.user.name]);
-      }
-    } else if (option === "Reportar usuario") {
-      const lastMessage = messages[messages.length - 1];
-      if (lastMessage && !reportedUsers.includes(lastMessage.user.name)) {
-        setReportedUsers([...reportedUsers, lastMessage.user.name]);
-      }
-    }
-  };
+  console.log(dealInfo);
+  const {
+    avatarVendorUrl,
+    usernameVendor,
+    avatarBuyerUrl,
+    usernameBuyer,
+    idBuyer,
+    idVendor,
+    userRole,
+  } = dealInfo?.dealData;
 
   return (
     <div className="container">
+      <div className="status"></div>
       <div className="message-list">
-        {messages.map((message, index) => (
-          <div key={index} className="message">
+        {dealInfo?.messages.map((message) => (
+          <div key={message.id} className="message">
             <div className="user-profile">
-              <img src={message.user.profilePicture} alt="Profile" />
+              <img
+                src={
+                  message.idSender === idBuyer
+                    ? avatarBuyerUrl
+                    : avatarVendorUrl
+                }
+                alt="Profile"
+              />
             </div>
             <div className="user-details">
-              <div className="user-name">{message.user.name}</div>
-              <div className="message-content">{message.content}</div>
+              <div className="user-name">
+                {message.idSender === idBuyer ? usernameBuyer : usernameVendor}
+              </div>
+              <div className="message-content">{message.message}</div>
             </div>
           </div>
         ))}
@@ -63,28 +85,84 @@ const Chat = () => {
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
         />
-        <button onClick={handleSendMessage}>Send</button>
-        <div className="menu">
-          <button className="menu-button" onClick={handleMenuToggle}>
-            ...
-          </button>
-          {showMenu && (
-            <ul className="menu-options">
-              <li onClick={() => handleMenuOptionClick("Borrar conversación")}>
-                Borrar conversación
-              </li>
-              <li onClick={() => handleMenuOptionClick("Reportar usuario")}>
-                Reportar usuario
-              </li>
-              <li onClick={() => handleMenuOptionClick("Bloquear usuario")}>
-                Bloquear usuario
-              </li>
-            </ul>
-          )}
+        <div className="chat-buttons">
+          <div className="menu ">
+            <button className="menu-button" onClick={handleMenuToggle}>
+              Estado del pedido
+            </button>
+            {showMenu && (
+              <ul className="menu-options">
+                {userRole === "buyer" && (
+                  <>
+                    <li
+                      onClick={() => {
+                        setNewStatus("cancelled");
+                        setShowMenu(!showMenu);
+                      }}
+                    >
+                      Cancelar pedido
+                    </li>
+                    {status === "approved" && (
+                      <li
+                        onClick={() => {
+                          setNewStatus("completed");
+                          setShowMenu(!showMenu);
+                        }}
+                      >
+                        Completar pedido
+                      </li>
+                    )}
+                  </>
+                )}
+                {userRole === "vendor" && (
+                  <>
+                    {status === "requested" && (
+                      <li
+                        onClick={() => {
+                          setNewStatus("approved");
+                          setShowMenu(!showMenu);
+                        }}
+                      >
+                        Aceptar pedido
+                      </li>
+                    )}
+                    <li
+                      onClick={() => {
+                        setNewStatus("rejected");
+                        setShowMenu(!showMenu);
+                      }}
+                    >
+                      Rechazar pedido
+                    </li>
+                    {status === "approved" && (
+                      <li
+                        onClick={() => {
+                          setNewStatus("completed");
+                          setShowMenu(!showMenu);
+                        }}
+                      >
+                        Completar pedido
+                      </li>
+                    )}
+                  </>
+                )}
+              </ul>
+            )}
+            <button className="send-button" onClick={handleSendMessage}>
+              Enviar mensaje
+            </button>
+          </div>
         </div>
       </div>
     </div>
   );
+};
+
+Chat.propTypes = {
+  dealInfo: PropTypes.object,
+  setDealInfo: PropTypes.func,
+  setUserInfo: PropTypes.func,
+  handleProductChanges: PropTypes.func,
 };
 
 export default Chat;

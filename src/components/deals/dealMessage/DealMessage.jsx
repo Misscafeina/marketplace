@@ -1,5 +1,6 @@
 import { Avatar } from "@mui/material";
 import PropTypes from "prop-types";
+import "./style.css";
 
 DealMessage.propTypes = {
   message: PropTypes.object,
@@ -8,6 +9,8 @@ DealMessage.propTypes = {
 
 function DealMessage({ message, dealInfo }) {
   const timedate = new Date(message?.proposedDate).toLocaleString();
+  const createdDate = new Date(message?.createdAt).toLocaleDateString();
+  const createdTime = new Date(message?.createdAt).toLocaleTimeString();
 
   return (
     <section key={message.id} className="deal-message">
@@ -18,6 +21,8 @@ function DealMessage({ message, dealInfo }) {
       )}
       {dealInfo?.dealData?.idVendor === message.idSender && (
         <div className="deal-message-sender-info">
+          <p className="message-created-date">{createdTime}</p>
+          <p className="message-created-date">{createdDate}</p>
           <h4>{dealInfo?.dealData?.usernameVendor}</h4>
           <Avatar
             alt={dealInfo?.dealData?.usernameVendor}

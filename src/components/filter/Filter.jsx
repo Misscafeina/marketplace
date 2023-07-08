@@ -1,24 +1,32 @@
-import { useContext } from "react";
-import { PopUpContext } from "../../context/PopUpContext";
+import { useContext, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import "./style.css";
 import { useState } from "react";
 import useSearch from "../../hooks/useSearch";
+import { PopUpContext } from "../../context/popUpContext";
 
 function Filter() {
   const { setAllFalse } = useContext(PopUpContext);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [ascCheck, setAscCheck] = useState(true);
+  const [ascCheck, setAscCheck] = useState(false);
   const [descCheck, setDescCheck] = useState(false);
-  const [checkValue, setCheckValue] = useState("ASC");
+  const [locationCheck, setLocationCheck] = useState(false);
+  const [checkValue, setCheckValue] = useState(
+    searchParams.get("order") || "Location"
+  );
   const { input } = useSearch();
+  useEffect(() => {
+    checkValue === "ASC" ? setAscCheck(true) : null;
+    checkValue === "DESC" ? setDescCheck(true) : null;
+    checkValue === "Location" ? setLocationCheck(true) : null;
+  }, []);
   const handleSubmitForm = (e) => {
     e.preventDefault();
     setAllFalse();
     setSearchParams({
       name: input,
       category: e.target[0].value,
-      price: checkValue,
+      order: checkValue,
       //   location: e.target.location.value,
     });
   };
@@ -26,12 +34,20 @@ function Filter() {
     if (e.target.value === "ASC") {
       ascCheck ? null : setAscCheck(true),
         setDescCheck(false),
+        setLocationCheck(false),
         setCheckValue("ASC");
     }
     if (e.target.value === "DESC") {
-      descCheck ? null : setAscCheck(false),
-        setDescCheck(true),
+      descCheck ? null : setDescCheck(true),
+        setAscCheck(false),
+        setLocationCheck(false),
         setCheckValue("DESC");
+    }
+    if (e.target.value === "Location") {
+      locationCheck ? null : setDescCheck(false),
+        setAscCheck(false),
+        setLocationCheck(true),
+        setCheckValue("Location");
     }
   };
   return (
@@ -70,9 +86,18 @@ function Filter() {
               checked={descCheck}
               onChange={(e) => handleSortChange(e)}
             />
+            <label htmlFor="location">Ordenar por distancia</label>
+            <input
+              type="radio"
+              id="location"
+              name="location"
+              value="Location"
+              checked={locationCheck}
+              onChange={(e) => handleSortChange(e)}
+            />
           </fieldset>
-          <label htmlFor="location">Ubicación:</label>
-          <input type="text" id="location" />
+          {/* <label htmlFor="location">Ubicación:</label>
+          <input type="text" id="location" /> */}
           <button type="submit">Filtrar</button>
         </form>
       </div>

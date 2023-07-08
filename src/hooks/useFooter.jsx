@@ -9,14 +9,6 @@ function useFooter() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const cookies = JSON.parse(localStorage.getItem("cookies"));
-    if (!cookies) {
-      setCookiesActive(true);
-      setShowPopUp(true);
-    }
-  }, [setCookiesActive, setShowPopUp]);
-
   const instagram = () => {
     navigate("/instagram");
   };

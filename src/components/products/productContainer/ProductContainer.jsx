@@ -28,11 +28,12 @@ const ProductContainer = ({
   const handleProductClick = (e) => {
     const id = e.currentTarget.id;
     const url = window.location.href;
-    console.log(e.target.localName);
     if (
       e.target.localName === "button" ||
       e.target.localName === "svg" ||
-      e.target.localName === "path"
+      e.target.localName === "path" ||
+      e.target.localName === "span" ||
+      e.target.localName === "a"
     ) {
     } else if (url !== `http://localhost:5173/product/${id}`) {
       navigate(`/product/${id}`);

@@ -6,9 +6,12 @@ import "slick-carousel/slick/slick-theme.css";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Rating from "react-rating";
-import { Link } from "react-router-dom";
-import { postNewDeal } from "../../../services";
+import { Link, useParams } from "react-router-dom";
+import { findProductsByQuery, postNewDeal } from "../../../services";
 import { useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { PopUpContext } from "../../../context/popUpContext";
+import { useError } from "../../../context/ErrorContext";
 
 const ProductDetail = ({
   product,
@@ -19,15 +22,58 @@ const ProductDetail = ({
   handleProductChanges,
 }) => {
   const navigate = useNavigate();
+  const { setShowPopUp, setErrorActive } = useContext(PopUpContext);
+  const { setErrorMessage } = useError();
+  const [homePage, setHomePage] = useState(false);
+  const [relatedProducts, setRelatedProducts] = useState([]);
+  const { id } = useParams();
+  useEffect(() => {
+    if (
+      location.pathname === "/" ||
+      location.pathname === "/wishlist" ||
+      location.pathname === "/profile"
+    ) {
+      setHomePage(true);
+    } else {
+      setHomePage(false);
+      const getRelatedProducts = async () => {
+        const related = await findProductsByQuery(product.name);
+
+        const array = [];
+        const productsArray = [];
+        for (let i = 0; i < 3; i++) {
+          const randomNum = Math.floor(
+            Math.random() * related.data.products.length
+          );
+          const exists = array.find((a) => a === randomNum);
+          if (!!exists || related.data.products[randomNum]?.id === product.id) {
+            related.data.products.length > 3 ? i-- : null;
+          } else {
+            array.push(randomNum);
+            productsArray.push(related.data.products[randomNum]);
+          }
+        }
+        setRelatedProducts(productsArray);
+      };
+      getRelatedProducts();
+    }
+  }, [id]);
+
   const handleBuyButton = async () => {
-    const data = await postNewDeal(product?.id);
-    data.status === "ok" && handleProductChanges();
-    const updatedProducts = products.filter((item) => item.id !== product.id);
-    const {
-      data: { id: idDeal },
-    } = data;
-    setProducts([...updatedProducts]);
-    navigate(`/deals/${idDeal}`);
+    try {
+      const data = await postNewDeal(product?.id);
+      data.status === "ok" && handleProductChanges();
+      const updatedProducts = products.filter((item) => item.id !== product.id);
+      const {
+        data: { id: idDeal },
+      } = data;
+      setProducts([...updatedProducts]);
+      navigate(`/deals/${idDeal}`);
+    } catch (err) {
+      setShowPopUp(true);
+      setErrorActive(true);
+      setErrorMessage(err.response.data.error);
+    }
   };
 
   const settings = {
@@ -37,23 +83,23 @@ const ProductDetail = ({
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-  console.log(product);
 
   return (
     <div className="product-detail">
       <h2 className="product-title">{product?.name}</h2>
-      <div className="product-rating">
-        <Rating
-          className="rating"
-          initialRating={
-            product?.avgReviewsVendor
-          } /* Si el initialRating tiene un valor que salga el empty y el full del color amarillo del css y sino, que los bordes salgan en gris (#888)*/
-          emptySymbol={<span className="rating-empty">&#9734;</span>}
-          fullSymbol={<span className="rating-full">&#9733;</span>}
-          readonly
-        />
-        
-      </div>
+      {homePage ? null : (
+        <div className="product-rating">
+          <Rating
+            className="rating"
+            initialRating={
+              product?.avgReviewsVendor
+            } /* Si el initialRating tiene un valor que salga el empty y el full del color amarillo del css y sino, que los bordes salgan en gris (#888)*/
+            emptySymbol={<span className="rating-empty">&#9734;</span>}
+            fullSymbol={<span className="rating-full">&#9733;</span>}
+            readonly
+          />
+        </div>
+      )}
 
       <p className="product-price">
         {product?.price}
@@ -72,7 +118,9 @@ const ProductDetail = ({
           })}
         </Slider>
       </div>
-      <p className="product-description">{product?.description}</p>
+      {homePage ? null : (
+        <p className="product-description">{product?.description}</p>
+      )}
       <div className="product-buttons">
         <button className="buy-button" onClick={handleBuyButton}>
           Comprar
@@ -89,29 +137,41 @@ const ProductDetail = ({
         </button>
       </div>
 
-      <div className="related-products">
-        <h3>You may also like</h3>
-        <ul>
-          {/* Lista de productos relacionados */}
-          <li>Producto relacionado 1</li>
-          <li>Producto relacionado 2</li>
-          <li>Producto relacionado 3</li>
-        </ul>
-      </div>
-      <div className="seller-ratings">
-        <h3>Valoraciones del Vendedor</h3>
-        <ul>
-          {/* Lista de valoraciones del vendedor */}
-          <li>Valoración 1</li>
-          <li>Valoración 2</li>
-          <li>Valoración 3</li>
-        </ul>
-      </div>
-      <div>
-        <Link to="/chat">
-          <button className="chat-button">Chat</button>
-        </Link>
-      </div>
+      {homePage ? null : (
+        <>
+          <div className="related-products">
+            {relatedProducts.length > 0 ? (
+              <>
+                <h3>Productos que quizás te interesen:</h3>
+                <ul>
+                  {relatedProducts.map((p) => {
+                    const path = `/product/${p.id}`;
+                    return (
+                      <li key={p.id}>
+                        <Link to={path}>{p.name}</Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </>
+            ) : null}
+          </div>
+          <div className="seller-ratings">
+            <h3>Valoraciones del Vendedor</h3>
+            <ul>
+              {/* Lista de valoraciones del vendedor */}
+              <li>Valoración 1</li>
+              <li>Valoración 2</li>
+              <li>Valoración 3</li>
+            </ul>
+          </div>
+          <div>
+            <Link to="/chat">
+              <button className="chat-button">Chat</button>
+            </Link>
+          </div>
+        </>
+      )}
     </div>
   );
 };

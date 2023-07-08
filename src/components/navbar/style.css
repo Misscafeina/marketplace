@@ -1,0 +1,33 @@
+navbar {
+  background-color: white;
+  height: 50px;
+  width: 10px; /* Cambia el ancho a tu preferencia */
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin: 10px auto 0;
+}
+
+.menu-bars {
+  margin-left: 4rem;
+  font-size: 2rem;
+  background: none;
+}
+
+.nav-menu {
+  background-color: white;
+  width: 50px;
+  height: calc(100vh - 60px); /* Cambiamos '70vh' a 'calc(100vh - 60px)' */
+  display: flex;
+  border-left: black solid 1px;
+  justify-content: center;
+  position: fixed;
+  top: 60px; /* Cambiamos '0' a '60px' para alinearlo con el header */
+  right: -100%;
+  transition: 850ms;
+}
+
+.nav-menu.active {
+  right: 0;
+  transition: 350ms;
+}
