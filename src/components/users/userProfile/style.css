@@ -6,7 +6,6 @@
 
 .firstContainer {
   display: flex;
-  width: 215vh;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
@@ -68,7 +67,7 @@
   color: #999;
 }
 
-.container {
+.containerProfile {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
