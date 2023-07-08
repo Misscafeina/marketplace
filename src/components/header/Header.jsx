@@ -30,7 +30,7 @@ function Header() {
       {errorActive && <div>{showPopUp ? <ErrorPopUp /> : null}</div>}
 
       <h1 className="logo" onClick={returnHome}>
-        <img src="/logo.png" alt="logoweb" />
+        <img src="/logo.png" alt="logoweb" className="Logo" />
       </h1>
       {location.pathname !== "/" ? <Search /> : null}
       {window.innerWidth <= 840 ? (
