@@ -39,125 +39,127 @@ function UserProfile({
   } = userInfo.userData;
 
   return (
-    <article className="userProfile">
-      {showPopUp ? (
-        <UpdateUserPopUp
-          selectedField={selectedField}
-          setUserInfo={setUserInfo}
-        />
-      ) : null}
-      <div className="firstContainer">
-        <div className="avatarContainer">
-          <img src={avatarUrl} alt={username} />
-          <ul className="userInfo">
-            <li>
-              <h2>{username}</h2>
-            </li>
-            <li className="ratings">
-              <BiSolidStarHalf />
-              <StarRating stars={5} />
-              <span>({5})</span>
-            </li>
-            <li>
-              <span>
-                <EditFieldButton
-                  setSelectedField={setSelectedField}
-                  field={"avatar"}
-                  setEditProfileActive={setEditProfileActive}
-                  setShowPopUp={setShowPopUp}
-                />
-              </span>
-              <span>
-                <EditPasswordButton
-                  setSelectedField={setSelectedField}
-                  field={"password"}
-                  setEditProfileActive={setEditProfileActive}
-                  setShowPopUp={setShowPopUp}
-                />
-              </span>
-            </li>
-          </ul>
+    <>
+      <article className="userProfile">
+        {showPopUp ? (
+          <UpdateUserPopUp
+            selectedField={selectedField}
+            setUserInfo={setUserInfo}
+          />
+        ) : null}
+        <div className="firstContainer">
+          <div className="avatarContainer">
+            <img src={avatarUrl} alt={username} />
+            <ul className="userInfo">
+              <li>
+                <h2>{username}</h2>
+              </li>
+              <li className="ratings">
+                <BiSolidStarHalf />
+                <StarRating stars={5} />
+                <span>({5})</span>
+              </li>
+              <li>
+                <span>
+                  <EditFieldButton
+                    setSelectedField={setSelectedField}
+                    field={"avatar"}
+                    setEditProfileActive={setEditProfileActive}
+                    setShowPopUp={setShowPopUp}
+                  />
+                </span>
+                <span>
+                  <EditPasswordButton
+                    setSelectedField={setSelectedField}
+                    field={"password"}
+                    setEditProfileActive={setEditProfileActive}
+                    setShowPopUp={setShowPopUp}
+                  />
+                </span>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div className="containerProfile">
-        <div className="editContainer">
-          <div>
+        <div className="containerProfile">
+          <div className="editContainer">
+            <div>
+              <h3>
+                Bio:
+                <span>
+                  <EditFieldButton
+                    setSelectedField={setSelectedField}
+                    field={"bio"}
+                    setEditProfileActive={setEditProfileActive}
+                    setShowPopUp={setShowPopUp}
+                  />
+                </span>
+              </h3>
+              <p>{bio}</p>
+            </div>
             <h3>
-              Bio:
+              Nombre: {name}
               <span>
                 <EditFieldButton
                   setSelectedField={setSelectedField}
-                  field={"bio"}
+                  field={"name"}
                   setEditProfileActive={setEditProfileActive}
                   setShowPopUp={setShowPopUp}
                 />
               </span>
             </h3>
-            <p>{bio}</p>
+            <h3>
+              Apellidos: {lastName}
+              <span>
+                <EditFieldButton
+                  setSelectedField={setSelectedField}
+                  field={"lastName"}
+                  setEditProfileActive={setEditProfileActive}
+                  setShowPopUp={setShowPopUp}
+                />
+              </span>
+            </h3>
+            {/* <h3>Contraseña:</h3> */}
           </div>
-          <h3>
-            Nombre: {name}
-            <span>
-              <EditFieldButton
-                setSelectedField={setSelectedField}
-                field={"name"}
-                setEditProfileActive={setEditProfileActive}
-                setShowPopUp={setShowPopUp}
-              />
-            </span>
-          </h3>
-          <h3>
-            Apellidos: {lastName}
-            <span>
-              <EditFieldButton
-                setSelectedField={setSelectedField}
-                field={"lastName"}
-                setEditProfileActive={setEditProfileActive}
-                setShowPopUp={setShowPopUp}
-              />
-            </span>
-          </h3>
-          {/* <h3>Contraseña:</h3> */}
-        </div>
-        <div className="editContainer">
-          <h3>Dirección:</h3>
-          <h4>{address}</h4>
-          <h4>{city}</h4>
-          <h4>{region}</h4>
-          <h4>{country}</h4>
-          <EditFieldButton
-            setSelectedField={setSelectedField}
-            field={"address"}
-            setEditProfileActive={setEditProfileActive}
-            setShowPopUp={setShowPopUp}
-          />
-        </div>
-      </div>
-      <div className="container">
-        <div className="salesItem">
-          <h3>Compras</h3>
-          {/* Aquí puedes agregar el contenido de las compras */}
-        </div>
-        <div className="salesItem">
-          <h3>Ventas</h3>
-          {/* Aquí puedes agregar el contenido de las ventas */}
-        </div>
-        <div className="salesItem">
-          <h3>Valoraciones de Vendedores</h3>
-          <SellerRatings />
-        </div>
-      </div>
-      {editProfileActive && (
-        <div>
-          {showPopUp ? (
-            <UpdateUserPopUp
-              selectedField={selectedField}
-              setUserInfo={setUserInfo}
+          <div className="editContainer">
+            <h3>Dirección:</h3>
+            <h4>{address}</h4>
+            <h4>{city}</h4>
+            <h4>{region}</h4>
+            <h4>{country}</h4>
+            <EditFieldButton
+              setSelectedField={setSelectedField}
+              field={"address"}
+              setEditProfileActive={setEditProfileActive}
+              setShowPopUp={setShowPopUp}
             />
-          ) : null}
+          </div>
         </div>
-      )}
-    </article>
+        <div className="container">
+          <div className="salesItem">
+            <h3>Compras</h3>
+            {/* Aquí puedes agregar el contenido de las compras */}
+          </div>
+          <div className="salesItem">
+            <h3>Ventas</h3>
+            {/* Aquí puedes agregar el contenido de las ventas */}
+          </div>
+          <div className="salesItem">
+            <h3>Valoraciones de Vendedores</h3>
+            <SellerRatings />
+          </div>
+        </div>
+        {editProfileActive && (
+          <div>
+            {showPopUp ? (
+              <UpdateUserPopUp
+                selectedField={selectedField}
+                setUserInfo={setUserInfo}
+              />
+            ) : null}
+          </div>
+        )}
+      </article>
+    </>
   );
 }
 
