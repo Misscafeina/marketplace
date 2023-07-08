@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 //import ThemeSwitcher from "../inputs/ThemeSwitcher";
 const Privacy = () => {
   return (
-    <main>
+    <div className="Privacy">
       <h1>Política de Privacidad de Retrotech </h1>
 
       <p>
@@ -316,7 +316,7 @@ const Privacy = () => {
         interactiva, aprovechando que siempre la encontrarás como punto
         permanente de información en nuestra Web.
       </p>
-    </main>
+    </div>
   );
 };
 

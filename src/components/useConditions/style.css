@@ -34,14 +34,13 @@
   padding: 2rem;
 }
 
-UseConditions {
+.UseConditions {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
 UCHeader {
-  padding: 2rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
