@@ -98,7 +98,6 @@ const ProductDetail = ({
             fullSymbol={<span className="rating-full">&#9733;</span>}
             readonly
           />
-          {product?.avgReviewsVendor}
         </div>
       )}
 
