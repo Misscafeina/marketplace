@@ -82,3 +82,9 @@ footer {
 footer h4 {
   margin-bottom: 10px;
 }
+
+@media (width<=820px) {
+  .navTerms ul {
+    gap: 10px;
+  }
+}

@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
-import { PopUpContext } from "../../context/PopUpContext";
 import { useSearchParams } from "react-router-dom";
 import "./style.css";
 import { useState } from "react";
 import useSearch from "../../hooks/useSearch";
+import { PopUpContext } from "../../context/popUpContext";
 
 function Filter() {
   const { setAllFalse } = useContext(PopUpContext);

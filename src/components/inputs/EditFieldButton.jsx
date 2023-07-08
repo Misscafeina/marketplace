@@ -23,7 +23,7 @@ function EditFieldButton({
         setShowPopUp(true);
       }}
     >
-      Editar
+      Editar {field}
     </button>
   );
 }
