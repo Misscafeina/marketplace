@@ -24,7 +24,7 @@ function Footer() {
   }, []);
 
   return (
-    <footer>
+    <footer className="footer">
       {cookiesActive && <div>{showPopUp ? <AcceptCookies /> : null}</div>}
 
       <nav className="navprincipal">

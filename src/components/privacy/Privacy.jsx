@@ -1,7 +1,7 @@
 import "./style.css";
 import "../../context/ThemeContext";
 import { Link } from "react-router-dom";
-import Footer from "../footer/Footer";
+
 //import ThemeSwitcher from "../inputs/ThemeSwitcher";
 const Privacy = () => {
   return (
@@ -316,7 +316,6 @@ const Privacy = () => {
         interactiva, aprovechando que siempre la encontrarás como punto
         permanente de información en nuestra Web.
       </p>
-      <Footer />
     </main>
   );
 };

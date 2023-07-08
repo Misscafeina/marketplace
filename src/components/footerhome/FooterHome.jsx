@@ -23,7 +23,7 @@ function FooterHome() {
     }
   }, []);
   return (
-    <footer>
+    <footer className="footerHome">
       {cookiesActive && <div>{showPopUp ? <AcceptCookies /> : null}</div>}
       <nav className="navFooterVarios">
         <ul className="firstList">

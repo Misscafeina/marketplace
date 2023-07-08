@@ -2,7 +2,7 @@ import "./style.css";
 
 import { Link } from "react-router-dom";
 //import ThemeSwitcher from "../inputs/ThemeSwitcher";
-import Footer from "../footer/Footer";
+
 const Cookies = () => {
   return (
     <main>
@@ -74,7 +74,6 @@ const Cookies = () => {
         <Link to={"/privacy"}>Política de privacidad</Link>
         para más información sobre los tipos de información que recabamos.
       </p>
-      <Footer />
     </main>
   );
 };

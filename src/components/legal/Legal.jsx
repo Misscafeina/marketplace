@@ -2,7 +2,6 @@ import "./style.css";
 import "../../context/ThemeContext";
 import { Link } from "react-router-dom";
 //import ThemeSwitcher from "../inputs/ThemeSwitcher";
-import Footer from "../footer/Footer";
 
 const Legal = () => {
   return (
@@ -123,7 +122,6 @@ const Legal = () => {
         de 2023, es de 12.980.031.
       </p>
       <p className="check">Actualizado el 21 de Junio de 2023</p>
-      <Footer />
     </main>
   );
 };
