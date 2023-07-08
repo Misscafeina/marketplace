@@ -57,14 +57,26 @@ const RegisterForm = () => {
             errors={errors}
             registerName={"repeatPassword"}
           />
-          <button>Registrarse</button>
+          <button
+            className="registro"
+            style={{
+              color: "white",
+              background: "#1C1C1C",
+              padding: "15px",
+              borderRadius: "15px",
+            }}
+          >
+            Registrarse
+          </button>
         </form>
-        <p>
-          ¿Ya estás registrado?{" "}
-          <span className="register" onClick={handleSpan}>
-            Inicia sesion
-          </span>
-        </p>
+        <div className="register">
+          <p>
+            ¿Ya estás registrado?{" "}
+            <span style={{ color: "#708090" }} onClick={handleSpan}>
+              Inicia sesion
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   );

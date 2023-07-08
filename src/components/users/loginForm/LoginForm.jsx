@@ -38,14 +38,23 @@ function LoginForm() {
             registerName={"password"}
           />
 
-          <button type="submit">Login</button>
+          <button type="submit" style={{ background: "#1C1C1C" }}>
+            Login
+          </button>
         </form>
-        <p>
-          ¿Eres nuev@?
-          <span className="register" onClick={handleRegister}>
-            ¡Regístrate!
-          </span>
-        </p>
+
+        <div className="register">
+          <p>
+            Si es tu primera vez...
+            <span
+              className="register"
+              style={{ color: "#708090" }}
+              onClick={handleRegister}
+            >
+              ¡Regístrate!
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   );

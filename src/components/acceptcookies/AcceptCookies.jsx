@@ -36,18 +36,29 @@ function AcceptCookies() {
           hábitos de navegación (p.ej. páginas visitadas) y para optimizar la
           web. Para administrar o deshabilitar estas cookies haz click en
           Configuración de Cookies. Puedes obtener más información en nuestra{" "}
-          <Link to={"/cookies"}>Política de cookies</Link>. Pulsa el botón
-          Aceptar Cookies para confirmar que has leído y aceptado la información
-          presentada. Después de aceptar, no volveremos a mostrarte este
-          mensaje, excepto en el caso de que borres las cookies de tu
-          dispositivo
+          <Link to={"/cookies"} style={{ color: "black" }}>
+            Política de cookies
+          </Link>
+          . Pulsa el botón Aceptar Cookies para confirmar que has leído y
+          aceptado la información presentada. Después de aceptar, no volveremos
+          a mostrarte este mensaje, excepto en el caso de que borres las cookies
+          de tu dispositivo
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button className=".button" autoFocus onClick={handleRequiredCookies}>
+        <Button
+          className=".button"
+          style={{ background: "#1C1C1C" }}
+          autoFocus
+          onClick={handleRequiredCookies}
+        >
           Ver Cookies requeridas
         </Button>
-        <Button className=".button" onClick={handleClose}>
+        <Button
+          className=".button"
+          style={{ background: "#1C1C1C" }}
+          onClick={handleClose}
+        >
           Aceptar
         </Button>
       </DialogActions>
