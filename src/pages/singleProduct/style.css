@@ -1,0 +1,7 @@
+.singleProduct {
+  display: flex;
+  justify-content: center;
+}
+.singleProduct .product-container {
+  max-width: 100%;
+}

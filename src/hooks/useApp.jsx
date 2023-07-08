@@ -39,12 +39,6 @@ function useApp() {
       };
       function success(pos) {
         const crd = pos.coords;
-
-        console.log("Tu ubicación actual es:");
-        console.log(`Latitud : ${crd.latitude}`);
-        console.log(`Longitud: ${crd.longitude}`);
-        console.log(`Más o menos ${crd.accuracy} metros.`);
-
         setLocationLat(crd.latitude);
         setLocationLong(crd.longitude);
       }

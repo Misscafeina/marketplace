@@ -13,7 +13,7 @@ import MenuButton from "../../assets/menu.svg";
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
   const { isAuthenticated, logout } = useAuth();
-  const { userLog, wishList, messages, addNewProduct } = useHeader();
+  const { userLog, wishList, addNewProduct } = useHeader();
 
   const showSidebar = () => setSidebar(!sidebar);
 
@@ -61,18 +61,6 @@ function Navbar() {
                 </button>
               </li>
             )}
-            {isAuthenticated && (
-              <li>
-                <button
-                  className="btn"
-                  onClick={() => {
-                    messages();
-                  }}
-                >
-                  <img src={messageLogo} alt="message button" /> Chats
-                </button>
-              </li>
-            )}
             <li>
               <button
                 className="btn"
@@ -80,8 +68,8 @@ function Navbar() {
                   addNewProduct();
                 }}
               >
-                <img src={addProductLogo} alt="Add new product button" /> Sube
-                un nuevo producto
+                <img src={addProductLogo} alt="Add new product button" />
+                Nuevo producto
               </button>
             </li>
             {isAuthenticated && (
