@@ -33,6 +33,21 @@ button:hover {
 .logo:hover {
   cursor: pointer;
 }
+
+@media (width<=820px) {
+  .Logo {
+    width: 8rem;
+    margin-top: 5vh;
+  }
+  header {
+    height: 14vh;
+    display: flex;
+    align-items: center;
+  }
+  .navbar {
+    margin-top: 0;
+  }
+}
 /* 
 .btn {
   position: relative;

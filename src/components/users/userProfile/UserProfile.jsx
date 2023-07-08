@@ -134,20 +134,18 @@ function UserProfile({
             />
           </div>
         </div>
-        <div className="container">
+        {/* <div className="container">
           <div className="salesItem">
             <h3>Compras</h3>
-            {/* Aquí puedes agregar el contenido de las compras */}
           </div>
           <div className="salesItem">
             <h3>Ventas</h3>
-            {/* Aquí puedes agregar el contenido de las ventas */}
           </div>
           <div className="salesItem">
             <h3>Valoraciones de Vendedores</h3>
             <SellerRatings />
           </div>
-        </div>
+        </div> */}
         {editProfileActive && (
           <div>
             {showPopUp ? (

@@ -19,7 +19,7 @@ function Navbar() {
 
   return (
     <>
-      <div className="navbar">
+      <div className="navbarLateral">
         <Link to="#" className="menu-bars">
           <button onClick={showSidebar}>
             <img src={MenuButton} alt="Botón de menú" />
