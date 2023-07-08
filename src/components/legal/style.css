@@ -1,9 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 h1 {
   font-family: "Gill Sans MT", sans-serif;
   font-style: normal;
@@ -38,8 +32,10 @@ main {
   color: black;
 }
 
-Legal {
+.Legal {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  margin-left: 20px;
+  padding: 2rem;
 }

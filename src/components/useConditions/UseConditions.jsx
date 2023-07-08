@@ -64,7 +64,7 @@ const UseConditions = () => {
         Condiciones, el Usuario consiente que sus datos pasen a formar parte del
         fichero de Retrotech y el tratamiento de esos datos será conforme a lo
         previsto en la{" "}
-        <Link to="../../components/privacy/Privacy.jsx">
+        <Link to={"/privacy"} style={{ color: "black" }}>
           Política de Privacidad
         </Link>
         .

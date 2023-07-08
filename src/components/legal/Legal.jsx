@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Legal = () => {
   return (
-    <main>
+    <div className="Legal">
       <h1>Aviso Legal del sitio Web de Retrotech</h1>
       <h2>¿Quién es el titular de la web de Retrotech?</h2>
       <p>
@@ -64,8 +64,14 @@ const Legal = () => {
         datos, así como con la Ley 34/2002, de 11 de julio, de servicios de la
         sociedad de la información y de comercio electrónico. Para más
         información, accede a nuestra{" "}
-        <Link to={"/privacy"}>Política de privacidad</Link> y{" "}
-        <Link to={"/cookies"}>Política de Cookies</Link>.
+        <Link to={"/privacy"} style={{ color: "black" }}>
+          Política de privacidad
+        </Link>{" "}
+        y{" "}
+        <Link to={"/cookies"} style={{ color: "black" }}>
+          Política de Cookies
+        </Link>
+        .
       </p>
 
       <h2>Modificaciones</h2>
@@ -122,7 +128,7 @@ const Legal = () => {
         de 2023, es de 12.980.031.
       </p>
       <p className="check">Actualizado el 21 de Junio de 2023</p>
-    </main>
+    </div>
   );
 };
 

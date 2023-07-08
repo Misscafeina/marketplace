@@ -5,17 +5,15 @@ import { Link } from "react-router-dom";
 
 const Cookies = () => {
   return (
-    <main>
+    <div className="Cookies">
       <h1>Política de Cookies</h1>
+      <h2>Cookies Operativas</h2>
 
       <p>
         Utilizamos cookies y herramientas similares (conjuntamente, “cookies”)
         para los fines descritos a continuación.
       </p>
-      <p>
-        Cookies operativas: Utilizamos cookies para prestar nuestros servicios,
-        por ejemplo:
-      </p>
+
       <p>
         1.Reconocer cuándo te registras para usar nuestros servicios.
         2.Reconocerte como miembro de Retrotech y ofrecerte otras
@@ -71,10 +69,12 @@ const Cookies = () => {
         servicio de Retrotech que requiera que inicies sesión. Es posible que
         debas ajustar manualmente algunas de tus preferencias cada vez que
         utilices nuestros servicios. Consulta nuestra{" "}
-        <Link to={"/privacy"}>Política de privacidad</Link>
+        <Link to={"/privacy"} style={{ color: "black" }}>
+          Política de privacidad
+        </Link>{" "}
         para más información sobre los tipos de información que recabamos.
       </p>
-    </main>
+    </div>
   );
 };
 
