@@ -84,11 +84,11 @@ function MuiNewProductForm({ userInfo, handleProductChanges }) {
   };
   // const { submitInfo } = useNewProductForm();
   return (
-    <div>
+    <div className="newProductForm">
       <h2>¿Qué producto vas a subir?</h2>
       <form onSubmit={handleSubmit(submitInfo)} noValidate>
         {" "}
-        <Stack spacing={2} width={500}>
+        <Stack spacing={2} maxWidth={500}>
           <TextField
             label="Título:"
             type="text"

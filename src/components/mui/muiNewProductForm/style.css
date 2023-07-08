@@ -1,3 +1,17 @@
 .cambiado {
   background-color: black;
 }
+
+.newProductForm {
+  max-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+label {
+  z-index: -1;
+}
+
+.css-e4w4as-MuiFormLabel-root-MuiInputLabel-root {
+  z-index: -1;
+}

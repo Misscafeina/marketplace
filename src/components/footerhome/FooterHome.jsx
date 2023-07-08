@@ -23,7 +23,7 @@ function FooterHome() {
     }
   }, []);
   return (
-    <body>
+    <footer>
       {cookiesActive && <div>{showPopUp ? <AcceptCookies /> : null}</div>}
       <nav className="navFooterVarios">
         <ul className="firstList">
@@ -137,7 +137,7 @@ function FooterHome() {
         © 2023, Retrotech.com, Inc. o sus afiliados
       </span>
       <span className="last">{""}</span>
-    </body>
+    </footer>
   );
 }
 

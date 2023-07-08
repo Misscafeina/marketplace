@@ -7,7 +7,6 @@ import PropTypes from "prop-types";
 
 function SingleProduct({ wishlistArray, handleAddRemoveFromWishlist }) {
   const [product, setProduct] = useState({});
-  const [lastSearch, setLastSearch] = useState("");
   const { id } = useParams();
 
   useEffect(() => {
@@ -20,11 +19,13 @@ function SingleProduct({ wishlistArray, handleAddRemoveFromWishlist }) {
   }, [id]);
 
   return (
-    <ProductContainer
-      product={product}
-      handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
-      wishlistArray={wishlistArray}
-    />
+    <div className="singleProduct">
+      <ProductContainer
+        product={product}
+        handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
+        wishlistArray={wishlistArray}
+      />
+    </div>
   );
 }
 SingleProduct.propTypes = {
