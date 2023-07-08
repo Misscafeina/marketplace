@@ -21,7 +21,7 @@ function Navbar() {
     <>
       <div className="navbarLateral">
         <Link to="#" className="menu-bars">
-          <button onClick={showSidebar}>
+          <button onClick={showSidebar} className="navbarButton">
             <img src={MenuButton} alt="Botón de menú" />
           </button>
         </Link>

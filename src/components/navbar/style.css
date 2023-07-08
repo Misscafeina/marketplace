@@ -76,3 +76,7 @@
   justify-content: start;
   align-items: center;
 }
+.navbarButton {
+  background: none;
+  border: none;
+}
