@@ -1,11 +1,9 @@
 import { BsSearch } from "react-icons/bs";
 import recording from "../../assets/Recording.mp4";
-import "./styles.css";
-
+import "./style.css";
 import { useContext } from "react";
-import { PopUpContext } from "../../context/PopUpContext";
+import { PopUpContext } from "../../context/popUpContext";
 import Filter from "../filter/Filter";
-import { useSearchParams } from "react-router-dom";
 import useSearch from "../../hooks/useSearch";
 
 function Background() {

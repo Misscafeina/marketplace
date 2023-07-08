@@ -7,7 +7,6 @@ import {
 import PropTypes from "prop-types";
 import "./style.css";
 import Background from "../../components/background/Background";
-
 import ProductsContainer from "../../components/products/productsContainer/ProductsContainer";
 import { useSearchParams } from "react-router-dom";
 import useSearch from "../../hooks/useSearch";
@@ -52,6 +51,7 @@ function HomePage({
   return (
     <>
       <Background />
+
       <ProductsContainer
         products={products}
         wishlistArray={wishlistArray}

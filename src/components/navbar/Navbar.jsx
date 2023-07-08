@@ -13,8 +13,7 @@ import MenuButton from "../../assets/menu.svg";
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
   const { isAuthenticated, logout } = useAuth();
-  const { returnHome, userLog, wishList, messages, addNewProduct } =
-    useHeader();
+  const { userLog, wishList, messages, addNewProduct } = useHeader();
 
   const showSidebar = () => setSidebar(!sidebar);
 
