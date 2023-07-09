@@ -32,13 +32,13 @@ function FooterHome() {
             <ul>
               <li>
                 <Link
-                  to={"/product/:id"}
+                  to={"/"}
                   style={{
                     textDecoration: "none",
                     color: "white",
                   }}
                 >
-                  All Products
+                  Todos los productos
                 </Link>{" "}
               </li>
               <li>
@@ -49,20 +49,8 @@ function FooterHome() {
                     color: "white",
                   }}
                 >
-                  Add New Product
+                  Nuevo producto
                 </Link>{" "}
-              </li>
-
-              <li>
-                <Link
-                  to={"/editproduct"}
-                  style={{
-                    textDecoration: "none",
-                    color: "white",
-                  }}
-                >
-                  Changes in Your Products
-                </Link>
               </li>
             </ul>
           </li>
