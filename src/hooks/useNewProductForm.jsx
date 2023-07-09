@@ -30,7 +30,6 @@ function useNewProductForm() {
       if (response.status !== "ok") throw new Error(response?.data?.error);
       const formData = new FormData();
 
-      console.log("id", id, +id);
       for (let i = 0; i < data.images.length; i++) {
         formData.append("images", data.images[i]);
       }
@@ -45,7 +44,6 @@ function useNewProductForm() {
       handleProductChanges();
       filesResponse.status === "ok" && navigate(`/product/${id}`);
     } catch (err) {
-      console.log(err);
       setShowPopUp(true);
       setErrorActive(true);
       setErrorMessage(err.response?.data?.error || err.message);

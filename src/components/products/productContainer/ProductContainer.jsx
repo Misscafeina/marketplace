@@ -36,8 +36,7 @@ const ProductContainer = ({
       e.target.localName === "a"
     ) {
     } else if (url !== `http://localhost:5173/product/${id}`) {
-      navigate(`/product/${id}`);
-      if (userId === product.idUser) console.log("Este producto es tuyo"); //Aqui va la logica de editar producto
+      navigate(`/product/${id}`); //Aqui va la logica de editar producto
     }
   };
   return (

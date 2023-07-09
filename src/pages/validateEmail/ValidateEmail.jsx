@@ -16,7 +16,6 @@ function ValidateEmail() {
       const response = await validateEmail(code);
       response.status === "ok" && navigate("/");
     } catch (err) {
-      console.log(err);
       if (err.response.status !== 403) {
         setShowPopUp(true);
         setErrorActive(true);

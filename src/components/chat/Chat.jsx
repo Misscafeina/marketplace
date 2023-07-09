@@ -23,7 +23,6 @@ const Chat = ({
     try {
       const message = { message: newMessage };
       if (newStatus) message.status = newStatus;
-      console.log(message);
       await postChatMessage(dealInfo.dealData.id, message);
       setNewMessage("");
       setStatus(newStatus);
@@ -43,7 +42,6 @@ const Chat = ({
     setShowMenu(!showMenu);
   };
 
-  console.log(dealInfo);
   const {
     avatarVendorUrl,
     usernameVendor,

@@ -16,44 +16,52 @@ import NumberInput from "../../inputs/NumberInput";
 import CategoriesInput from "../../inputs/CategoriesInput";
 import TextAreaInput from "../../inputs/TextAreaInput";
 import StatusInput from "../../inputs/StatusInput";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { getProductDetails } from "../../../services";
+import { useState } from "react";
 
 function UpdateProductForm() {
   const {
-    state: {
-      productInfo: {
-        name,
-        description,
-        price,
-        category,
-        region,
-        country,
-        address,
-        city,
-        keywords,
-        status,
-      },
-    },
     actions: { submitInfo },
   } = useUpdateProductForm();
-
+  const { id } = useParams();
+  const [product, setProduct] = useState([]);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
 
     formState: { errors },
   } = useForm();
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  useEffect(() => {
+    const getProduct = async () => {
+      const response = await getProductDetails(id);
 
+      setProduct(response.data);
+    };
+    getProduct();
+  }, []);
+  useEffect(() => {
+    if (product.usernameVendor)
+      if (product.usernameVendor !== userInfo.username) {
+        navigate(`/product/${id}`);
+      }
+  }, [product]);
   return (
     <>
       <form onSubmit={handleSubmit(submitInfo)} className="formContainer">
         <CategoriesInput
-          label={category ? `Categoría: (${category})` : "Categoría:"}
+          label={
+            product.category ? `Categoría: (${product.category})` : "Categoría:"
+          }
           register={register("category", REQUIRED)}
           errors={errors}
           registerName={"category"}
         />
         <TextInput
-          label={name ? `Marca y modelo: (${name})` : "Marca y modelo:"}
+          label={name ? `Nombre: (${name})` : "Nombre:"}
           register={register("name", PRODUCT_NAME)}
           errors={errors}
           registerName={"name"}
@@ -61,8 +69,8 @@ function UpdateProductForm() {
 
         <TextAreaInput
           label={
-            description
-              ? `Descripción del artículo: (${description})`
+            product.description
+              ? `Descripción del artículo: (${product.description})`
               : "Descripción del artículo:"
           }
           register={register("description", LONG_TEXT_VALIDATIONS)}
@@ -73,46 +81,42 @@ function UpdateProductForm() {
           label={
             status ? `Estado del Producto: ${status}` : "Estado del Producto:"
           }
-          register={register("status", REQUIRED)}
+          register={register("status")}
           errors={errors}
           registerName={"status"}
         />
         <NumberInput
-          label={price ? `Precio: ${price}` : "Precio:"}
-          register={register("price", REQUIRED)}
+          label={product.price ? `Precio: ${product.price}` : "Precio:"}
+          register={register("price")}
           errors={errors}
           registerName={"price"}
         />
-        <TextInput
-          label={keywords ? `#hagstags: ${keywords}` : "keywords:"}
-          register={register("keywords", HASHTAG_VALIDATIONS)}
-          errors={errors}
-          registerName={"keywords"}
-        />
 
         <TextInput
-          label={address ? `Dirección: ${address}` : "Dirección:"}
-          register={register("address", LONG_TEXT_VALIDATIONS_REQUIRED)}
+          label={
+            product.address ? `Dirección: ${product.address}` : "Dirección:"
+          }
+          register={register("address", LONG_TEXT_VALIDATIONS)}
           registerName={"address"}
           errors={errors}
         />
 
         <TextInput
-          label={city ? `Ciudad: ${city}` : "Ciudad:"}
-          register={register("city", LONG_TEXT_VALIDATIONS_REQUIRED)}
+          label={product.city ? `Ciudad: ${product.city}` : "Ciudad:"}
+          register={register("city", LONG_TEXT_VALIDATIONS)}
           registerName={"city"}
           errors={errors}
         />
 
         <TextInput
-          label={region ? `Provincia: ${region}` : "Provincia:"}
-          register={register("region", NAME_VALIDATIONS_REQUIRED)}
+          label={product.region ? `Provincia: ${product.region}` : "Provincia:"}
+          register={register("region", LONG_TEXT_VALIDATIONS)}
           registerName={"region"}
           errors={errors}
         />
 
         <CountryInpunt
-          label={country ? `País: ${country}` : "País:"}
+          label={product.country ? `País: ${product.country}` : "País:"}
           register={register("country", REQUIRED)}
           registerName={"country"}
           errors={errors}

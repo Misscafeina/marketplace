@@ -35,7 +35,6 @@ function DealChat({ dealInfo, setDealInfo }) {
   } = useForm();
   const currentDate = new Date();
   const onSubmit = async (message) => {
-    // console.log(e);
     await postChatMessage(dealInfo.dealData.id, message);
     const response = await getDealDetails(dealInfo.dealData.id);
     response.status === "ok" && setDealInfo(response.data);

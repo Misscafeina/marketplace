@@ -39,11 +39,11 @@ export const postNewProduct = async (product) => {
   return data;
 };
 
-export const editProduct = async (product) => {
-  const { idProduct } = product;
+export const editProduct = async (product, config, id) => {
   const { data } = await axios.patch(
-    `${BACKEND_URL}/products/:${idProduct}`,
-    product
+    `${BACKEND_URL}/products/:${id}`,
+    product,
+    config
   );
   if (data.status !== "ok") throw new Error(data.message);
 

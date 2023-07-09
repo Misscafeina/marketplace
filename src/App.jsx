@@ -71,7 +71,7 @@ function App() {
         />
 
         <Route path="/chat" element={<Chat />} />
-        <Route path="/editproduct" element={<UpdateProductForm />} />
+        <Route path="/editproduct/:id" element={<UpdateProductForm />} />
         <Route
           path="/wishlist"
           element={
