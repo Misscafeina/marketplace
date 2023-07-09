@@ -10,7 +10,7 @@ function CategoriesInput({ label, register, registerName, errors }) {
       errors={errors}
       defaultValue={"games"}
     >
-      <option value="gamin">Gamin</option>
+      <option value="gaming">Gaming</option>
       <option value="music">Música</option>
       <option value="video">Video</option>
       <option value="photography">Fotografía</option>

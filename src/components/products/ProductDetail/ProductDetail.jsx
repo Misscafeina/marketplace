@@ -7,7 +7,11 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Rating from "react-rating";
 import { Link, useParams } from "react-router-dom";
-import { findProductsByQuery, postNewDeal } from "../../../services";
+import {
+  findProductsByQuery,
+  getAnyUserProfile,
+  postNewDeal,
+} from "../../../services";
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { PopUpContext } from "../../../context/popUpContext";
@@ -27,6 +31,9 @@ const ProductDetail = ({
   const [homePage, setHomePage] = useState(false);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const { id } = useParams();
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const [owner, setOwner] = useState(false);
+
   useEffect(() => {
     if (
       location.pathname === "/" ||
@@ -58,6 +65,16 @@ const ProductDetail = ({
       getRelatedProducts();
     }
   }, [id]);
+
+  useEffect(() => {
+    if (location.pathname === `/product/${id}`) {
+      if (userInfo.username === product.usernameVendor) {
+        setOwner(true);
+      } else {
+        setOwner(false);
+      }
+    }
+  }, [userInfo]);
 
   const handleBuyButton = async () => {
     try {
@@ -121,6 +138,7 @@ const ProductDetail = ({
       {homePage ? null : (
         <p className="product-description">{product?.description}</p>
       )}
+      {homePage ? null : <p>{product?.state}</p>}
       <div className="product-buttons">
         <button className="buy-button" onClick={handleBuyButton}>
           Comprar
@@ -156,20 +174,14 @@ const ProductDetail = ({
               </>
             ) : null}
           </div>
-          <div className="seller-ratings">
-            <h3>Valoraciones del Vendedor</h3>
-            <ul>
-              {/* Lista de valoraciones del vendedor */}
-              <li>Valoración 1</li>
-              <li>Valoración 2</li>
-              <li>Valoración 3</li>
-            </ul>
-          </div>
-          <div>
-            <Link to="/chat">
-              <button className="chat-button">Chat</button>
-            </Link>
-          </div>
+
+          {owner && (
+            <div>
+              <Link to="/editproduct/20">
+                <button className="chat-button">Editar producto</button>
+              </Link>
+            </div>
+          )}
         </>
       )}
     </div>

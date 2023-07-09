@@ -35,8 +35,6 @@ function SingleDeal({ handleProductChanges, userInfo, setUserInfo }) {
     };
     getInfo(idDeal);
   }, [idDeal]);
-  // console.log(userInfo);
-  // console.log(dealInfo);
   return (
     <>
       {isAllowed && (

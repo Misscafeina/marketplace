@@ -5,10 +5,8 @@ import NewProductForm from "../../components/products/newProductForm/NewProductF
 
 function NewProductPage() {
   const { showPopUp, newProductActive } = useContext(PopUpContext);
-  console.log(showPopUp, "popup", newProductActive);
-  useEffect(() => {
-    console.log(showPopUp, "popup", newProductActive);
-  }, [showPopUp]);
+
+  useEffect(() => {}, [showPopUp]);
 
   if (newProductActive) {
     return <div> {showPopUp ? <NewProductForm /> : null}</div>;
