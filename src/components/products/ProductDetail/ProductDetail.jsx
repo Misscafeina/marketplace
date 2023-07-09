@@ -68,7 +68,7 @@ const ProductDetail = ({
 
   useEffect(() => {
     if (location.pathname === `/product/${id}`) {
-      if (userInfo.username === product.usernameVendor) {
+      if (userInfo?.username === product.usernameVendor) {
         setOwner(true);
       } else {
         setOwner(false);
