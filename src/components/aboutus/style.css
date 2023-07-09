@@ -1,0 +1,7 @@
+.imagen-container img {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  object-fit: cover;
+}
