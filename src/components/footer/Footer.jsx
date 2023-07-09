@@ -71,7 +71,17 @@ function Footer() {
           <li>
             <h4>RETROTECH</h4>
             <ul>
-              <li>About us</li>
+              <li>
+                <Link
+                  to={"/aboutUs"}
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                  }}
+                >
+                  About Us
+                </Link>{" "}
+              </li>
             </ul>
           </li>
         </ul>

@@ -25,6 +25,7 @@ import ValidateEmail from "./pages/validateEmail/ValidateEmail";
 import SingleDeal from "./pages/SingleDeal/SingleDeal";
 import FooterHome from "./components/footerhome/FooterHome";
 import Footer from "./components/footer/Footer";
+import AboutUs from "./components/aboutus/aboutUs";
 // import ProductDetail from "./components/products/ProductDetail/ProductDetail";
 // import ErrorProvider from "./context/ErrorContext";
 
@@ -124,6 +125,7 @@ function App() {
         <Route path="/legal" element={<Legal />} />
         <Route path="/cookies" element={<Cookies />} />
         <Route exact path="/search" element={<SearchResult />} />
+        <Route path="/aboutUs" element={<AboutUs />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
