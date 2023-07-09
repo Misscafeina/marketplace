@@ -118,7 +118,18 @@ function UpdateProductForm() {
           errors={errors}
         />
 
-        <button type="submit">Actualizar</button>
+        <button
+          className="submit"
+          type="submit"
+          style={{
+            color: "white",
+            background: "#1C1C1C",
+            padding: "10px",
+            borderRadius: "10px",
+          }}
+        >
+          Actualizar
+        </button>
       </form>
     </>
   );
