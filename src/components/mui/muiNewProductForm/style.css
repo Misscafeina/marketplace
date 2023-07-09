@@ -15,3 +15,7 @@ label {
 .css-e4w4as-MuiFormLabel-root-MuiInputLabel-root {
   z-index: -1;
 }
+
+.form {
+  color: white;
+}

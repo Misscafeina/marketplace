@@ -116,7 +116,7 @@ function App() {
             />
           }
         />
-
+        <Route path="/footerhome" element={<FooterHome />} />
         <Route path="/bestsellers" element={<BestSellers />} />
         <Route path="/editproduct" element={<UpdateProductForm />} />
         <Route path="/useConditions" element={<UseConditions />} />
