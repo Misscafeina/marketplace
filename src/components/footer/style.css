@@ -78,7 +78,9 @@
   color: white;
   flex-direction: row;
 }
-
+.h1 {
+  font-size: 15px;
+}
 footer h4 {
   margin-bottom: 10px;
 }

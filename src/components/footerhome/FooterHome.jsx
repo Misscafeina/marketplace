@@ -30,9 +30,40 @@ function FooterHome() {
           <li>
             <h4>SHOP AND BUY</h4>
             <ul>
-              <li>Register</li>
-              <li>Upload Item</li>
-              <li>All products</li>
+              <li>
+                <Link
+                  to={"/product/:id"}
+                  style={{
+                    textDecoration: "none",
+                    color: "white",
+                  }}
+                >
+                  All Products
+                </Link>{" "}
+              </li>
+              <li>
+                <Link
+                  to={"/newproduct"}
+                  style={{
+                    textDecoration: "none",
+                    color: "white",
+                  }}
+                >
+                  Add New Product
+                </Link>{" "}
+              </li>
+
+              <li>
+                <Link
+                  to={"/editproduct"}
+                  style={{
+                    textDecoration: "none",
+                    color: "white",
+                  }}
+                >
+                  Changes in Your Products
+                </Link>
+              </li>
             </ul>
           </li>
           <li>
@@ -110,22 +141,50 @@ function FooterHome() {
       <nav className="navFooterTerms">
         <ul className="link">
           <li>
-            <Link to={"/useConditions"} style={{ color: "white" }}>
+            <Link
+              to={"/useConditions"}
+              style={{
+                color: "white",
+                textDecoration: "none",
+                fontWeight: "bold",
+              }}
+            >
               Condiciones de uso
             </Link>
           </li>
           <li>
-            <Link to={"/privacy"} style={{ color: "white" }}>
+            <Link
+              to={"/privacy"}
+              style={{
+                color: "white",
+                textDecoration: "none",
+                fontWeight: "bold",
+              }}
+            >
               Política de privacidad
             </Link>
           </li>
           <li>
-            <Link to={"/legal"} style={{ color: "white" }}>
+            <Link
+              to={"/legal"}
+              style={{
+                color: "white",
+                textDecoration: "none",
+                fontWeight: "bold",
+              }}
+            >
               Aviso Legal
             </Link>
           </li>
           <li>
-            <Link to={"/cookies"} style={{ color: "white" }}>
+            <Link
+              to={"/cookies"}
+              style={{
+                color: "white",
+                textDecoration: "none",
+                fontWeight: "bold",
+              }}
+            >
               Cookies
             </Link>
           </li>
