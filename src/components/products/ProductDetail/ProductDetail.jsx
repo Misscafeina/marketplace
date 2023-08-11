@@ -45,7 +45,7 @@ const ProductDetail = ({
       setHomePage(false);
       const getRelatedProducts = async () => {
         const related = await findProductsByQuery(product.name);
-
+        console.log(related);
         const array = [];
         const productsArray = [];
         for (let i = 0; i < 3; i++) {
@@ -101,6 +101,7 @@ const ProductDetail = ({
     slidesToScroll: 1,
   };
 
+  console.log(relatedProducts);
   return (
     <div className="product-detail">
       <h2 className="product-title">{product?.name}</h2>
@@ -158,7 +159,7 @@ const ProductDetail = ({
       {homePage ? null : (
         <>
           <div className="related-products">
-            {relatedProducts.length > 0 ? (
+            {relatedProducts.length > 0 && (
               <>
                 <h3>Productos que quizás te interesen:</h3>
                 <ul>
@@ -172,12 +173,12 @@ const ProductDetail = ({
                   })}
                 </ul>
               </>
-            ) : null}
+            )}
           </div>
 
           {owner && (
             <div>
-              <Link to="/editproduct/20">
+              <Link to={`/editproduct/${product.id}`}>
                 <button className="chat-button">Editar producto</button>
               </Link>
             </div>

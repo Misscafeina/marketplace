@@ -9,6 +9,7 @@ const ProductsContainer = ({
   setProducts,
   handleProductChanges,
 }) => {
+  console.log(products);
   return (
     <ul className="products-container">
       {products?.map((product) => {
