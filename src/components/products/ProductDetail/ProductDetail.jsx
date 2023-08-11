@@ -177,7 +177,7 @@ const ProductDetail = ({
 
           {owner && (
             <div>
-              <Link to="/editproduct/20">
+              <Link to={`/editproduct/${product.id}`}>
                 <button className="chat-button">Editar producto</button>
               </Link>
             </div>
