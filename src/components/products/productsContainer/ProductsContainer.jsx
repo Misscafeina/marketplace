@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
-import ProductContainer from "../productContainer/ProductContainer";
-import "./style.css";
+import PropTypes from "prop-types"
+import ProductContainer from "../productContainer/ProductContainer"
+import "./style.css"
 
 const ProductsContainer = ({
   products,
@@ -9,7 +9,7 @@ const ProductsContainer = ({
   setProducts,
   handleProductChanges,
 }) => {
-  console.log(products);
+  console.log(products)
   return (
     <ul className="products-container">
       {products?.map((product) => {
@@ -23,11 +23,11 @@ const ProductsContainer = ({
             setProducts={setProducts}
             handleProductChanges={handleProductChanges}
           />
-        );
+        )
       })}
     </ul>
-  );
-};
+  )
+}
 
 ProductsContainer.propTypes = {
   children: PropTypes.node,
@@ -36,6 +36,6 @@ ProductsContainer.propTypes = {
   handleAddRemoveFromWishlist: PropTypes.func,
   setProducts: PropTypes.func,
   handleProductChanges: PropTypes.func,
-};
+}
 
-export default ProductsContainer;
+export default ProductsContainer

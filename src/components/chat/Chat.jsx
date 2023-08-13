@@ -1,10 +1,11 @@
-import { useContext, useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import "./style.css";
-import { postChatMessage } from "../../services";
-import { getDealDetails } from "../../services/dealsService";
-import { PopUpContext } from "../../context/popUpContext";
-import { useError } from "../../context/ErrorContext";
+import { useContext, useState } from "react"
+import PropTypes from "prop-types"
+import "./style.css"
+import { postChatMessage } from "../../services"
+import { getDealDetails } from "../../services/dealsService"
+import { PopUpContext } from "../../context/popUpContext"
+import { useError } from "../../context/ErrorContext"
+import Review from "../review/Review"
 
 const Chat = ({
   dealInfo,
@@ -12,35 +13,35 @@ const Chat = ({
 
   handleProductChanges,
 }) => {
-  const [newMessage, setNewMessage] = useState("");
-  const [showMenu, setShowMenu] = useState(false);
-  const [status, setStatus] = useState(dealInfo.dealData.status);
-  const [newStatus, setNewStatus] = useState("");
-  const { setShowPopUp, setErrorActive } = useContext(PopUpContext);
-  const { setErrorMessage } = useError();
+  const [newMessage, setNewMessage] = useState("")
+  const [showMenu, setShowMenu] = useState(false)
+  const [status, setStatus] = useState(dealInfo.dealData.status)
+  const [newStatus, setNewStatus] = useState("")
+  const { setShowPopUp, setErrorActive } = useContext(PopUpContext)
+  const { setErrorMessage } = useError()
 
   const handleSendMessage = async () => {
     try {
-      const message = { message: newMessage };
-      if (newStatus) message.status = newStatus;
-      await postChatMessage(dealInfo.dealData.id, message);
-      setNewMessage("");
-      setStatus(newStatus);
-      setNewStatus("");
-      handleProductChanges();
+      const message = { message: newMessage }
+      if (newStatus) message.status = newStatus
+      await postChatMessage(dealInfo.dealData.id, message)
+      setNewMessage("")
+      setStatus(newStatus)
+      setNewStatus("")
+      handleProductChanges()
 
-      const response = await getDealDetails(dealInfo.dealData.id);
-      response.status === "ok" && setDealInfo(response.data);
+      const response = await getDealDetails(dealInfo.dealData.id)
+      response.status === "ok" && setDealInfo(response.data)
     } catch (error) {
-      setShowPopUp(true);
-      setErrorActive(true);
-      setErrorMessage(error.response.data.error);
+      setShowPopUp(true)
+      setErrorActive(true)
+      setErrorMessage(error.response.data.error)
     }
-  };
+  }
 
   const handleMenuToggle = () => {
-    setShowMenu(!showMenu);
-  };
+    setShowMenu(!showMenu)
+  }
 
   const {
     avatarVendorUrl,
@@ -50,11 +51,12 @@ const Chat = ({
     idBuyer,
     idVendor,
     userRole,
-  } = dealInfo?.dealData;
-
+  } = dealInfo?.dealData
+  console.log(dealInfo)
   return (
     <div className="container">
       <div className="status"></div>
+      {status === "completed" && Review({ dealInfo, setDealInfo })}
       <div className="message-list">
         {dealInfo?.messages.map((message) => (
           <div key={message.id} className="message">
@@ -94,8 +96,8 @@ const Chat = ({
                   <>
                     <li
                       onClick={() => {
-                        setNewStatus("cancelled");
-                        setShowMenu(!showMenu);
+                        setNewStatus("cancelled")
+                        setShowMenu(!showMenu)
                       }}
                     >
                       Cancelar pedido
@@ -103,8 +105,8 @@ const Chat = ({
                     {status === "approved" && (
                       <li
                         onClick={() => {
-                          setNewStatus("completed");
-                          setShowMenu(!showMenu);
+                          setNewStatus("completed")
+                          setShowMenu(!showMenu)
                         }}
                       >
                         Completar pedido
@@ -112,13 +114,13 @@ const Chat = ({
                     )}
                   </>
                 )}
-                {userRole === "vendor" && (
+                {userRole === "vendor" && status !== "completed" && (
                   <>
                     {status === "requested" && (
                       <li
                         onClick={() => {
-                          setNewStatus("approved");
-                          setShowMenu(!showMenu);
+                          setNewStatus("approved")
+                          setShowMenu(!showMenu)
                         }}
                       >
                         Aceptar pedido
@@ -126,8 +128,8 @@ const Chat = ({
                     )}
                     <li
                       onClick={() => {
-                        setNewStatus("rejected");
-                        setShowMenu(!showMenu);
+                        setNewStatus("rejected")
+                        setShowMenu(!showMenu)
                       }}
                     >
                       Rechazar pedido
@@ -135,8 +137,8 @@ const Chat = ({
                     {status === "approved" && (
                       <li
                         onClick={() => {
-                          setNewStatus("completed");
-                          setShowMenu(!showMenu);
+                          setNewStatus("completed")
+                          setShowMenu(!showMenu)
                         }}
                       >
                         Completar pedido
@@ -153,14 +155,14 @@ const Chat = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 Chat.propTypes = {
   dealInfo: PropTypes.object,
   setDealInfo: PropTypes.func,
   setUserInfo: PropTypes.func,
   handleProductChanges: PropTypes.func,
-};
+}
 
-export default Chat;
+export default Chat
