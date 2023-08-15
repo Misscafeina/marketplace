@@ -1,14 +1,11 @@
 import "./style.css";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { PopUpContext } from "../../../context/PopUpContext";
 import EditFieldButton from "../../inputs/EditFieldButton";
 import EditPasswordButton from "../../inputs/EditPasswordButton";
 import UpdateUserPopUp from "../../../pages/UpdateUserPopUp/UpdateUserPopUp";
-import StarRating from "../../products/ProductDescription-pendiente/StarRating";
-import SellerRatings from "../../products/ProductDescription-pendiente/SellerRatings";
-import { BiSolidStarHalf } from "react-icons/bi";
-import { MdOutlineLocationOn } from "react-icons/md";
+import Rating from "react-rating";
 
 UserProfile.propTypes = {
   userInfo: PropTypes.object,
@@ -23,6 +20,10 @@ function UserProfile({
   selectedField,
   setUserInfo,
 }) {
+  const [userData, setUserData] = useState(userInfo.userData);
+  useEffect(() => {
+    setUserData(userInfo.userData);
+  }, [userInfo]);
   const { setEditProfileActive, editProfileActive, showPopUp, setShowPopUp } =
     useContext(PopUpContext);
 
@@ -32,12 +33,12 @@ function UserProfile({
     bio,
     name,
     lastName,
+    avgScore,
     address,
     city,
     region,
     country,
-  } = userInfo.userData;
-
+  } = userData;
   return (
     <>
       <article className="userProfile">
@@ -48,56 +49,48 @@ function UserProfile({
           />
         ) : null}
         <div className="firstContainer">
-          <div className="avatarContainer">
+          <div>
             <img src={avatarUrl} alt={username} />
-            <ul className="userInfo">
-              <li>
-                <h2>{username}</h2>
-              </li>
-              <li className="ratings">
-                <BiSolidStarHalf />
-                <StarRating stars={5} />
-                <span>({5})</span>
-              </li>
-              <li>
-                <span>
-                  <EditFieldButton
-                    setSelectedField={setSelectedField}
-                    field={"avatar"}
-                    setEditProfileActive={setEditProfileActive}
-                    setShowPopUp={setShowPopUp}
-                  />
-                </span>
-                <span>
-                  <EditPasswordButton
-                    setSelectedField={setSelectedField}
-                    field={"password"}
-                    setEditProfileActive={setEditProfileActive}
-                    setShowPopUp={setShowPopUp}
-                  />
-                </span>
-              </li>
-            </ul>
+            <span>
+              <EditFieldButton
+                setSelectedField={setSelectedField}
+                field={"avatar"}
+                setEditProfileActive={setEditProfileActive}
+                setShowPopUp={setShowPopUp}
+              />
+            </span>
+          </div>
+          <div className="userInfo">
+            <h2>{username}</h2>
+            <div className="ratings">
+              <Rating
+                className="rating"
+                initialRating={
+                  avgScore
+                } /* Si el initialRating tiene un valor que salga el empty y el full del color amarillo del css y sino, que los bordes salgan en gris (#888)*/
+                emptySymbol={<span className="rating-empty">&#9734;</span>}
+                fullSymbol={<span className="rating-full">&#9733;</span>}
+                readonly
+              />
+            </div>
+
+            <span>
+              <EditPasswordButton
+                setSelectedField={setSelectedField}
+                field={"password"}
+                setEditProfileActive={setEditProfileActive}
+                setShowPopUp={setShowPopUp}
+              />
+            </span>
           </div>
         </div>
         <div className="containerProfile">
           <div className="editContainer">
             <div>
-              <h3>
-                Bio:
-                <span>
-                  <EditFieldButton
-                    setSelectedField={setSelectedField}
-                    field={"bio"}
-                    setEditProfileActive={setEditProfileActive}
-                    setShowPopUp={setShowPopUp}
-                  />
-                </span>
-              </h3>
-              <p>{bio}</p>
-            </div>
-            <h3>
-              Nombre: {name}
+              <h3>Nombre:</h3>
+              <textarea readOnly value={name}>
+                {name}
+              </textarea>
               <span>
                 <EditFieldButton
                   setSelectedField={setSelectedField}
@@ -106,10 +99,13 @@ function UserProfile({
                   setShowPopUp={setShowPopUp}
                 />
               </span>
-            </h3>
-            <h3>
-              Apellidos: {lastName}
-              <span>
+            </div>
+            <div>
+              <h3>Apellidos:</h3>
+              <textarea readOnly value={lastName}>
+                {lastName}
+              </textarea>
+              <span className="edituserbutton">
                 <EditFieldButton
                   setSelectedField={setSelectedField}
                   field={"lastName"}
@@ -117,21 +113,42 @@ function UserProfile({
                   setShowPopUp={setShowPopUp}
                 />
               </span>
-            </h3>
+            </div>
+            <div>
+              <h3>Bio:</h3>
+              <textarea readOnly value={bio}>
+                {bio}
+              </textarea>
+              <span>
+                <EditFieldButton
+                  setSelectedField={setSelectedField}
+                  field={"bio"}
+                  setEditProfileActive={setEditProfileActive}
+                  setShowPopUp={setShowPopUp}
+                />
+              </span>
+            </div>
             {/* <h3>Contraseña:</h3> */}
           </div>
-          <div className="editContainer">
-            <h3>Dirección:</h3>
-            <h4>{address}</h4>
-            <h4>{city}</h4>
-            <h4>{region}</h4>
-            <h4>{country}</h4>
-            <EditFieldButton
-              setSelectedField={setSelectedField}
-              field={"address"}
-              setEditProfileActive={setEditProfileActive}
-              setShowPopUp={setShowPopUp}
-            />
+          <div className="editContainer direction">
+            <div>
+              <h3>Dirección:</h3>
+
+              <textarea
+                readOnly
+                value={address + ", " + city + ", " + region + ", " + country}
+              >
+                {address + ", " + city + ", " + region + ", " + country}
+              </textarea>
+              <span>
+                <EditFieldButton
+                  setSelectedField={setSelectedField}
+                  field={"address"}
+                  setEditProfileActive={setEditProfileActive}
+                  setShowPopUp={setShowPopUp}
+                />
+              </span>
+            </div>
           </div>
         </div>
 
