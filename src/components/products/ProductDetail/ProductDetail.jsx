@@ -79,6 +79,7 @@ const ProductDetail = ({
       const {
         data: { id: idDeal },
       } = data
+      console.log(idDeal)
       setProducts([...updatedProducts])
       navigate(`/deals/${idDeal}`)
     } catch (err) {
@@ -155,10 +156,10 @@ const ProductDetail = ({
                 <h3>Productos que quizás te interesen:</h3>
                 <ul>
                   {relatedProducts.map((p) => {
-                    const path = `/product/${p.id}`
+                    const path = `/product/${p?.id}`
                     return (
-                      <li key={p.id}>
-                        <Link to={path}>{p.name}</Link>
+                      <li key={p?.id}>
+                        <Link to={path}>{p?.name}</Link>
                       </li>
                     )
                   })}
