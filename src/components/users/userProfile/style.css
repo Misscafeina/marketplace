@@ -81,7 +81,8 @@
 }
 
 .editContainer h3 {
-  font-size: 30px;
+  font-size: 17px;
+  font-weight: 400;
   min-width: 150px;
 }
 .editContainer span {
@@ -123,6 +124,25 @@ textarea {
   flex-basis: 30%;
   text-align: center;
 }
+div.userInfo {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas:
+    "name"
+    "edit"
+    "stars";
+  gap: 0;
+}
+div.userInfo h2 {
+  grid-area: name;
+}
+div.userInfo div {
+  grid-area: stars;
+}
+div.userInfo span {
+  grid-area: edit;
+}
 
 @media (width<=820px) {
   div.individualContainer {
@@ -147,22 +167,5 @@ textarea {
   }
   div.editContainer {
     width: 100%;
-  }
-  div.userInfo {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas:
-      "name edit"
-      "stars stars";
-  }
-  div.userInfo h2 {
-    grid-area: name;
-  }
-  div.userInfo div {
-    grid-area: stars;
-  }
-  div.userInfo span {
-    grid-area: edit;
   }
 }
