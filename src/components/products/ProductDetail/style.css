@@ -5,6 +5,8 @@
   padding: 20px;
   gap: 10px;
   height: 100%;
+  max-width: 18vw;
+  min-width: 10vw;
 }
 
 h3 {
@@ -101,4 +103,10 @@ h3 {
   cursor: pointer;
   overflow: hidden;
   position: relative;
+}
+
+@media (width<=820px) {
+  .product-detail {
+    max-width: 90vw;
+  }
 }

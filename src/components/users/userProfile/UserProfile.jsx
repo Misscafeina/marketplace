@@ -86,7 +86,7 @@ function UserProfile({
         </div>
         <div className="containerProfile">
           <div className="editContainer">
-            <div>
+            <div className="individualContainer">
               <h3>Nombre:</h3>
               <textarea readOnly value={name}>
                 {name}
@@ -100,7 +100,7 @@ function UserProfile({
                 />
               </span>
             </div>
-            <div>
+            <div className="individualContainer">
               <h3>Apellidos:</h3>
               <textarea readOnly value={lastName}>
                 {lastName}
@@ -114,7 +114,7 @@ function UserProfile({
                 />
               </span>
             </div>
-            <div>
+            <div className="individualContainer">
               <h3>Bio:</h3>
               <textarea readOnly value={bio}>
                 {bio}
@@ -129,25 +129,25 @@ function UserProfile({
               </span>
             </div>
             {/* <h3>Contraseña:</h3> */}
-          </div>
-          <div className="editContainer direction">
-            <div>
-              <h3>Dirección:</h3>
+            <div className="editContainer direction">
+              <div className="individualContainer">
+                <h3>Dirección:</h3>
 
-              <textarea
-                readOnly
-                value={address + ", " + city + ", " + region + ", " + country}
-              >
-                {address + ", " + city + ", " + region + ", " + country}
-              </textarea>
-              <span>
-                <EditFieldButton
-                  setSelectedField={setSelectedField}
-                  field={"address"}
-                  setEditProfileActive={setEditProfileActive}
-                  setShowPopUp={setShowPopUp}
-                />
-              </span>
+                <textarea
+                  readOnly
+                  value={address + ", " + city + ", " + region + ", " + country}
+                >
+                  {address + ", " + city + ", " + region + ", " + country}
+                </textarea>
+                <span>
+                  <EditFieldButton
+                    setSelectedField={setSelectedField}
+                    field={"address"}
+                    setEditProfileActive={setEditProfileActive}
+                    setShowPopUp={setShowPopUp}
+                  />
+                </span>
+              </div>
             </div>
           </div>
         </div>
