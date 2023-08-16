@@ -65,9 +65,9 @@
   margin-bottom: 20px;
 }
 
-.editContainer {
+/* .editContainer {
   flex-basis: 48%;
-}
+} */
 
 .editContainer div {
   font-size: 30px;
@@ -109,13 +109,7 @@ textarea {
   font-weight: 400;
   margin-bottom: 5px;
 }
-.editContainer.direction {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  gap: 1rem;
-  width: 50vw;
-}
+
 .editContainer .editButton {
   background-color: #a99d8a;
   color: #fff;
@@ -128,4 +122,47 @@ textarea {
 .salesItem {
   flex-basis: 30%;
   text-align: center;
+}
+
+@media (width<=820px) {
+  div.individualContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      "h3 edit"
+      "textarea textarea";
+    width: 90vw;
+  }
+  div.individualContainer h3 {
+    grid-area: h3;
+  }
+  div.individualContainer textarea {
+    grid-area: textarea;
+    max-width: none;
+    width: auto;
+  }
+  div.invidualContainer span {
+    grid-area: edit;
+  }
+  div.editContainer {
+    width: 100%;
+  }
+  div.userInfo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      "name edit"
+      "stars stars";
+  }
+  div.userInfo h2 {
+    grid-area: name;
+  }
+  div.userInfo div {
+    grid-area: stars;
+  }
+  div.userInfo span {
+    grid-area: edit;
+  }
 }
