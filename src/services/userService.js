@@ -5,7 +5,7 @@ export const loginUser = async (username, password) => {
     username,
     password,
   });
-  // console.log(data);
+
   if (data.status !== "ok") throw new Error(data.message);
   return data;
 };
@@ -46,7 +46,6 @@ export const editOwnProfile = async (formData, config) => {
   );
   if (data.status !== "ok") throw new Error(data.message);
 
-  // console.log(data);
   return data;
 };
 export const getWishlist = async () => {
