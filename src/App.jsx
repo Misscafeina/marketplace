@@ -42,6 +42,8 @@ function App() {
     handleProductChanges,
     locationLat,
     locationLong,
+    products,
+    setProducts,
   } = useApp();
   return (
     <div className="app">
@@ -57,6 +59,8 @@ function App() {
               handleProductChanges={handleProductChanges}
               locationLat={locationLat}
               locationLong={locationLong}
+              products={products}
+              setProducts={setProducts}
             />
           }
         />
@@ -66,6 +70,8 @@ function App() {
             <SingleProduct
               handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
               wishlistArray={wishlistArray}
+              handleProductChanges={handleProductChanges}
+              products={products}
             />
           }
         />

@@ -5,7 +5,12 @@ import "./style.css";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-function SingleProduct({ wishlistArray, handleAddRemoveFromWishlist }) {
+function SingleProduct({
+  wishlistArray,
+  handleAddRemoveFromWishlist,
+  handleProductChanges,
+  products,
+}) {
   const [product, setProduct] = useState({});
   const { id } = useParams();
 
@@ -22,8 +27,10 @@ function SingleProduct({ wishlistArray, handleAddRemoveFromWishlist }) {
     <div className="singleProduct">
       <ProductContainer
         product={product}
+        products={products}
         handleAddRemoveFromWishlist={handleAddRemoveFromWishlist}
         wishlistArray={wishlistArray}
+        handleProductChanges={handleProductChanges}
       />
     </div>
   );

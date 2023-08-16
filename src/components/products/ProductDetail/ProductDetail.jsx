@@ -1,17 +1,17 @@
-import "./style.css"
-import Slider from "react-slick"
-import PropTypes from "prop-types"
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder"
-import FavoriteIcon from "@mui/icons-material/Favorite"
-import { Link, useParams } from "react-router-dom"
-import { findProductsByQuery, postNewDeal } from "../../../services"
-import { useNavigate } from "react-router-dom"
-import { useContext, useEffect, useState } from "react"
-import { PopUpContext } from "../../../context/popUpContext"
-import { useError } from "../../../context/ErrorContext"
-import { Rating } from "@mui/material"
+import "./style.css";
+import Slider from "react-slick";
+import PropTypes from "prop-types";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Link, useParams } from "react-router-dom";
+import { findProductsByQuery, postNewDeal } from "../../../services";
+import { useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { PopUpContext } from "../../../context/popUpContext";
+import { useError } from "../../../context/ErrorContext";
+import { Rating } from "@mui/material";
 
 const ProductDetail = ({
   product,
@@ -21,14 +21,14 @@ const ProductDetail = ({
   products,
   handleProductChanges,
 }) => {
-  const navigate = useNavigate()
-  const { setShowPopUp, setErrorActive } = useContext(PopUpContext)
-  const { setErrorMessage } = useError()
-  const [homePage, setHomePage] = useState(false)
-  const [relatedProducts, setRelatedProducts] = useState([])
-  const { id } = useParams()
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"))
-  const [owner, setOwner] = useState(false)
+  const navigate = useNavigate();
+  const { setShowPopUp, setErrorActive } = useContext(PopUpContext);
+  const { setErrorMessage } = useError();
+  const [homePage, setHomePage] = useState(false);
+  const [relatedProducts, setRelatedProducts] = useState([]);
+  const { id } = useParams();
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const [owner, setOwner] = useState(false);
 
   useEffect(() => {
     if (
@@ -36,58 +36,55 @@ const ProductDetail = ({
       location.pathname === "/wishlist" ||
       location.pathname === "/profile"
     ) {
-      setHomePage(true)
+      setHomePage(true);
     } else {
-      setHomePage(false)
+      setHomePage(false);
       const getRelatedProducts = async () => {
-        const related = await findProductsByQuery(product.name)
-        const array = []
-        const productsArray = []
+        const related = await findProductsByQuery(product.name);
+        const array = [];
+        const productsArray = [];
         for (let i = 0; i < 3; i++) {
           const randomNum = Math.floor(
             Math.random() * related.data.products.length
-          )
-          const exists = array.find((a) => a === randomNum)
+          );
+          const exists = array.find((a) => a === randomNum);
           if (!!exists || related.data.products[randomNum]?.id === product.id) {
-            related.data.products.length > 3 ? i-- : null
+            related.data.products.length > 3 ? i-- : null;
           } else {
-            array.push(randomNum)
-            productsArray.push(related.data.products[randomNum])
+            array.push(randomNum);
+            productsArray.push(related.data.products[randomNum]);
           }
         }
-        setRelatedProducts(productsArray)
-      }
-      getRelatedProducts()
+        setRelatedProducts(productsArray);
+      };
+      getRelatedProducts();
     }
-  }, [id])
+  }, [id]);
 
   useEffect(() => {
     if (location.pathname === `/product/${id}`) {
       if (userInfo?.username === product.usernameVendor) {
-        setOwner(true)
+        setOwner(true);
       } else {
-        setOwner(false)
+        setOwner(false);
       }
     }
-  }, [userInfo])
+  }, [userInfo]);
 
   const handleBuyButton = async () => {
     try {
-      const data = await postNewDeal(product?.id)
-      data.status === "ok" && handleProductChanges()
-      const updatedProducts = products.filter((item) => item.id !== product.id)
+      const data = await postNewDeal(product?.id);
+      data.status === "ok" && handleProductChanges();
       const {
         data: { id: idDeal },
-      } = data
-      console.log(idDeal)
-      setProducts([...updatedProducts])
-      navigate(`/deals/${idDeal}`)
+      } = data;
+      navigate(`/deals/${idDeal}`);
     } catch (err) {
-      setShowPopUp(true)
-      setErrorActive(true)
-      setErrorMessage(err.response.data.error)
+      setShowPopUp(true);
+      setErrorActive(true);
+      setErrorMessage(err.response?.data?.error);
     }
-  }
+  };
 
   const settings = {
     dots: true,
@@ -95,7 +92,7 @@ const ProductDetail = ({
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-  }
+  };
 
   return (
     <div className="product-detail">
@@ -124,7 +121,7 @@ const ProductDetail = ({
               <div key={index} className="product-image">
                 <img src={image} alt={product?.name} />
               </div>
-            )
+            );
           })}
         </Slider>
       </div>
@@ -156,12 +153,12 @@ const ProductDetail = ({
                 <h3>Productos que quizás te interesen:</h3>
                 <ul>
                   {relatedProducts.map((p) => {
-                    const path = `/product/${p?.id}`
+                    const path = `/product/${p?.id}`;
                     return (
                       <li key={p?.id}>
                         <Link to={path}>{p?.name}</Link>
                       </li>
-                    )
+                    );
                   })}
                 </ul>
               </>
@@ -178,8 +175,8 @@ const ProductDetail = ({
         </>
       )}
     </div>
-  )
-}
+  );
+};
 
 ProductDetail.propTypes = {
   product: PropTypes.object,
@@ -188,6 +185,6 @@ ProductDetail.propTypes = {
   setProducts: PropTypes.func,
   products: PropTypes.array,
   handleProductChanges: PropTypes.func,
-}
+};
 
-export default ProductDetail
+export default ProductDetail;

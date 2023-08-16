@@ -25,7 +25,7 @@ function AuthProvider({ children }) {
     }
   };
   const logout = () => {
-    localStorage.clear("userInfo");
+    localStorage.removeItem("userInfo");
     setIsAuthenticated(false);
     navigate("/");
     // window.location.reload();

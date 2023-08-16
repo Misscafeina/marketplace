@@ -15,38 +15,12 @@ function HomePage({
   wishlistArray,
   handleAddRemoveFromWishlist,
   handleProductChanges,
+  products,
+  setProducts,
   locationLat,
   locationLong,
 }) {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [products, setProducts] = useState([]);
   const { input } = useSearch();
-
-  useEffect(() => {
-    const { name, category, order } = Object.fromEntries(searchParams);
-    if (name || category || order) {
-      const getProducts = async () => {
-        // const name = input;
-        const lat = locationLat;
-        const long = locationLong;
-        const result = await findProductsByQuery(
-          name,
-          category,
-          order,
-          lat,
-          long
-        );
-        setProducts(result.data.products);
-      };
-      getProducts();
-    } else {
-      const requestProducts = async () => {
-        const response = await getProducts();
-        setProducts(response.products);
-      };
-      requestProducts();
-    }
-  }, [searchParams]);
 
   return (
     <>
