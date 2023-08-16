@@ -56,7 +56,9 @@ const Chat = ({
   return (
     <div className="container">
       <div className="status"></div>
-      {status === "completed" && Review({ dealInfo, setDealInfo })}
+      {status === "completed" &&
+        !dealInfo?.dealData?.dealReviewedByCurrentUser &&
+        Review({ dealInfo, setDealInfo })}
       <div className="message-list">
         {dealInfo?.messages.map((message) => (
           <div key={message.id} className="message">

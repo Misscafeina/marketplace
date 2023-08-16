@@ -1,19 +1,31 @@
 import { Rating, TextField } from "@mui/material"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { postDealReview } from "../../services"
 import PropTypes from "prop-types"
+import "./style.css"
+import { useNavigate } from "react-router-dom"
+import { useError } from "../../context/ErrorContext"
+import { PopUpContext } from "../../context/popUpContext"
 
 const Review = ({ dealInfo }) => {
-  // create a component for the review posting form using the service postReview using the rating component from material ui and the text area component from material ui
+  const { setShowPopUp, setErrorActive } = useContext(PopUpContext)
+  const { setErrorMessage } = useError()
   const [rating, setRating] = useState(0)
   const [review, setReview] = useState("")
   const idDeal = dealInfo.dealData.id
+  const navigate = useNavigate()
   const onSubmit = async (e) => {
     e.preventDefault()
-    console.log(rating, review)
-    const Review = { score: rating, comment: review }
-    console.log(Review)
-    await postDealReview(idDeal, Review)
+    try {
+      const Review = { score: rating, comment: review }
+      console.log(Review)
+      await postDealReview(idDeal, Review)
+      navigate("/profile")
+    } catch (error) {
+      setShowPopUp(true)
+      setErrorActive(true)
+      setErrorMessage(error.response.data.error)
+    }
   }
   console.log(rating)
   return (
@@ -30,7 +42,7 @@ const Review = ({ dealInfo }) => {
             }}
           />
         </div>
-        <div className="review-text">
+        <div className="review-text menu">
           <TextField
             id="outlined-multiline-static"
             label="Comentarios"
@@ -40,9 +52,8 @@ const Review = ({ dealInfo }) => {
             variant="outlined"
           />
         </div>
-        <button type="submit" className="button">
-          Evaluar
-        </button>
+
+        <button type="submit">Evaluar</button>
       </form>
     </div>
   )
