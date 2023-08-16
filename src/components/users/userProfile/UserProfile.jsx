@@ -1,18 +1,18 @@
-import "./style.css";
-import { useContext, useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { PopUpContext } from "../../../context/PopUpContext";
-import EditFieldButton from "../../inputs/EditFieldButton";
-import EditPasswordButton from "../../inputs/EditPasswordButton";
-import UpdateUserPopUp from "../../../pages/UpdateUserPopUp/UpdateUserPopUp";
-import Rating from "react-rating";
+import "./style.css"
+import { useContext, useEffect, useState } from "react"
+import PropTypes from "prop-types"
+import { PopUpContext } from "../../../context/PopUpContext"
+import EditFieldButton from "../../inputs/EditFieldButton"
+import EditPasswordButton from "../../inputs/EditPasswordButton"
+import UpdateUserPopUp from "../../../pages/UpdateUserPopUp/UpdateUserPopUp"
+import { Rating } from "@mui/material"
 
 UserProfile.propTypes = {
   userInfo: PropTypes.object,
   setSelectedField: PropTypes.func,
   selectedField: PropTypes.string,
   setUserInfo: PropTypes.func,
-};
+}
 
 function UserProfile({
   userInfo,
@@ -20,12 +20,12 @@ function UserProfile({
   selectedField,
   setUserInfo,
 }) {
-  const [userData, setUserData] = useState(userInfo.userData);
+  const [userData, setUserData] = useState(userInfo.userData)
   useEffect(() => {
-    setUserData(userInfo.userData);
-  }, [userInfo]);
+    setUserData(userInfo.userData)
+  }, [userInfo])
   const { setEditProfileActive, editProfileActive, showPopUp, setShowPopUp } =
-    useContext(PopUpContext);
+    useContext(PopUpContext)
 
   const {
     username,
@@ -38,7 +38,7 @@ function UserProfile({
     city,
     region,
     country,
-  } = userData;
+  } = userData
   return (
     <>
       <article className="userProfile">
@@ -63,15 +63,7 @@ function UserProfile({
           <div className="userInfo">
             <h2>{username}</h2>
             <div className="ratings">
-              <Rating
-                className="rating"
-                initialRating={
-                  avgScore
-                } /* Si el initialRating tiene un valor que salga el empty y el full del color amarillo del css y sino, que los bordes salgan en gris (#888)*/
-                emptySymbol={<span className="rating-empty">&#9734;</span>}
-                fullSymbol={<span className="rating-full">&#9733;</span>}
-                readonly
-              />
+              <Rating className="" name={username} value={avgScore} readOnly />
             </div>
 
             <span>
@@ -164,7 +156,7 @@ function UserProfile({
         )}
       </article>
     </>
-  );
+  )
 }
 
-export default UserProfile;
+export default UserProfile
