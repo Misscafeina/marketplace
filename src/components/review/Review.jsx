@@ -1,33 +1,33 @@
-import { Rating, TextField } from "@mui/material"
-import { useContext, useState } from "react"
-import { postDealReview } from "../../services"
-import PropTypes from "prop-types"
-import "./style.css"
-import { useNavigate } from "react-router-dom"
-import { useError } from "../../context/ErrorContext"
-import { PopUpContext } from "../../context/popUpContext"
+import { Rating, TextField } from "@mui/material";
+import { useContext, useState } from "react";
+import { postDealReview } from "../../services";
+import PropTypes from "prop-types";
+import "./style.css";
+import { useNavigate } from "react-router-dom";
+import { useError } from "../../context/ErrorContext";
+import { PopUpContext } from "../../context/popUpContext";
 
 const Review = ({ dealInfo }) => {
-  const { setShowPopUp, setErrorActive } = useContext(PopUpContext)
-  const { setErrorMessage } = useError()
-  const [rating, setRating] = useState(0)
-  const [review, setReview] = useState("")
-  const idDeal = dealInfo.dealData.id
-  const navigate = useNavigate()
+  const { setShowPopUp, setErrorActive } = useContext(PopUpContext);
+  const { setErrorMessage } = useError();
+  const [rating, setRating] = useState(0);
+  const [review, setReview] = useState("");
+  const idDeal = dealInfo.dealData.id;
+  const navigate = useNavigate();
   const onSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const Review = { score: rating, comment: review }
-      console.log(Review)
-      await postDealReview(idDeal, Review)
-      navigate("/profile")
+      const Review = { score: rating, comment: review };
+
+      await postDealReview(idDeal, Review);
+      navigate("/profile");
     } catch (error) {
-      setShowPopUp(true)
-      setErrorActive(true)
-      setErrorMessage(error.response.data.error)
+      setShowPopUp(true);
+      setErrorActive(true);
+      setErrorMessage(error.response.data.error);
     }
-  }
-  console.log(rating)
+  };
+
   return (
     <div className="review">
       <form onSubmit={onSubmit}>
@@ -37,8 +37,7 @@ const Review = ({ dealInfo }) => {
             value={rating}
             precision={0.5}
             onChange={(e, newValue) => {
-              setRating(newValue)
-              console.log(newValue)
+              setRating(newValue);
             }}
           />
         </div>
@@ -56,7 +55,7 @@ const Review = ({ dealInfo }) => {
         <button type="submit">Evaluar</button>
       </form>
     </div>
-  )
-}
-Review.propTypes = { dealInfo: PropTypes.object }
-export default Review
+  );
+};
+Review.propTypes = { dealInfo: PropTypes.object };
+export default Review;

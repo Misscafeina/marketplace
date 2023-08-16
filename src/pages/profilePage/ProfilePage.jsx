@@ -18,7 +18,6 @@ function ProfilePage({
   userInfo,
   setUserInfo,
 }) {
-  console.log(userInfo);
   return (
     <>
       {Object.keys(userInfo).length !== 0 && (

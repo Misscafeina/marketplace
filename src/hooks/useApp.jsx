@@ -2,6 +2,7 @@ import { useAuth } from "../context/AuthContext";
 import { useContext, useEffect, useState } from "react";
 import {
   addRemoveFromWishlist,
+  findProductsByQuery,
   getOwnProfile,
   getProducts,
   getWishlist,
