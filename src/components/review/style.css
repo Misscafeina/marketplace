@@ -1,0 +1,30 @@
+.review {
+  /* display: flex; */
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex-direction: row;
+  gap: 5px;
+
+  justify-content: stretch;
+  border-radius: 20px;
+  margin-bottom: 10px;
+
+  border-radius: 10px;
+}
+.review button {
+  height: 100%;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 15px;
+  margin-bottom: 5px;
+  padding: 10px 0;
+  background-color: #96af4c;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  width: 45%;
+}
