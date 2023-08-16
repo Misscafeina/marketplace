@@ -1,18 +1,18 @@
-import "./style.css"
-import { useContext, useEffect, useState } from "react"
-import PropTypes from "prop-types"
-import { PopUpContext } from "../../../context/PopUpContext"
-import EditFieldButton from "../../inputs/EditFieldButton"
-import EditPasswordButton from "../../inputs/EditPasswordButton"
-import UpdateUserPopUp from "../../../pages/UpdateUserPopUp/UpdateUserPopUp"
-import { Rating } from "@mui/material"
+import "./style.css";
+import { useContext, useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { PopUpContext } from "../../../context/PopUpContext";
+import EditFieldButton from "../../inputs/EditFieldButton";
+import EditPasswordButton from "../../inputs/EditPasswordButton";
+import UpdateUserPopUp from "../../../pages/UpdateUserPopUp/UpdateUserPopUp";
+import { Rating } from "@mui/material";
 
 UserProfile.propTypes = {
   userInfo: PropTypes.object,
   setSelectedField: PropTypes.func,
   selectedField: PropTypes.string,
   setUserInfo: PropTypes.func,
-}
+};
 
 function UserProfile({
   userInfo,
@@ -20,12 +20,12 @@ function UserProfile({
   selectedField,
   setUserInfo,
 }) {
-  const [userData, setUserData] = useState(userInfo.userData)
+  const [userData, setUserData] = useState(userInfo.userData);
   useEffect(() => {
-    setUserData(userInfo.userData)
-  }, [userInfo])
+    setUserData(userInfo.userData);
+  }, [userInfo]);
   const { setEditProfileActive, editProfileActive, showPopUp, setShowPopUp } =
-    useContext(PopUpContext)
+    useContext(PopUpContext);
 
   const {
     username,
@@ -38,7 +38,7 @@ function UserProfile({
     city,
     region,
     country,
-  } = userData
+  } = userData;
   return (
     <>
       <article className="userProfile">
@@ -127,10 +127,12 @@ function UserProfile({
 
                 <textarea
                   readOnly
-                  value={address + ", " + city + ", " + region + ", " + country}
-                >
-                  {address + ", " + city + ", " + region + ", " + country}
-                </textarea>
+                  value={
+                    address === null
+                      ? ""
+                      : address + ", " + city + ", " + region + ", " + country
+                  }
+                ></textarea>
                 <span>
                   <EditFieldButton
                     setSelectedField={setSelectedField}
@@ -156,7 +158,7 @@ function UserProfile({
         )}
       </article>
     </>
-  )
+  );
 }
 
-export default UserProfile
+export default UserProfile;

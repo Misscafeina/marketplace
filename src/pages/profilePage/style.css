@@ -3,4 +3,11 @@
   width: 80vw;
   justify-content: space-around;
   flex-wrap: wrap;
+  z-index: -10;
+}
+div.profileDeals {
+  z-index: -1;
+}
+.MuiListSubheader-root.MuiListSubheader-gutters.MuiListSubheader-sticky.css-uob957-MuiListSubheader-root {
+  z-index: -1;
 }

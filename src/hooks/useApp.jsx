@@ -1,8 +1,14 @@
 import { useAuth } from "../context/AuthContext";
 import { useContext, useEffect, useState } from "react";
-import { addRemoveFromWishlist, getOwnProfile, getWishlist } from "../services";
+import {
+  addRemoveFromWishlist,
+  getOwnProfile,
+  getProducts,
+  getWishlist,
+} from "../services";
 import { PopUpContext } from "../context/popUpContext";
 import { useError } from "../context/ErrorContext";
+import { useSearchParams } from "react-router-dom";
 
 function useApp() {
   const { isAuthenticated } = useAuth();
@@ -12,6 +18,8 @@ function useApp() {
   const [wishlistArray, setWishlistArray] = useState([]);
   const [locationLat, setLocationLat] = useState();
   const [locationLong, setLocationLong] = useState();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [products, setProducts] = useState([]);
   const { setShowPopUp, setErrorActive } = useContext(PopUpContext);
   const { setErrorMessage } = useError();
   useEffect(() => {
@@ -30,6 +38,31 @@ function useApp() {
     } else setUserInfo({});
   }, [isAuthenticated]);
 
+  useEffect(() => {
+    const { name, category, order } = Object.fromEntries(searchParams);
+    if (name || category || order) {
+      const getProducts = async () => {
+        // const name = input;
+        const lat = locationLat;
+        const long = locationLong;
+        const result = await findProductsByQuery(
+          name,
+          category,
+          order,
+          lat,
+          long
+        );
+        setProducts(result.data.products);
+      };
+      getProducts();
+    } else {
+      const requestProducts = async () => {
+        const response = await getProducts();
+        setProducts(response.products);
+      };
+      requestProducts();
+    }
+  }, [searchParams]);
   useEffect(() => {
     const getLocation = async () => {
       const options = {
@@ -133,6 +166,8 @@ function useApp() {
     handleProductChanges,
     locationLat,
     locationLong,
+    products,
+    setProducts,
   };
 }
 
