@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useNavigate } from "react-router";
+
 
 EditFieldButton.propTypes = {
   setSelectedField: PropTypes.func,
@@ -12,7 +12,7 @@ function EditFieldButton({
   setSelectedField,
   field,
   setEditProfileActive,
-  setShowPopUp,
+
 }) {
   return (
     <button
