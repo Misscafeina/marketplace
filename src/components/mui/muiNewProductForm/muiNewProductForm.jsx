@@ -50,8 +50,9 @@ function MuiNewProductForm({ userInfo, handleProductChanges }) {
     try {
       if (!data.images[0]) throw new Error("Debes incluir al menos 1 foto");
       const productData = { ...data };
-      if (data.images.length > 10)
+      if (data.images.length > 10) {
         throw new Error("El máximo son 10 fotos por producto");
+      }
       delete productData.images;
       const response = await postNewProduct(productData);
       const {

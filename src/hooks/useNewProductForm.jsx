@@ -6,7 +6,6 @@ import { useContext } from "react";
 import { PopUpContext } from "../context/popUpContext";
 import { useError } from "../context/ErrorContext";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
 import useApp from "./useApp";
 
 function useNewProductForm() {
@@ -41,7 +40,7 @@ function useNewProductForm() {
       };
 
       const filesResponse = await uploadProductPictures(formData, config, id);
-      handleProductChanges();
+      await handleProductChanges();
       filesResponse.status === "ok" && navigate(`/product/${id}`);
     } catch (err) {
       setShowPopUp(true);
