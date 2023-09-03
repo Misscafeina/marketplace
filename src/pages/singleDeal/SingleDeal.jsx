@@ -9,7 +9,6 @@ import Chat from "../../components/chat/Chat";
 import { PopUpContext } from "../../context/popUpContext";
 import { useError } from "../../context/ErrorContext";
 
-
 SingleDeal.propTypes = {
   userInfo: PropTypes.object,
   setUserInfo: PropTypes.func,
@@ -52,6 +51,15 @@ function SingleDeal({ handleProductChanges, userInfo, setUserInfo }) {
             setUserInfo={setUserInfo}
             handleProductChanges={handleProductChanges}
           />
+          {/* {dealInfo?.messages?.map((message) => {
+            return (
+              <DealMessage
+                key={message.id}
+                message={message}
+                dealInfo={dealInfo}
+              />
+            );
+          })} */}
         </DealMessagesContainer>
       )}
     </>

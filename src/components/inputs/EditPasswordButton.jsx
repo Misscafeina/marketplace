@@ -12,9 +12,10 @@ function EditPasswordButton({
   setSelectedField,
   field,
   setEditProfileActive,
-
+  setShowPopUp,
 }) {
-    return (
+  const navigate = useNavigate();
+  return (
     <button
       className="editBtn"
       onClick={() => {

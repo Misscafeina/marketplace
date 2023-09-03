@@ -1,8 +1,8 @@
-import { useState, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
   editProduct,
-
-
+  getProductDetails,
+  getProducts,
 } from "../services/productsService";
 import { useNavigate } from "react-router";
 import { useParams } from "react-router-dom";
