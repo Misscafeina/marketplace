@@ -5,9 +5,10 @@ import useUpdateProductForm from "../../../hooks/useUpdateProductForm";
 import {
   PRODUCT_NAME,
   LONG_TEXT_VALIDATIONS,
+  HASHTAG_VALIDATIONS,
   REQUIRED,
-
-
+  LONG_TEXT_VALIDATIONS_REQUIRED,
+  NAME_VALIDATIONS_REQUIRED,
 } from "../../../utils/formValidationConstants";
 import TextInput from "../../inputs/TextInput";
 import CountryInpunt from "../../inputs/CountryInput";

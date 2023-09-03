@@ -1,4 +1,4 @@
-import { useContext, } from "react";
+import { useContext, useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -8,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { PopUpContext } from "../../context/popUpContext";
 
 function AcceptCookies() {
-  const { setAllFalse } = useContext(PopUpContext);
+  const { setAllFalse, setCookiesPolicyActive } = useContext(PopUpContext);
   const navigate = useNavigate();
   const handleClose = () => {
     setAllFalse();

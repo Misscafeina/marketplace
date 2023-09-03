@@ -48,6 +48,7 @@
 
 .message-input {
   display: flex;
+  align-items: center;
   padding: 5px;
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -117,9 +118,14 @@
   background-color: #f7f7f7;
 }
 .send-button {
+  padding: 10px;
+  background-color: #f7f7f7;
   border: none;
+  border-radius: 50%;
   cursor: pointer;
   position: absolute;
+  padding: 10px 20px;
+  cursor: pointer;
   right: 0;
   padding: 10px 0;
   background-color: #fff;

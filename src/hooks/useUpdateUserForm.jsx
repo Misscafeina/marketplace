@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { editOwnProfile } from "../services/userService";
+import { useNavigate } from "react-router";
 import { PopUpContext } from "../context/popUpContext";
 import { useError } from "../context/ErrorContext";
 

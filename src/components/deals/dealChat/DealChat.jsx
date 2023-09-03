@@ -1,3 +1,4 @@
+import { useState } from "react";
 import PropTypes from "prop-types";
 import {
   postChatMessage,
@@ -13,6 +14,7 @@ import {
   TextField,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
+import dayjs from "dayjs";
 import "dayjs/locale/es";
 import {
   LONG_TEXT_VALIDATIONS_REQUIRED,
@@ -25,13 +27,13 @@ DealChat.propTypes = {
 };
 
 function DealChat({ dealInfo, setDealInfo }) {
-
+  const [date, setDate] = useState(dayjs(new Date()));
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+  const currentDate = new Date();
   const onSubmit = async (message) => {
     await postChatMessage(dealInfo.dealData.id, message);
     const response = await getDealDetails(dealInfo.dealData.id);
